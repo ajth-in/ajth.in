@@ -13,17 +13,20 @@ import { StrollbyHoverCardContent } from "../companies/Strollby";
 export const HeroSection = () => {
   return (
     <div className="flex gap-3 py-8">
-      <CldImage
-        className="rounded-xl"
-        src="ajith-dp_qlwgip" // Use this sample image or upload your own via the Media Explorer
-        width="50" // Transform the image: auto-crop to square aspect_ratio
-        height="50"
-        alt="sample image"
-        crop={{
-          type: "auto",
-          source: true,
-        }}
-      />
+      <div>
+        <CldImage
+          className="rounded-xl"
+          src="ajith-dp_qlwgip"
+          aspectRatio={1}
+          width="50"
+          height="50"
+          alt="sample image"
+          crop={{
+            type: "auto",
+            source: true,
+          }}
+        />
+      </div>
       <div>
         <h1 className=" text-md font-semibold p-0 m-0">
           Ajith Kumar P M{" "}

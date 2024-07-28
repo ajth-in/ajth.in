@@ -148,3 +148,13 @@ table {
 .title {
   text-wrap: balance;
 }
+
+.highlight  {
+  background-color: rgba(203, 203, 203, 0.047);
+  overflow-x: auto;
+  font-size: 15px;
+  padding: 10px;
+}
+.highlight__panel-action {
+  display: none;
+}

@@ -11,15 +11,15 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Next.js Portfolio Starter",
-    template: "%s | Next.js Portfolio Starter",
+    default: "Ajith Kumar",
+    template: "%s | Ajith Kumar",
   },
-  description: "This is my portfolio.",
+  description: "Ajith Kumar P M portfolio website",
   openGraph: {
-    title: "My Portfolio",
-    description: "This is my portfolio.",
+    title: "Ajith Kumar P M ",
+    description: "Ajith Kumar P M portfolio website",
     url: baseUrl,
-    siteName: "My Portfolio",
+    siteName: "ajith",
     locale: "en_US",
     type: "website",
   },
@@ -49,9 +49,15 @@ export default function RootLayout({
       className={cx(
         "text-black bg-white dark:text-white dark:bg-black",
         GeistSans.variable,
-        GeistMono.variable,
+        GeistMono.variable
       )}
     >
+      <head>
+        <link
+          rel="icon"
+          href="https://res.cloudinary.com/dobs3jkdj/image/upload/c_thumb,w_200,g_face/v1722176212/A_1_sfatsl.png"
+        />
+      </head>
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
