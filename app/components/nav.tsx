@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -34,7 +35,7 @@ export function Navbar() {
               <NavigationMenuItem className="flex flex-row space-x-0 p-2 gap-2 ">
                 {Object.entries(navItems).map(([path, { name }]) => {
                   return (
-                    <Link href={path} passHref legacyBehavior>
+                    <Link href={path} passHref legacyBehavior key={name}>
                       <NavigationMenuLink
                         className={buttonVariants({ variant: "link" })}
                       >
@@ -48,7 +49,13 @@ export function Navbar() {
           </NavigationMenu>
         </nav>
       </div>
-      <Button variant={"outline"} className="text-xs">
+      <Button
+        variant={"outline"}
+        className="text-xs cursor-pointer"
+        onClick={() => {
+          alert("Hello");
+        }}
+      >
         Quick menu
       </Button>
     </aside>
