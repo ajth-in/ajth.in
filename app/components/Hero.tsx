@@ -5,11 +5,13 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { Input } from "@/components/ui/input";
+
 import { Link, MapPin } from "lucide-react";
 import { Link2 } from "react-feather";
 export const HeroSection = () => {
   return (
-    <div className="flex gap-3 py-10">
+    <div className="flex gap-3 py-8">
       <CldImage
         className="rounded-xl"
         src="ajith-dp_qlwgip" // Use this sample image or upload your own via the Media Explorer

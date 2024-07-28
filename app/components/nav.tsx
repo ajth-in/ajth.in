@@ -9,21 +9,21 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { Input } from "@/components/ui/input";
+import { Button, buttonVariants } from "@/components/ui/button";
+
 const navItems = {
   "/": {
-    name: "home",
+    name: "Home",
   },
   "/blog": {
-    name: "blog",
-  },
-  "https://vercel.com/templates/next.js/portfolio-starter-kit": {
-    name: "deploy",
+    name: "Blog",
   },
 };
 
 export function Navbar() {
   return (
-    <aside className="-ml-[8px] tracking-tight">
+    <aside className="-ml-[8px] tracking-tight flex items-center w-full justify-between ">
       <div className="lg:sticky lg:top-20">
         <nav
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
@@ -31,11 +31,15 @@ export function Navbar() {
         >
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem className="flex flex-row space-x-0 p-2 gap-10 ">
+              <NavigationMenuItem className="flex flex-row space-x-0 p-2 gap-2 ">
                 {Object.entries(navItems).map(([path, { name }]) => {
                   return (
                     <Link href={path} passHref legacyBehavior>
-                      <NavigationMenuLink>{name}</NavigationMenuLink>
+                      <NavigationMenuLink
+                        className={buttonVariants({ variant: "link" })}
+                      >
+                        {name}
+                      </NavigationMenuLink>
                     </Link>
                   );
                 })}
@@ -44,6 +48,9 @@ export function Navbar() {
           </NavigationMenu>
         </nav>
       </div>
+      <Button variant={"outline"} className="text-xs">
+        Quick menu
+      </Button>
     </aside>
   );
 }
