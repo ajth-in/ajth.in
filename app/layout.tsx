@@ -1,6 +1,6 @@
 import "./global.css";
 import type {Metadata} from "next";
-import {NavigationBar} from "./components/nav";
+import {Navbar} from "./components/nav";
 import {Analytics} from "@vercel/analytics/react";
 import {SpeedInsights} from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
@@ -64,7 +64,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased max-w-5xl mx-4 mt-8 lg:mx-auto ">
         <main>
-          <NavigationBar />
+          <Navbar />
           {children}
           <Footer />
           <Analytics />
