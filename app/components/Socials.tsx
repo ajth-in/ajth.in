@@ -7,11 +7,13 @@ export const SocialLinks = () => {
       path: "https://www.linkedin.com/in/ajith-kumar-p-m/",
       title: "Ajith Kumar P M Linkedin profile",
       icon: Linkedin,
+      id: "Linkedin",
     },
     {
       path: "mailto:ajithpmuralidharan01@gmail.com",
       title: "Ajith Kumar P M email",
       icon: AtSign,
+      id: "Email",
     },
   ];
   return (
@@ -23,6 +25,7 @@ export const SocialLinks = () => {
           aria-label={link.title}
           className={buttonVariants({ variant: "ghost", size: "sm" })}
         >
+          {link.id}
           <link.icon className="text-gray-300 hover:text-white transition-all  p-1" />
         </a>
       ))}
