@@ -12,7 +12,7 @@ const navItems = {
   "/": {
     name: "Home",
   },
-  "/blog": {
+  "https://dev.to/ajith-k": {
     name: "Blog",
   },
 };

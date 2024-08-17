@@ -4,7 +4,6 @@ import {Navbar} from "./components/nav";
 import {Analytics} from "@vercel/analytics/react";
 import {SpeedInsights} from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
-import {baseUrl} from "./sitemap";
 import {Quicksand} from "next/font/google"; // If loading a variable font, you don't need to specify the font weight
 
 // If loading a variable font, you don't need to specify the font weight
@@ -14,7 +13,6 @@ const inter = Quicksand({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
   title: {
     default: "Ajith Kumar",
     template: "%s | Ajith Kumar",
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ajith Kumar P M ",
     description: "Ajith Kumar P M portfolio website",
-    url: baseUrl,
+    url: "https://ajith-k.in",
     siteName: "ajith",
     locale: "en_US",
     type: "website",
