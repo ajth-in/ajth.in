@@ -1,6 +1,7 @@
 import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Blog from "./blog";
+import Link from "next/link";
 
 export const Blogs = () => {
   const featureBlogs = [
@@ -31,9 +32,13 @@ export const Blogs = () => {
           <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
             Latest articles
           </h4>
-          <Button className="gap-4">
-            View all articles <MoveRight className="w-4 h-4" />
-          </Button>
+          <Link
+            href={"https://dev.to/ajith-k"}
+            className={buttonVariants({ variant: "default" })}
+          >
+            View all articles{" "}
+            <MoveRight className="w-4 h-4 mx-1" target={"_blank"} />
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {featureBlogs.map((blog) => (

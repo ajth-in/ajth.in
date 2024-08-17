@@ -1,69 +1,61 @@
-import { Github, User } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Github } from "lucide-react";
+import Link from "next/link";
+import { badgeVariants } from "../../@/components/ui/badge";
+import Project from "./project";
 
-export const Products = () => (
-  <div className="w-full  lg:py-10">
-    <div className="container mx-auto">
-      <div className="flex flex-col gap-10">
-        <div className="flex gap-4 flex-col items-start">
-          <div>
-            <Badge variant={"outline"}>
-              <Github />
-            </Badge>
-          </div>
-          <div className="flex gap-2 flex-col">
-            <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular text-left">
-              Something new!
-            </h2>
-            <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground  text-left">
-              Managing a small business today is already tough.
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-muted rounded-md h-full lg:col-span-2 p-6 aspect-square lg:aspect-auto flex justify-between flex-col">
-            <User className="w-8 h-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
-              <p className="text-muted-foreground max-w-xs text-base">
-                Our goal is to streamline SMB trade, making it easier and faster
-                than ever.
-              </p>
-            </div>
-          </div>
-          <div className="bg-muted rounded-md  aspect-square p-6 flex justify-between flex-col">
-            <User className="w-8 h-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
-              <p className="text-muted-foreground max-w-xs text-base">
-                Our goal is to streamline SMB trade, making it easier and faster
-                than ever.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-muted rounded-md aspect-square p-6 flex justify-between flex-col">
-            <User className="w-8 h-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
-              <p className="text-muted-foreground max-w-xs text-base">
-                Our goal is to streamline SMB trade, making it easier and faster
-                than ever.
-              </p>
-            </div>
-          </div>
-          <div className="bg-muted rounded-md h-full lg:col-span-2 p-6 aspect-square lg:aspect-auto flex justify-between flex-col">
-            <User className="w-8 h-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
-              <p className="text-muted-foreground max-w-xs text-base">
-                Our goal is to streamline SMB trade, making it easier and faster
-                than ever.
-              </p>
-            </div>
-          </div>
+export const projects = [
+  {
+    title: "CODAX",
+    description:
+      "runtime detection and prevention of semantic DOS attacks in linux containers",
+    badges: ["linux", "ebpf", "c"],
+    link: "https://github.com/Ziton-live/CODAX",
+  },
+  {
+    title: "Ziton ",
+    description: "Python django sdk for the ziton observability tool",
+    badges: ["python", "django"],
+    link: "https://github.com/Ziton-live/ziton-monitor",
+  },
+  {
+    title: "Blood care ",
+    description: "An app to connect blood donors",
+    badges: ["python", "django"],
+    link: "https://github.com/ajth-k/bloodcare",
+  },
+  {
+    title: "Talk form",
+    description: "component to generate chat like form UI.",
+    badges: ["Rollup", "js", "react"],
+    link: "https://www.npmjs.com/package/talk-form",
+  },
+];
+export const Projects = () => {
+  return (
+    <div className="flex gap-4 flex-col items-start">
+      <div>
+        <Link
+          href={"https://github.com/ajth-k"}
+          className={badgeVariants({ variant: "outline" })}
+        >
+          Checkout my <Github className={"mx-1 w-[15px]"} />
+        </Link>
+      </div>
+      <div className="flex gap-2 flex-col">
+        <h2 className="text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular">
+          Projects
+        </h2>
+        <p className="text-lg max-w-xl lg:max-w-xl leading-relaxed tracking-tight text-muted-foreground">
+          Things I've made and done
+        </p>
+      </div>
+      <div className="flex gap-10 pt-12 flex-col w-full">
+        <div className="grid grid-cols-2 items-start lg:grid-cols-3 gap-10">
+          {projects.map((project) => (
+            <Project key={project.title} {...project} />
+          ))}
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
