@@ -1,12 +1,17 @@
 import "./global.css";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Navbar } from "./components/nav";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import type {Metadata} from "next";
+import {NavigationBar} from "./components/nav";
+import {Analytics} from "@vercel/analytics/react";
+import {SpeedInsights} from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
-import { baseUrl } from "./sitemap";
+import {baseUrl} from "./sitemap";
+import {Quicksand} from "next/font/google"; // If loading a variable font, you don't need to specify the font weight
+
+// If loading a variable font, you don't need to specify the font weight
+const inter = Quicksand({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -48,8 +53,7 @@ export default function RootLayout({
       lang="en"
       className={cx(
         "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable
+        inter.className,
       )}
     >
       <head>
@@ -58,9 +62,9 @@ export default function RootLayout({
           href="https://res.cloudinary.com/dobs3jkdj/image/upload/c_thumb,w_200,g_face/v1722176212/A_1_sfatsl.png"
         />
       </head>
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
+      <body className="antialiased max-w-5xl mx-4 mt-8 lg:mx-auto ">
+        <main>
+          <NavigationBar />
           {children}
           <Footer />
           <Analytics />

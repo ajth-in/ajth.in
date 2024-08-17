@@ -1,76 +1,69 @@
-import Link from "next/link";
-import { formatDate, getBlogPosts } from "app/blog/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Github, User } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
-export interface DevToListResponse {
-  type_of: string;
-  id: number;
-  title: string;
-  description: string;
-  readable_publish_date: string;
-  slug: string;
-  path: string;
-  url: string;
-  comments_count: number;
-  public_reactions_count: number;
-  collection_id: null;
-  published_timestamp: Date;
-  positive_reactions_count: number;
-  cover_image: null | string;
-  social_image: string;
-  canonical_url: string;
-  created_at: Date;
-  edited_at: Date | null;
-  crossposted_at: null;
-  published_at: string;
-  last_comment_at: Date;
-  reading_time_minutes: number;
-  tag_list: string[];
-  tags: string;
-  user: User;
-}
-
-export interface User {
-  name: string;
-  username: string;
-  twitter_username: null;
-  github_username: string;
-  user_id: number;
-  website_url: string;
-  profile_image: string;
-  profile_image_90: string;
-}
-export async function BlogPosts() {
-  let response = await fetch(
-    "https://dev.to/api/articles/latest?username=ajith-k"
-  );
-  if (!response.ok) return;
-  const blogs: DevToListResponse[] = await response.json();
-  return (
-    <div>
-      {blogs.map((post) => (
-        <Link
-          key={post.slug}
-          className={
-            "flex flex-col space-y-1 mb-4 border-gray-400 w-full" +
-            buttonVariants({ variant: "outline" })
-          }
-          href={`/blog/${post.id}`}
-        >
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums text-xs font-mono">
-              {new Date(post.published_at)?.toLocaleString("en-us", {
-                month: "numeric",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </p>
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight line-clamp-1">
-              {post.title}
+export const Products = () => (
+  <div className="w-full  lg:py-10">
+    <div className="container mx-auto">
+      <div className="flex flex-col gap-10">
+        <div className="flex gap-4 flex-col items-start">
+          <div>
+            <Badge variant={"outline"}>
+              <Github />
+            </Badge>
+          </div>
+          <div className="flex gap-2 flex-col">
+            <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular text-left">
+              Something new!
+            </h2>
+            <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground  text-left">
+              Managing a small business today is already tough.
             </p>
           </div>
-        </Link>
-      ))}
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="bg-muted rounded-md h-full lg:col-span-2 p-6 aspect-square lg:aspect-auto flex justify-between flex-col">
+            <User className="w-8 h-8 stroke-1" />
+            <div className="flex flex-col">
+              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
+              <p className="text-muted-foreground max-w-xs text-base">
+                Our goal is to streamline SMB trade, making it easier and faster
+                than ever.
+              </p>
+            </div>
+          </div>
+          <div className="bg-muted rounded-md  aspect-square p-6 flex justify-between flex-col">
+            <User className="w-8 h-8 stroke-1" />
+            <div className="flex flex-col">
+              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
+              <p className="text-muted-foreground max-w-xs text-base">
+                Our goal is to streamline SMB trade, making it easier and faster
+                than ever.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-muted rounded-md aspect-square p-6 flex justify-between flex-col">
+            <User className="w-8 h-8 stroke-1" />
+            <div className="flex flex-col">
+              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
+              <p className="text-muted-foreground max-w-xs text-base">
+                Our goal is to streamline SMB trade, making it easier and faster
+                than ever.
+              </p>
+            </div>
+          </div>
+          <div className="bg-muted rounded-md h-full lg:col-span-2 p-6 aspect-square lg:aspect-auto flex justify-between flex-col">
+            <User className="w-8 h-8 stroke-1" />
+            <div className="flex flex-col">
+              <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
+              <p className="text-muted-foreground max-w-xs text-base">
+                Our goal is to streamline SMB trade, making it easier and faster
+                than ever.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-}
+  </div>
+);
