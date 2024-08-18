@@ -7,7 +7,7 @@ export const Blogs = () => {
   const featureBlogs = [
     {
       title: "How to deploy a Django application",
-      img: "Designer_8_veeiq0",
+      img: "python-server",
       description: "Set up and deploy a Django application on a Linux server",
       link: "https://dev.to/ajith-k/how-to-set-up-and-deploy-a-django-application-on-a-linux-server-2dff",
     },
