@@ -26,7 +26,6 @@ export const HeroSection = () => (
           width="400"
           height="400"
           alt="sample image"
-
           crop={{
             type: "auto",
             source: true,

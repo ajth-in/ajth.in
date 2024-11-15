@@ -45,7 +45,7 @@ export function Navbar() {
           </NavigationMenu>
         </nav>
       </div>
-      <SignInModal/>
+      <SignInModal />
     </aside>
   );
 }
