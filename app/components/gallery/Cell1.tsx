@@ -1,3 +1,3 @@
-export const Cell1 = ()=>{
-    return 
-}
+export const Cell1 = () => {
+  return;
+};
