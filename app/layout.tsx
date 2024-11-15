@@ -1,10 +1,12 @@
 import "./global.css";
-import type {Metadata} from "next";
-import {Navbar} from "./components/nav";
-import {Analytics} from "@vercel/analytics/react";
-import {SpeedInsights} from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Navbar } from "./components/nav";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
-import {Quicksand} from "next/font/google"; // If loading a variable font, you don't need to specify the font weight
+import { Quicksand } from "next/font/google"; // If loading a variable font, you don't need to specify the font weight
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark, neobrutalism } from "@clerk/themes";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Quicksand({
@@ -47,28 +49,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        inter.className,
-      )}
+    <ClerkProvider
+      appearance={{
+        baseTheme: [dark],
+        variables: {
+          colorPrimary: "white",
+          colorBackground: "black",
+          colorInputBackground: "black",
+        },
+      }}
     >
-      <head>
-        <link
-          rel="icon"
-          href="https://res.cloudinary.com/dobs3jkdj/image/upload/c_thumb,w_200,g_face/v1722176212/A_1_sfatsl.png"
-        />
-      </head>
-      <body className="antialiased max-w-5xl mx-4 mt-8 lg:mx-auto ">
-        <main>
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
-      </body>
-    </html>
+      <html
+        lang="en"
+        className={cx(
+          "text-black bg-white dark:text-white dark:bg-black",
+          inter.className,
+        )}
+      >
+        <head>
+          <link
+            rel="icon"
+            href="https://res.cloudinary.com/dobs3jkdj/image/upload/c_thumb,w_200,g_face/v1722176212/A_1_sfatsl.png"
+          />
+        </head>
+        <body>
+          <main className="content-grid max-w-[1200px] mx-auto">
+            <Navbar />
+            {children}
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

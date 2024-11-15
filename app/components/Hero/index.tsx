@@ -21,7 +21,7 @@ export const HeroSection = () => (
           <FooterTags />
         </div>
         <CldImage
-          className="bg-muted rounded-md aspect-square w-full"
+          className="bg-muted rounded-md aspect-square w-full max-w-[500px]"
           src="ajith-dp_rqrnup_1_x0pu2j"
           width="400"
           height="400"

@@ -7,6 +7,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Button, buttonVariants } from "@/components/ui/button";
+import SignInModal from "./signInModal";
 
 const navItems = {
   "/": {
@@ -44,15 +45,7 @@ export function Navbar() {
           </NavigationMenu>
         </nav>
       </div>
-      <Button
-        variant={"outline"}
-        className="text-xs cursor-pointer"
-        onClick={() => {
-          alert("Hello");
-        }}
-      >
-        Sign in
-      </Button>
+      <SignInModal />
     </aside>
   );
 }

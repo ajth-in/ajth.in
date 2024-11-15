@@ -6,7 +6,7 @@ import { Blogs } from "./components/blogs";
 export default function Page() {
   return (
     <Fragment>
-      <section className={"z-10"}>
+      <section className={" w-full"}>
         <HeroSection />
         <Blogs />
         <Projects />
