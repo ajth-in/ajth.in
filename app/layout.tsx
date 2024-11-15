@@ -60,8 +60,8 @@ export default function RootLayout({
           href="https://res.cloudinary.com/dobs3jkdj/image/upload/c_thumb,w_200,g_face/v1722176212/A_1_sfatsl.png"
         />
       </head>
-      <body className="antialiased max-w-5xl mx-4 mt-8 lg:mx-auto ">
-        <main>
+      <body >
+        <main className="content-grid max-w-[1200px] mx-auto">
           <Navbar />
           {children}
           <Footer />
