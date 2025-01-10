@@ -2,7 +2,6 @@ import { Projects } from "app/components/posts";
 import { HeroSection } from "./components/Hero";
 import { Fragment } from "react";
 import { Blogs } from "./components/blogs";
-import AddItem from "./Test";
 
 export default function Page() {
   return (
@@ -11,7 +10,6 @@ export default function Page() {
         <HeroSection />
         <Blogs />
         <Projects />
-        <AddItem />
       </section>
     </Fragment>
   );
