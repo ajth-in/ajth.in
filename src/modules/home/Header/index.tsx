@@ -11,7 +11,7 @@ const Header = () => {
     { path: ABOUT, name: "About me" },
   ];
   return (
-    <header className="py-4 flex justify-between">
+    <header className="py-2 flex justify-between border-b-1">
       <BrandLabel />
       <div className="flex gap-1">
         {links.map((link) => (
