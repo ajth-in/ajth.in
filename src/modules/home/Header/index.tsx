@@ -2,12 +2,13 @@ import Link from "next/link";
 import BrandLabel from "./BrandLabel";
 import { buttonVariants } from "~/components/ui/button";
 import ThemeSwitch from "~/components/ThemeSwitch";
+import { ABOUT, BLOGS, WORKS } from "~/constants/routes";
 
 const Header = () => {
   const links = [
-    { path: "/blog", name: "Blogs" },
-    { path: "/Works", name: "Projects" },
-    { path: "/about", name: "About me" },
+    { path: BLOGS, name: "Blogs" },
+    { path: WORKS, name: "Projects" },
+    { path: ABOUT, name: "About me" },
   ];
   return (
     <header className="py-4 flex justify-between">
