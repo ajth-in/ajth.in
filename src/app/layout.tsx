@@ -1,7 +1,15 @@
 import "~/styles/globals.css";
+import { Ubuntu } from "next/font/google";
 
-import { GeistSans } from "geist/font/sans";
+const ubuntu = Ubuntu({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 import { type Metadata } from "next";
+import { cn } from "~/lib/utils";
+import { ThemeProvider } from "~/components/ThemeProvider";
+import Header from "~/modules/home/Header";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -14,7 +22,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
+      <body className={cn(ubuntu.className, "max-w-xl mx-auto")}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
