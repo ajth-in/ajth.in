@@ -12,7 +12,11 @@ const ThemeSwitch = () => {
         setTheme(isDark ? "light" : "dark");
       }}
     >
-      {isDark ? <Sun /> : <MoonStar />}
+      {isDark ? (
+        <Sun className="text-yellow-200" />
+      ) : (
+        <MoonStar className="text-blue-700" />
+      )}
     </Button>
   );
 };

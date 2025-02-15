@@ -5,7 +5,9 @@ const Hero = () => {
   return (
     <div className="flex py-10 justify-between items-center">
       <div>
-        <h1 className="font-bold text-3xl">Ajith Kumar P M</h1>
+        <h1 className="font-bold text-3xl after:content-['(he/him)'] after:text-xs after:p-2">
+          Ajith Kumar P M
+        </h1>
         <span className="font-light">
           Digital Craftsman ( Artist / Developer / Writer )
         </span>
