@@ -4,6 +4,7 @@ import H2 from "~/components/H2";
 import ProjectPreview from "~/modules/Projects/ProjectsPreview";
 import { Suspense } from "react";
 import ProjectsPreviewSkeleton from "~/modules/Projects/ProjectsPreview/Skeleton";
+import BlogsPreview from "~/modules/blogs/BlogsPreview";
 
 export default function Home() {
   return (
@@ -27,6 +28,8 @@ export default function Home() {
       <Suspense fallback={<ProjectsPreviewSkeleton />}>
         <ProjectPreview />
       </Suspense>
+      <H2>Things I&apos;ve wrote</H2>
+      <BlogsPreview />
     </main>
   );
 }

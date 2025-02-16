@@ -15,6 +15,13 @@
       "when": 1739674753731,
       "tag": "0001_lonely_malice",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1739676811407,
+      "tag": "0002_light_pandemic",
+      "breakpoints": true
     }
   ]
 }

@@ -7,26 +7,6 @@ import { cn } from "~/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { getFeaturedProjects } from "~/operations/queries/featured-projects";
 
-export const projects = [
-  {
-    id: "1",
-    title: "Project Alpha",
-    subtitle: "A revolutionary app",
-    link: "/projects/alpha",
-  },
-  {
-    id: "2",
-    title: "Project Beta",
-    subtitle: "Cutting-edge technology",
-    link: "/projects/beta",
-  },
-  {
-    id: "3",
-    title: "Project Gamma",
-    subtitle: "Innovative solutions",
-    link: "/projects/gamma",
-  },
-];
 const ProjectPreview = async () => {
   const projects = await getFeaturedProjects();
   return (
@@ -37,7 +17,7 @@ const ProjectPreview = async () => {
         ))}
       </ul>
       <Link
-        className={cn(buttonVariants({ variant: "link" }), "float-right")}
+        className={cn(buttonVariants({ variant: "link" }), "flex justify-end")}
         href={WORKS}
       >
         View all projects
