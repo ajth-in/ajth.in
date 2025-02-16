@@ -11,6 +11,7 @@ import { cn } from "~/lib/utils";
 import { ThemeProvider } from "~/components/ThemeProvider";
 import Header from "~/modules/home/Header";
 import Footer from "~/modules/home/Footer";
+import { PostHogProvider } from "~/lib/PostHog";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -24,16 +25,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(ubuntu.className, "max-w-xl mx-auto px-4")}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
