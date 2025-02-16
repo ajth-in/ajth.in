@@ -21,7 +21,7 @@ const BlogPreviewCard = (blog: SelectBlogs) => {
   return (
     <div className="flex flex-col">
       <CldImage
-        className="rounded-md "
+        className="rounded-md border-1 border-black dark:border-white"
         src={blog.image}
         width={400}
         height={100}
@@ -46,9 +46,9 @@ const BlogPreviewCard = (blog: SelectBlogs) => {
           href={blog.link}
           className={cn(
             buttonVariants({
-              variant: "link",
+              variant: "ghost",
             }),
-            "flex justify-end"
+            "flex justify-end w-fit"
           )}
         >
           Read

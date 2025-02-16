@@ -5,6 +5,7 @@ import ProjectPreview from "~/modules/Projects/ProjectsPreview";
 import { Suspense } from "react";
 import ProjectsPreviewSkeleton from "~/modules/Projects/ProjectsPreview/Skeleton";
 import BlogsPreview from "~/modules/blogs/BlogsPreview";
+import BlogsPreviewSkeleton from "~/modules/blogs/Skeleton";
 
 export default function Home() {
   return (
@@ -29,7 +30,9 @@ export default function Home() {
         <ProjectPreview />
       </Suspense>
       <H2>Things I&apos;ve wrote</H2>
-      <BlogsPreview />
+      <Suspense fallback={<BlogsPreviewSkeleton />}>
+        <BlogsPreview />
+      </Suspense>
     </main>
   );
 }
