@@ -8,9 +8,15 @@
 # testing
 /coverage
 
+# database
+/prisma/db.sqlite
+/prisma/db.sqlite-journal
+db.sqlite
+
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build
@@ -18,7 +24,6 @@
 # misc
 .DS_Store
 *.pem
-.vscode
 
 # debug
 npm-debug.log*
@@ -26,19 +31,18 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# local env files
+# do not commit any .env files to git, except for the .env.example file. https://create.t3.gg/en/usage/env-variables#using-environment-variables
 .env
+.env*.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-.env.local
-/.idea/ajth.in.iml
-/.idea/jsLinters/eslint.xml
-/.idea/modules.xml
-/.idea/prettier.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
+
+# idea files
+.idea
+# Sentry Config File
+.env.sentry-build-plugin
