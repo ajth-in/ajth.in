@@ -10,6 +10,7 @@ import { type Metadata } from "next";
 import { cn } from "~/lib/utils";
 import { ThemeProvider } from "~/components/ThemeProvider";
 import Header from "~/modules/home/Header";
+import Footer from "~/modules/home/Footer";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -31,6 +32,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

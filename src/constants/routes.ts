@@ -9,3 +9,6 @@ export const FAV_BOOK =
 export const FAV_SINGER =
   "https://www.youtube.com/channel/UCFHtCB_FWXQ8GpjgfYcD8-g";
 export const FAV_SONG = "https://www.youtube.com/watch?v=Y6EJnsdCt5s";
+export const INSTAGRAM = "https://www.instagram.com/ajith_k_p_m/#";
+export const X = "https://x.com/ajithKumarPM4";
+export const LINKEDIN = "https://www.linkedin.com/in/ajith-kumar-p-m/";
