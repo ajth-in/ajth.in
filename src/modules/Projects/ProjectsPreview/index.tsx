@@ -5,6 +5,7 @@ import { WORKS } from "~/constants/routes";
 import { buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { getFeaturedProjects } from "~/operations/queries/featured-projects";
 
 export const projects = [
   {
@@ -26,7 +27,8 @@ export const projects = [
     link: "/projects/gamma",
   },
 ];
-const ProjectPreview = () => {
+const ProjectPreview = async () => {
+  const projects = await getFeaturedProjects();
   return (
     <Fragment>
       <ul className="py-2">

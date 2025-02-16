@@ -1,8 +1,9 @@
-"use client";
 import MyInfo from "~/modules/home/MyInfo";
 import Hero from "~/modules/home/Hero";
 import H2 from "~/components/H2";
 import ProjectPreview from "~/modules/Projects/ProjectsPreview";
+import { Suspense } from "react";
+import ProjectsPreviewSkeleton from "~/modules/Projects/ProjectsPreview/Skeleton";
 
 export default function Home() {
   return (
@@ -22,8 +23,10 @@ export default function Home() {
         who loves building fast, accessible web apps. He enjoys writing about
         tech, geeking out over movies, and watching football.
       </p>
-      <H2>Things I've made</H2>
-      <ProjectPreview />
+      <H2>Things I&apos;ve made</H2>
+      <Suspense fallback={<ProjectsPreviewSkeleton />}>
+        <ProjectPreview />
+      </Suspense>
     </main>
   );
 }
