@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import ProjectsPreviewSkeleton from "~/modules/Projects/ProjectsPreview/Skeleton";
 import BlogsPreview from "~/modules/blogs/BlogsPreview";
 import BlogsPreviewSkeleton from "~/modules/blogs/Skeleton";
+import { COMPANY } from "~/constants/routes";
+import ThingsILove from "~/modules/home/ThingsILove";
 
 export default function Home() {
   return (
@@ -13,13 +15,9 @@ export default function Home() {
       <MyInfo />
       <Hero />
       <H2>Me</H2>
-      <p className="text-justify">
+      <p className="text-justify [&>a]:bg-highlight [&>a]:px-[2px]">
         Ajith is a software developer at{" "}
-        <a
-          href="https://strollby.com/"
-          target="_blank"
-          className="bg-highlight px-[2px]"
-        >
+        <a href={COMPANY} target="_blank" className="bg-highlight px-[2px]">
           Strollby
         </a>{" "}
         who loves building fast, accessible web apps. He enjoys writing about
@@ -33,6 +31,8 @@ export default function Home() {
       <Suspense fallback={<BlogsPreviewSkeleton />}>
         <BlogsPreview />
       </Suspense>
+      <H2>Things I 🤍</H2>
+      <ThingsILove />
     </main>
   );
 }
