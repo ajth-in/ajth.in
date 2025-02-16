@@ -21,9 +21,9 @@ const BlogPreviewCard = (blog: SelectBlogs) => {
   return (
     <div className="flex flex-col">
       <CldImage
-        className="rounded-md border-1 border-black dark:border-white"
+        className="rounded-md border-1 border-black dark:border-white w-full"
         src={blog.image}
-        width={400}
+        width={300}
         height={100}
         alt={blog.title}
       />

@@ -3,14 +3,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 const Hero = () => {
   return (
-    <div className="flex py-10 justify-between items-center">
-      <div>
+    <div className="flex md:flex-row flex-col-reverse gap-4 py-10 justify-between items-center">
+      <div className="text-center md:text-left">
         <h1 className="font-bold text-3xl after:content-['(he/him)'] after:text-xs after:p-2">
           Ajith Kumar P M
         </h1>
-        <span className="font-light">
-          Digital Craftsman ( Artist / Developer / Writer )
-        </span>
+        <span className="font-light">( Artist / Developer / Writer )</span>
       </div>
       <Avatar className="w-25 h-25 border-2 border-brand-bg">
         <AvatarImage

@@ -2,7 +2,7 @@ import { FAV_BOOK, FAV_MOVIE, FAV_SINGER, FAV_SONG } from "~/constants/routes";
 
 const ThingsILove = () => {
   return (
-    <p className="text-justify [&>a]:bg-highlight [&>a]:px-[2px]">
+    <p className="text-left [&>a]:bg-highlight [&>a]:px-[2px]">
       I spend almost all my time in front of my computer, and even when I’m out
       of the office, I&apos;ll always keep myself busy with some random side
       project. <br />

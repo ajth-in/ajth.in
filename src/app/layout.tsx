@@ -23,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={cn(ubuntu.className, "max-w-xl mx-auto")}>
+      <body className={cn(ubuntu.className, "max-w-xl mx-auto px-4")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

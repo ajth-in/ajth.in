@@ -10,7 +10,7 @@ const BlogsPreview = async () => {
   const blogs = await getFeaturedBlogs();
   return (
     <section>
-      <div className="grid grid-cols-2 py-4 gap-4">
+      <div className="grid md:grid-cols-2 grid-cols-1 py-4 gap-4">
         {blogs.map((blog) => (
           <BlogPreviewCard key={blog.id} {...blog} />
         ))}
