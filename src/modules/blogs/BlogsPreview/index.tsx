@@ -1,10 +1,6 @@
 import { getFeaturedBlogs } from "~/operations/queries/featured-blogs";
 import BlogPreviewCard from "../BlogPreviewCard";
-import Link from "next/link";
-import { buttonVariants } from "~/components/ui/button";
-import { cn } from "~/lib/utils";
-import { BLOGS } from "~/constants/routes";
-import { ArrowRight } from "lucide-react";
+import AllBlogsLink from "../AllBlogsLink";
 
 const BlogsPreview = async () => {
   const blogs = await getFeaturedBlogs();
@@ -15,13 +11,7 @@ const BlogsPreview = async () => {
           <BlogPreviewCard key={blog.id} {...blog} />
         ))}
       </div>
-      <Link
-        className={cn(buttonVariants({ variant: "link" }), "flex justify-end")}
-        href={BLOGS}
-      >
-        View all blogs
-        <ArrowRight />
-      </Link>
+      <AllBlogsLink />
     </section>
   );
 };

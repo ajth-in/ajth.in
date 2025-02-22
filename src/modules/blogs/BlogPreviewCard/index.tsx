@@ -1,15 +1,16 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import { CldImage } from "next-cloudinary";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { Badge } from "~/components/ui/badge";
 import { buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { type SelectBlogs } from "~/server/db/schema";
-import { getLang } from "~/utils/get-locale";
 
 const BlogPreviewCard = (blog: SelectBlogs) => {
-  const formatter = new Intl.DateTimeFormat(getLang(), {
+  const locale = useLocale();
+  const formatter = new Intl.DateTimeFormat(locale, {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -17,6 +18,7 @@ const BlogPreviewCard = (blog: SelectBlogs) => {
     hour: "numeric",
     hourCycle: "h12",
   });
+  const t = useTranslations("HomePage");
 
   return (
     <div className="flex flex-col">
@@ -51,7 +53,7 @@ const BlogPreviewCard = (blog: SelectBlogs) => {
             "flex justify-end w-fit"
           )}
         >
-          Read
+          {t("blogs.readMore")}
           <ArrowRight />
         </Link>
       )}
