@@ -2,9 +2,18 @@
 import { useTheme } from "next-themes";
 import { Button } from "../ui/button";
 import { MoonStar, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 const ThemeSwitch = () => {
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const isDark = resolvedTheme === "dark";
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
   return (
     <Button
       variant={"link"}
