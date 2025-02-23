@@ -11,7 +11,7 @@ export default async function Home({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   return (
-    <main className="pt-4">
+    <main className="pt-4 max-w-xl  mx-auto">
       <MyInfo />
       <Hero />
       <AboutMe />

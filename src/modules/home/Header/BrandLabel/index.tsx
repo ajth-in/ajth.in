@@ -6,7 +6,7 @@ const BrandLabel = () => {
   return (
     <Link
       href={HOME}
-      className="flex gap-2 text-xl text-primary font-bold items-center"
+      className=" gap-2 text-xl text-primary font-bold items-center sm:flex hidden"
     >
       <Shell className="text-brand" />
       Ajith-k
