@@ -23,7 +23,9 @@ const Header = () => {
           </Link>
         ))}
       </div>
-      <ThemeSwitch />
+      <div className="flex gap-1">
+        <ThemeSwitch />
+      </div>
     </header>
   );
 };

@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import { Button } from "../ui/button";
 import { MoonStar, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 const ThemeSwitch = () => {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -12,7 +13,7 @@ const ThemeSwitch = () => {
   }, []);
 
   if (!mounted) {
-    return null;
+    return <Skeleton className="w-[40px] h-[36px]" />;
   }
   return (
     <Button
