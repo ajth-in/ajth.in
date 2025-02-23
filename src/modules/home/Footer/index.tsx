@@ -3,7 +3,7 @@ import { INSTAGRAM, LINKEDIN, X } from "~/constants/routes";
 
 export default function Footer() {
   return (
-    <footer className="py-8 my-4   text-center border-t-1">
+    <footer className="py-4 mt-8   text-center border-t-1">
       <div className="container mx-auto flex flex-col items-center">
         <p className="text-sm">
           &copy; {new Date().getFullYear()} ajth.in All rights reserved.

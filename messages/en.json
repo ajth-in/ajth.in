@@ -1,0 +1,27 @@
+{
+  "Navigation": { "blog": "Blogs", "projects": "Projects" },
+  "HomePage": {
+    "banner": "Hi, I'm a <strong>software developer</strong> based in <strong>India</strong> 🇮🇳",
+    "name": "Ajith Kumar P M",
+    "pronoun": "(he/him)",
+    "desig": "( Artist / Developer / Writer )",
+    "about": {
+      "title": "Me",
+      "description": "Ajith is a software developer at <strong>Strollby</strong> who loves building fast, accessible web apps. He enjoys writing about tech, geeking out over movies, and playing football."
+    },
+    "works": {
+      "title": "Things I've made",
+      "link": "View all projects"
+    },
+    "blogs": {
+      "title": "Things I've wrote",
+      "link": "View all blogs",
+      "readMore": "Read"
+    },
+    "personal": {
+      "title": "Things I 🤍",
+      "description": "I spend almost all my time in front of my computer, and even when I’m out of the office, I'll always keep myself busy with some random side project. When I'm not tinkering with something, I love watching good movies—<lor>The Lord of the Rings</lor> is my favorite.<br></br> I also enjoy reading, with <ohys>One Hundred Years of Solitude</ohys> and <myyazhi>Mayyazhippuzhayude Theerangalil</myyazhi> being my top picks.<br></br> Music-wise, I'm a big fan of <passenger>Passenger</passenger>, and <circle>Circles</circle> is my go-to song. And when I need a break from screens, you'll probably find me playing football."
+    },
+    "footer": { "text": "All rights reserved." }
+  }
+}

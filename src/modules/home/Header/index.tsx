@@ -3,6 +3,7 @@ import BrandLabel from "./BrandLabel";
 import { buttonVariants } from "~/components/ui/button";
 import ThemeSwitch from "~/components/ThemeSwitch";
 import { BLOGS, WORKS } from "~/constants/routes";
+import LanguageSwitcher from "~/components/LanguageSwitcher";
 
 const Header = () => {
   const links = [
@@ -10,7 +11,7 @@ const Header = () => {
     { path: WORKS, name: "Projects" },
   ];
   return (
-    <header className="py-2 flex justify-between border-b-1">
+    <header className="py-2 flex justify-between border-b-1 max-w-xl  mx-auto">
       <BrandLabel />
       <div className="flex gap-1">
         {links.map((link) => (
@@ -23,7 +24,11 @@ const Header = () => {
           </Link>
         ))}
       </div>
-      <ThemeSwitch />
+      <div className="flex gap-1">
+        <LanguageSwitcher />
+
+        <ThemeSwitch />
+      </div>
     </header>
   );
 };
