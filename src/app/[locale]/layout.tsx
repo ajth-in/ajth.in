@@ -41,7 +41,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={cn(ubuntu.className, " px-4")}>
+      <body className={cn(ubuntu.className, " mx-4")}>
         <NextIntlClientProvider messages={messages}>
           <PostHogProvider>
             <ThemeProvider
