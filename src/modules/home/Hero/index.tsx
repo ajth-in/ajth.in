@@ -19,7 +19,7 @@ const Hero = () => {
       <Avatar className="w-25 h-25 border-2 border-brand-bg">
         <AvatarImage
           src={getCldOgImageUrl({
-            src: "ajith-dp_qlwgip",
+            src: "avatar-_ProfilePictureMaker.com_1_v06kmj",
             width: 200,
             height: 200,
           })}

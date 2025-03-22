@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --brand: #84c642;
-  --brand-bg: #ddeb9d;
-  --highlight: #e4ff5e;
+  --brand: #ead300;
+  --brand-bg: #eaeb9d;
+  --highlight: #faff5e;
 
   --background: #fbffea;
   --foreground: hsl(0 0% 3.9%);
@@ -37,9 +37,9 @@
 }
 
 .dark {
-  --brand: #a0c878;
-  --brand-bg: #f7ffd6;
-  --highlight: #149400;
+  --brand: #e9e31f;
+  --brand-bg: #fdffd6;
+  --highlight: #7c7200;
 
   --background: #010904;
   --foreground: hsl(0 0% 98%);
