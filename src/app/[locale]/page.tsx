@@ -17,7 +17,6 @@ export default async function Home({ params }: PageProps) {
       <AboutMe />
       <ProjectsSection />
       <BlogsSection />
-
       <ThingsILove />
     </main>
   );
