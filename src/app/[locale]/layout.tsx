@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import { Ubuntu } from "next/font/google";
+import { Ubuntu as Font } from "next/font/google";
 
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -12,7 +12,7 @@ import { PostHogProvider } from "~/lib/PostHog";
 import { routing } from "~/i18n/routing";
 import { notFound } from "next/navigation";
 
-const ubuntu = Ubuntu({
+const font = Font({
   weight: "400",
   subsets: ["latin"],
 });
@@ -20,7 +20,12 @@ const ubuntu = Ubuntu({
 export const metadata: Metadata = {
   title: "Ajth-k",
   description: "Ajith Kumar P M",
-  icons: [{ rel: "icon", url: "/favicon.png" }],
+  icons: [
+    {
+      rel: "icon",
+      url: "/favicon.png",
+    },
+  ],
 };
 
 export default async function RootLayout({
@@ -41,7 +46,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={cn(ubuntu.className, " mx-4")}>
+      <body className={cn(font.className, " mx-4")}>
         <NextIntlClientProvider messages={messages}>
           <PostHogProvider>
             <ThemeProvider
