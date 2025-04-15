@@ -14,7 +14,7 @@ const ThingsILove = () => {
   return (
     <Fragment>
       <H2>{t("personal.title")}</H2>
-      <p className="text-left [&>a]:bg-highlight [&>a]:px-[2px]">
+      <p className="text-left [&>a]:bg-highlight [&>a]:text-highlight-color [&>a]:px-[2px] [&>a]:rounded-sm">
         {t.rich("personal.description", {
           lor: (chunk) => (
             <a href={FAV_MOVIE} target="_blank">
