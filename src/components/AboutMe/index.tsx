@@ -9,7 +9,7 @@ const AboutMe = () => {
   return (
     <Fragment>
       <H2>{t("about.title")}</H2>
-      <p className="text-justify [&>a]:bg-highlight [&>a]:px-[2px]">
+      <p className="text-justify [&>a]:bg-highlight [&>a]:text-highlight-color [&>a]:p-[1px] [&>a]:px-[2px] [&>a]:rounded-sm">
         {t.rich("about.description", {
           strong: (chunk) => (
             <a href={COMPANY} target="_blank" className="bg-highlight px-[2px]">
