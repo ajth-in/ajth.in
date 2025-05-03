@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import { Ubuntu as Font } from "next/font/google";
+import { Urbanist as Font } from "next/font/google";
 
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
