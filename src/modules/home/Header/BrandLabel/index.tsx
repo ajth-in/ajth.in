@@ -1,4 +1,4 @@
-import { Tent } from "lucide-react";
+import { Origami } from "lucide-react";
 import Link from "next/link";
 import { HOME } from "~/constants/routes";
 
@@ -8,7 +8,7 @@ const BrandLabel = () => {
       href={HOME}
       className=" gap-2 text-xl text-primary font-bold items-center sm:flex hidden"
     >
-      <Tent className="text-brand" />
+      <Origami className="text-brand" />
       Ajith-k
     </Link>
   );
