@@ -3,15 +3,13 @@ import { Fragment } from "react";
 
 import AllProjectsLink from "../AllProjectsLink";
 import { useQuery } from "@tanstack/react-query";
-import fetchPinnedProjects from "~/operations/queries/get-pinned-projects";
+import pinnedCommentsQuery from "~/operations/queries/get-pinned-projects";
 
 const ProjectPreview = () => {
   const response = useQuery({
     queryKey: ["ajth-in"],
-    queryFn: fetchPinnedProjects,
+    queryFn: pinnedCommentsQuery,
   });
-
-  if (!response.data?.user) throw new Error("Invalid user");
 
   return (
     <Fragment>

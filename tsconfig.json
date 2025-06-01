@@ -20,7 +20,14 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "preserve",
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      { "name": "next" },
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./schema.graphql",
+        "tadaOutputLocation": "./src/graphql-env.d.ts"
+      }
+    ],
     "incremental": true,
 
     /* Path Aliases */
@@ -38,5 +45,6 @@
     "**/*.js",
     ".next/types/**/*.ts"
   ],
+
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,7 @@
-import { gql, request } from "graphql-request";
+import { graphql } from "gql.tada";
+import { request } from "graphql-request";
 
-const query = gql`
+const query = graphql(`
   query pinnedProjects {
     user(login: "ajth-in") {
       pinnedItems(first: 6, types: [REPOSITORY]) {
@@ -22,9 +23,9 @@ const query = gql`
       }
     }
   }
-`;
+`);
 
-const fetchPinnedProjects = async (): Promise<PinnedProjectsQuery> => {
+const fetchPinnedProjects = async () => {
   try {
     const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
@@ -41,7 +42,7 @@ const fetchPinnedProjects = async (): Promise<PinnedProjectsQuery> => {
       },
     );
 
-    return result as PinnedProjectsQuery;
+    return result;
   } catch (error) {
     console.error("GraphQL query error:", error);
     throw error;
