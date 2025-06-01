@@ -11,6 +11,7 @@ import Footer from "~/modules/home/Footer";
 import { PostHogProvider } from "~/lib/PostHog";
 import { routing } from "~/i18n/routing";
 import { notFound } from "next/navigation";
+import Providers from "~/lib/tanstack-query/client-provider";
 
 const font = Font({
   weight: "400",
@@ -47,20 +48,22 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={cn(font.className, " mx-4")}>
-        <NextIntlClientProvider messages={messages}>
-          <PostHogProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Header />
-              {children}
-              <Footer />
-            </ThemeProvider>
-          </PostHogProvider>
-        </NextIntlClientProvider>
+        <Providers>
+          <NextIntlClientProvider messages={messages}>
+            <PostHogProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <Header />
+                {children}
+                <Footer />
+              </ThemeProvider>
+            </PostHogProvider>
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );
