@@ -8,6 +8,9 @@ export const RepositoryFragment = graphql(`
     url
     stargazerCount
     forkCount
+    owner {
+      resourcePath
+    }
     languages(first: 6) {
       nodes {
         name

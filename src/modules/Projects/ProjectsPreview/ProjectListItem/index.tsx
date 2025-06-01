@@ -2,16 +2,20 @@
 import { readFragment, type FragmentOf } from "gql.tada";
 import { CornerRightUp, GitFork, Github, Star } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "~/components/ui/badge";
 import { buttonVariants } from "~/components/ui/button";
 import { RepositoryFragment } from "~/operations/queries/get-pinned-projects";
-import { languageIconStyles } from "../utils";
+import RepositoryLangs from "../RepositoryLangs";
 
 type ProjectListItemProps = {
   project: FragmentOf<typeof RepositoryFragment>;
 };
 const ProjectListItem = (props: ProjectListItemProps) => {
   const repository = readFragment(RepositoryFragment, props.project);
+  const languages =
+    repository.languages?.nodes
+      ?.map((item) => item?.name)
+      .filter((item): item is string => !!item) ?? [];
+
   return (
     <div
       className={
@@ -35,33 +39,11 @@ const ProjectListItem = (props: ProjectListItemProps) => {
             </p>
 
             <div className="flex items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-1.5 min-w-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="GitHub top language"
-                  src={`https://img.shields.io/github/languages/top/ajth-in/${repository.name}`}
-                />
-                {repository.languages?.nodes
-                  ?.slice(0, 4)
-                  .filter((item) => !!item)
-                  .map((lang) => (
-                    <Badge
-                      key={lang?.name}
-                      variant="secondary"
-                      className="flex items-center gap-1 px-2 py-0.5 text-xs bg-secondary/30 border-0 hover:bg-secondary/50 transition-colors"
-                    >
-                      <span
-                        aria-hidden
-                        className={
-                          languageIconStyles[lang.name] ??
-                          "w-2.5 h-2.5 rounded-full bg-muted-foreground/50"
-                        }
-                      />
-
-                      {lang?.name}
-                    </Badge>
-                  ))}
-              </div>
+              <RepositoryLangs
+                owner={repository.owner.resourcePath as string}
+                repositories={languages}
+                repository={repository.name}
+              />
 
               <div className="flex items-center gap-3 text-xs text-muted-foreground flex-shrink-0">
                 <div className="flex items-center gap-1">
