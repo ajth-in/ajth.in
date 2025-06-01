@@ -10,11 +10,12 @@ import { type FragmentOf } from "gql.tada";
 import ProjectsPreviewSkeleton from "./Skeleton";
 
 const ProjectPreview = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["ajth-in"],
     queryFn: pinnedCommentsQuery,
   });
   if (isLoading) return <ProjectsPreviewSkeleton />;
+  if (isError) throw new Error("Invalid response");
 
   return (
     <div className="flex flex-col gap-2 py-4">
