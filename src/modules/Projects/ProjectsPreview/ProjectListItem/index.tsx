@@ -25,7 +25,7 @@ const ProjectListItem = (props: ProjectListItemProps) => {
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="relative p-4">
-        <div className="flex items-center justify-between gap-4 ">
+        <div className="flex sm:items-center items-end sm:flex-row flex-col justify-between gap-4 ">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">
               <Github className="h-4 w-4 text-brand flex-shrink-0" />
@@ -57,24 +57,25 @@ const ProjectListItem = (props: ProjectListItemProps) => {
               </div>
             </div>
           </div>
-
-          <Link
-            href={repository?.url ?? "#"}
-            target="_blank"
-            className={buttonVariants({ size: "sm", variant: "ghost" })}
-            rel="noopener noreferrer"
-          >
-            <Github />
-          </Link>
-          <div className="flex-shrink-0">
+          <div className="flex">
             <Link
-              href={repository?.homepageUrl ?? "#"}
+              href={repository?.url ?? "#"}
               target="_blank"
               className={buttonVariants({ size: "sm", variant: "ghost" })}
               rel="noopener noreferrer"
             >
-              <CornerRightUp />
+              <Github />
             </Link>
+            <div className="flex-shrink-0  ">
+              <Link
+                href={repository?.homepageUrl ?? "#"}
+                target="_blank"
+                className={buttonVariants({ size: "sm", variant: "ghost" })}
+                rel="noopener noreferrer"
+              >
+                <CornerRightUp />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
