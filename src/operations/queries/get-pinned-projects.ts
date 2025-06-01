@@ -1,29 +1,35 @@
 import { graphql } from "gql.tada";
 import { request } from "graphql-request";
-
-const query = graphql(`
-  query pinnedProjects {
-    user(login: "ajth-in") {
-      pinnedItems(first: 6, types: [REPOSITORY]) {
-        nodes {
-          ... on Repository {
-            name
-            homepageUrl
-            description
-            url
-            stargazerCount
-            forkCount
-            languages(first: 6) {
-              nodes {
-                name
-              }
-            }
-          }
-        }
+export const RepositoryFragment = graphql(`
+  fragment RepositoryFrag on Repository {
+    name
+    homepageUrl
+    description
+    url
+    stargazerCount
+    forkCount
+    languages(first: 6) {
+      nodes {
+        name
       }
     }
   }
 `);
+
+const query = graphql(
+  `
+    query pinnedProjects {
+      user(login: "ajth-in") {
+        pinnedItems(first: 6, types: [REPOSITORY]) {
+          nodes {
+            ...RepositoryFrag
+          }
+        }
+      }
+    }
+  `,
+  [RepositoryFragment],
+);
 
 const fetchPinnedProjects = async () => {
   try {
