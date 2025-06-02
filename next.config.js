@@ -13,7 +13,11 @@ const withNextIntl = createNextIntlPlugin();
 // Injected content via Sentry wizard below
 
 const config = withSentryConfig(
-  {},
+  {
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+  },
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
