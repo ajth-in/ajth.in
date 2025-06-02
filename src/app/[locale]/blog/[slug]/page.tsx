@@ -1,7 +1,9 @@
 import { redirect } from "next/navigation";
+import { Fragment } from "react";
 import { HOME } from "~/constants/routes";
 import { BlogHeader } from "~/modules/blogs/BlogHeader";
 import { MarkdownRenderer } from "~/modules/blogs/MarkdownRender";
+import Header from "~/modules/home/Header";
 import { type PageProps } from "~/types";
 
 export interface Blog {
@@ -56,10 +58,13 @@ const BlogPage = async (props: PageProps) => {
   const data = (await response.json()) as Blog;
 
   return (
-    <main className="max-w-4xl mx-auto py-12">
-      <BlogHeader post={data} />
-      <MarkdownRenderer content={data.body_markdown} />
-    </main>
+    <Fragment>
+      <Header className="max-w-4xl" />
+      <main className="max-w-4xl mx-auto py-2">
+        <BlogHeader post={data} />
+        <MarkdownRenderer content={data.body_markdown} />
+      </main>
+    </Fragment>
   );
 };
 

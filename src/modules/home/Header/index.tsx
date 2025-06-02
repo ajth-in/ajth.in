@@ -4,14 +4,24 @@ import { buttonVariants } from "~/components/ui/button";
 import ThemeSwitch from "~/components/ThemeSwitch";
 import { BLOGS, WORKS } from "~/constants/routes";
 import LanguageSwitcher from "~/components/LanguageSwitcher";
+import { cx } from "class-variance-authority";
 
-const Header = () => {
+type HeaderProps = {
+  className?: string;
+};
+const Header = (props: HeaderProps) => {
+  const { className } = props;
   const links = [
     { path: BLOGS, name: "Blogs" },
     { path: WORKS, name: "Projects" },
   ];
   return (
-    <header className="py-2 flex justify-between border-b-1 max-w-xl  mx-auto">
+    <header
+      className={cx(
+        "py-2 flex justify-between border-b-1   mx-auto",
+        className,
+      )}
+    >
       <BrandLabel />
       <div className="flex gap-1">
         {links.map((link) => (

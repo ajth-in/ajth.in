@@ -38,7 +38,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
           // Paragraphs
           p: ({ children }) => (
-            <p className="mb-4 leading-7 text-foreground">{children}</p>
+            <span className="mb-4 leading-7 text-foreground">{children}</span>
           ),
 
           // Links

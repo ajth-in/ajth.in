@@ -6,7 +6,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { type Metadata } from "next";
 import { cn } from "~/lib/utils";
 import { ThemeProvider } from "~/components/ThemeProvider";
-import Header from "~/modules/home/Header";
 import Footer from "~/modules/home/Footer";
 import { PostHogProvider } from "~/lib/PostHog";
 import { routing } from "~/i18n/routing";
@@ -57,7 +56,6 @@ export default async function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <Header />
                 {children}
                 <Footer />
               </ThemeProvider>
