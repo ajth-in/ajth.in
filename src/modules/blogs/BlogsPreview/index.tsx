@@ -10,7 +10,7 @@ const BlogsPreview = () => {
     queryKey: ["devtoArticles", "ajith-in"],
     queryFn: async () => {
       const response = await fetch(
-        "https://dev.to/api/articles/latest?username=ajith-in",
+        `${process.env.NEXT_PUBLIC_DEV_TO_API}/articles/latest?username=ajith-in`,
       );
       return response.json() as Promise<Root2[]>;
     },

@@ -1,5 +1,6 @@
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Clock, Heart, MessageCircle, Calendar } from "lucide-react";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
@@ -55,6 +56,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
   const truncateText = (text: string, maxLength: number) => {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
+  const locale = useLocale();
 
   const displayTags = post.tag_list.slice(0, 3);
 
@@ -109,7 +111,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
         {/* Content */}
         <div className="space-y-2">
           <Link
-            href={post.url}
+            href={`${locale}/blog/${post.id}`}
             className="font-semibold text-card-foreground leading-tight line-clamp-2 group-hover:text-blue-500 transition-colors duration-200"
           >
             {truncateText(post.title, 80)}
