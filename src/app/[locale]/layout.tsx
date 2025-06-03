@@ -20,10 +20,11 @@ const font = Font({
 export const metadata: Metadata = {
   title: "Ajth-k",
   description: "Ajith Kumar P M",
+
   icons: [
     {
       rel: "icon",
-      url: "/favicon.png",
+      url: "/favicon.ico",
     },
   ],
 };
