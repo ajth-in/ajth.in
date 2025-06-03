@@ -1,6 +1,8 @@
+export const BASE_URL = "https://ajth.in";
+
 export const HOME = "/";
 export const BLOGS = "https://dev.to/ajith-in";
-export const WORKS = "https://github.com/ajth.in/";
+export const WORKS = "https://github.com/ajth-in/";
 export const ABOUT = "/about";
 export const COMPANY = "https://strollby.com";
 export const FAV_MOVIE = "https://www.imdb.com/title/tt0120737/";

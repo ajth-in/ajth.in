@@ -6,7 +6,7 @@ import { Avatar, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent } from "~/components/ui/card";
 
-export interface Root2 {
+export interface Blog {
   type_of: string;
   id: number;
   title: string;
@@ -48,7 +48,7 @@ export interface User {
 }
 
 interface BlogCardProps {
-  post: Root2;
+  post: Blog;
   className?: string;
 }
 
