@@ -14,6 +14,9 @@ const withNextIntl = createNextIntlPlugin();
 
 const config = withSentryConfig(
   {
+    experimental: {
+      reactCompiler: true,
+    },
     eslint: {
       ignoreDuringBuilds: true,
     },
