@@ -5,9 +5,9 @@ import {
   Heart,
   ExternalLink,
 } from "lucide-react";
-import { type Blog } from "~/app/[locale]/blog/[slug]/page";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
+import { type Blog } from "../BlogContent";
 
 interface BlogHeaderProps {
   post: Blog;
