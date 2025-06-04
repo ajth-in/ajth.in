@@ -44,7 +44,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           // Links
           a: ({ href, children }) => (
             <a
-              href={href as string}
+              href={href}
               className="text-brand hover:text-brand/80 underline underline-offset-4 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -100,8 +100,8 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             <div className="my-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={src as string}
-                alt={alt as string}
+                src={src}
+                alt={alt}
                 className="w-full rounded-lg shadow-md"
               />
               {alt && (
