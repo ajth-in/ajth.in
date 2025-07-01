@@ -4,7 +4,7 @@ import { BlogCard } from "../BlogPreviewCard";
 
 const BlogsPreview = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DEV_TO_API}/articles/latest?username=ajith-in`,
+    `${process.env.NEXT_PUBLIC_DEV_TO_API}/articles/latest?username=ajth-in`,
     { cache: "force-cache" },
   );
   const data = (await response.json()) as Blog[];

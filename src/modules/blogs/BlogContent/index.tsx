@@ -7,7 +7,7 @@ type BlogContentProps = { blogId: string };
 const BlogContent = async (props: BlogContentProps) => {
   const { blogId } = props;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DEV_TO_API}/articles/${blogId}?username=ajith-in`,
+    `${process.env.NEXT_PUBLIC_DEV_TO_API}/articles/${blogId}?username=ajth-in`,
     {
       cache: "force-cache",
     },
