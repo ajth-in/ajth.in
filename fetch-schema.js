@@ -6,7 +6,7 @@ import fs from "fs/promises";
 config();
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GITHUB_API;
-const TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+const TOKEN = process.env.GITHUB_TOKEN;
 
 async function fetchSchema() {
   if (!GRAPHQL_ENDPOINT || !TOKEN) {
