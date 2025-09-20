@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { VT323, Open_Sans } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 const vt323 = VT323({
   weight: "400",
@@ -19,15 +22,18 @@ export const metadata: Metadata = {
   description: "This is my personal website where I post blogs and stuffs.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: LayoutProps<"/[locale]">) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
   return (
     <html lang="en" className="light">
       <body className={`${vt323.variable} ${openSans.variable} bg-background`}>
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );
