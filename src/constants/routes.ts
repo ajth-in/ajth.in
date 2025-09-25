@@ -1,6 +1,6 @@
 export const BASE_URL = "https://ajth.in";
 
-export const HOME = "/";
+export const HOME = "/#home";
 export const BLOGS = "https://dev.to/ajith-in";
 export const WORKS = "https://github.com/ajth-in/";
 export const ABOUT = "/about";

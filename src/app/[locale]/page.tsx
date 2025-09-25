@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
   return (
     <Fragment>
       <Header />
