@@ -51,7 +51,7 @@
   --background: oklch(1 0 0); /* white */
   --foreground: oklch(0 0 0); /* black */
 
-  --card: oklch(0.98 0 0); /* near-white */
+  --card: oklch(0.98 0 0.5); /* near-white */
   --card-foreground: oklch(0.05 0 0); /* dark text */
 
   --popover: oklch(0.98 0 0);
@@ -96,7 +96,7 @@
   --background: oklch(0 0 0); /* black */
   --foreground: oklch(1 0 0); /* white */
 
-  --card: oklch(0.05 0 0); /* near-black */
+  --card: oklch(0.05 0 0.5); /* near-black */
   --card-foreground: oklch(1 0 0);
 
   --popover: oklch(0.05 0 0);
@@ -143,4 +143,7 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+.font-monosans {
+  font-family: var(--font-vt323);
 }

@@ -17,14 +17,17 @@ const Header = (props: HeaderProps) => {
     { path: WORKS, name: "Projects" },
   ] as const;
   return (
-    <header className={cx(" border-b-1 ", className)}>
+    <header className={cx(" border-b-1 backdrop-blur-2xl", className)}>
       <div className={"py-4 flex justify-between  max-w-3xl mx-auto"}>
         <BrandLabel />
         <div className="flex gap-1">
           {links.map((link) => (
             <Link
               key={link.name}
-              className={buttonVariants({ variant: "link" })}
+              className={cx(
+                buttonVariants({ variant: "link", size: "sm" }),
+                "font-monosans text-xl",
+              )}
               href={link.path}
             >
               {link.name}

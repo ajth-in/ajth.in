@@ -1,6 +1,6 @@
 "use client";
 import { useTheme } from "next-themes";
-import { MoonStar, Sun } from "lucide-react";
+import { CloudMoon, CloudSun, MoonStar, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import { Button } from "./ui/button";
@@ -23,9 +23,9 @@ const ThemeSwitch = () => {
       }}
     >
       {isDark ? (
-        <Sun className="text-yellow-200" />
+        <CloudSun className="text-yellow-200" />
       ) : (
-        <MoonStar className="text-blue-700" />
+        <CloudMoon className="text-blue-700" />
       )}
     </Button>
   );

@@ -7,7 +7,7 @@ const BrandLabel = () => {
     <Link
       // @ts-expect-error / is not a valid href
       href={HOME}
-      className=" gap-2 text-xl  font-bold items-center sm:flex hidden"
+      className=" gap-2 text-xl  font-bold items-center sm:flex hidden  font-monosans"
     >
       <Origami className="text-brand" />
       Ajith-k

@@ -28,7 +28,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative font-monosans text-xl">
       <Select value={selectedLocale} onValueChange={handleLocaleChange}>
         <SelectTrigger className="md:w-[150px]">
           <Globe className="sm:block hidden mr-2 h-4 w-4" />

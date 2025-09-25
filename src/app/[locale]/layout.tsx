@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Wrapper from "@/components/Wrapper";
 
 const vt323 = VT323({
   weight: "400",
@@ -33,8 +34,12 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${vt323.variable} ${openSans.variable} bg-background`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${vt323.variable} ${openSans.variable} bg-background`}
+    >
+      <body>
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
@@ -42,7 +47,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <Wrapper>{children}</Wrapper>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
