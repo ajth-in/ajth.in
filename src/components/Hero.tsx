@@ -1,25 +1,25 @@
-import { getCldOgImageUrl } from "next-cloudinary";
 import { useTranslations } from "next-intl";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import { Moon, BookOpen, Film, Code2, GraduationCap, User } from "lucide-react";
+import Image from "next/image";
 const ProfileCard = () => {
   const t = useTranslations("HomePage");
 
   return (
-    <Card className="w-full  mx-auto shadow-none rounded-none">
+    <Card className="w-full grid  mx-auto backdrop-blur-[3px]   shadow-none rounded-[20px] z-[10]">
       <CardContent className="px-5 py-2">
         {/* Avatar floated left */}
         <div className="float-left mr-4 mb-2">
           <Avatar className="w-24 h-24 border">
-            <AvatarImage
-              src={getCldOgImageUrl({
-                src: "ChatGPT_Image_Sep_21_2025_02_41_51_PM_s1lbv7.png",
-                width: 120,
-                height: 120,
-              })}
-              alt="Profile picture of Ajith Kumar P M"
+            <Image
+              src={
+                "https://res.cloudinary.com/dobs3jkdj/image/upload/v1759943576/final_xpe8el.gif"
+              }
+              height={120}
+              width={120}
+              alt="Ajith Kumar P M"
             />
+
             <AvatarFallback>AK</AvatarFallback>
           </Avatar>
         </div>

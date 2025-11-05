@@ -8,13 +8,13 @@ const BlogsPreview = async () => {
     `${DEV_TO_API}/articles/latest?username=ajth-in`,
     {
       cache: "force-cache",
-    },
+    }
   );
   const data = (await response.json()) as Blog[];
 
   return (
     <section>
-      <div className="grid  grid-cols-1 py-4 gap-4">
+      <div className="grid  grid-cols-1 py-4 gap-4 backdrop-blur-[3px]">
         {data?.map((blog) => (
           <BlogCard key={blog.id} post={blog} />
         ))}
