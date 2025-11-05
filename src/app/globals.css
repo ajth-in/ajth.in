@@ -147,3 +147,7 @@
 .font-monosans {
   font-family: var(--font-vt323);
 }
+
+div[data-code-block="true"] > pre {
+  padding: 10px;
+}

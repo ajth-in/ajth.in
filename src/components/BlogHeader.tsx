@@ -4,6 +4,8 @@ import {
   MessageCircle,
   Heart,
   ExternalLink,
+  Globe,
+  Github,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
@@ -94,7 +96,7 @@ export function BlogHeader({ post }: BlogHeaderProps) {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ExternalLink className="h-4 w-4" />
+              <Github className="h-4 w-4" />
             </a>
           )}
           {post.user.website_url && (
@@ -104,7 +106,7 @@ export function BlogHeader({ post }: BlogHeaderProps) {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ExternalLink className="h-4 w-4" />
+              <Globe className="h-4 w-4" />
             </a>
           )}
         </div>
