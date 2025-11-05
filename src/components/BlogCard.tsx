@@ -5,6 +5,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import type { Blog } from "@/types/blog";
 import Link from "next/link";
+import { Route } from "next";
 
 interface BlogCardProps {
   post: Blog;
@@ -20,7 +21,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
   const displayTags = post.tag_list.slice(0, 3);
 
   return (
-    <Link href={`${locale}/blog/${post.id}`}>
+    <Link href={`${locale}/blog/${post.id}` as Route}>
       <div
         className={`group relative hover:bg-black flex flex-row items-stretch gap-4 overflow-hidden 
          text-neutral-50 border-4 dark:border-neutral-800 border-neutral-400
