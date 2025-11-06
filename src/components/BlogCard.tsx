@@ -23,7 +23,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
   return (
     <Link href={`${locale}/blog/${post.id}` as Route}>
       <div
-        className={`group relative hover:bg-black flex flex-row items-stretch gap-4 overflow-hidden 
+        className={`group relative dark:hover:bg-black hover:bg-white flex flex-row items-stretch gap-4 overflow-hidden 
          text-neutral-50 border-4 dark:border-neutral-800 border-neutral-400
         [image-rendering:pixelated] 
         dark:shadow-[4px_4px_0px_rgba(255,255,255,0.5)] 

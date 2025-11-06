@@ -155,14 +155,15 @@ export default function Kaleidoscope() {
       canvas.removeEventListener("click", handleClick);
     };
   }, []);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   return (
     <canvas
+      suppressHydrationWarning
       ref={canvasRef}
       id={id}
       className={`fixed bg-white top-0 left-0 w-full h-full ${
-        theme !== "light" ? " invert " : " invert-0"
+        resolvedTheme !== "light" ? " invert " : " invert-0"
       }`}
     ></canvas>
   );

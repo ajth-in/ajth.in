@@ -15,7 +15,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         shikiTheme={
           theme === "light"
             ? ["catppuccin-latte", "catppuccin-latte"]
-            : ["catppuccin-mocha", "catppuccin-mocha"]
+            : ["ayu-dark", "ayu-dark"]
         }
         components={{
           h1: ({ children }) => (
