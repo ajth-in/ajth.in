@@ -7,7 +7,7 @@ const BlogsPreview = async () => {
   const response = await fetch(
     `${DEV_TO_API}/articles/latest?username=ajth-in`,
     {
-      cache: "force-cache",
+      cache: "no-store",
     }
   );
   const data = (await response.json()) as Blog[];
