@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { Blog, formatDate, getBlogPosts } from "app/blog/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function BlogPosts() {
@@ -43,7 +43,7 @@ export function BlogPosts() {
   );
 }
 
-function PostList({ posts }: { posts: any[] }) {
+function PostList({ posts }: { posts: Blog[] }) {
   if (posts.length === 0) {
     return (
       <p className="px-2 py-4 text-sm text-neutral-500 italic">
