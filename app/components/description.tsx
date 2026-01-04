@@ -15,7 +15,7 @@ export function Description() {
         <Fact label="TKM Alum" />
 
         <Fact label="The memories of starry nights in Wayanad keep me going." />
-        <Fact label="Langs: English,Malayalam, JS, Python" />
+        <Fact label="Talk to me in English, Malayalam, JS, Python" />
       </div>
     </section>
   );
