@@ -48,8 +48,15 @@ function getMDXData(dir) {
     };
   });
 }
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+export function getBlogPosts(type?: "tech" | "life") {
+  if (!type) {
+    return getMDXData(
+      path.join(process.cwd(), "app", "blog", "posts", "tech")
+    ).concat(
+      getMDXData(path.join(process.cwd(), "app", "blog", "posts", "life"))
+    );
+  }
+  return getMDXData(path.join(process.cwd(), "app", "blog", "posts", type));
 }
 export type Blog = ReturnType<typeof getBlogPosts>[0];
 

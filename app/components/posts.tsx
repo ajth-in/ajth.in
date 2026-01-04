@@ -4,14 +4,16 @@ import { Blog, formatDate, getBlogPosts } from "app/blog/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function BlogPosts() {
-  const allBlogs = getBlogPosts();
+  const _techBlogs = getBlogPosts("tech");
+  const _personalPosts = getBlogPosts("life");
 
-  const sortedPosts = allBlogs.sort((a, b) =>
+  const techPosts = _techBlogs.sort((a, b) =>
     new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
   );
 
-  const techPosts = sortedPosts.filter((post) => post);
-  const personalPosts = sortedPosts.filter((post) => post);
+  const personalPosts = _personalPosts.sort((a, b) =>
+    new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
+  );
 
   return (
     <div className="max-w-xl">
@@ -19,15 +21,15 @@ export function BlogPosts() {
         <TabsList className="mb-4 h-9 bg-white/5 border border-white/10 p-1">
           <TabsTrigger
             value="tech"
-            className="text-xs uppercase tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
+            className="text-xs cursor-pointer  tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
           >
-            Builds & Bytes
+            Technical
           </TabsTrigger>
           <TabsTrigger
             value="personal"
-            className="text-xs uppercase tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
+            className="text-xs cursor-pointer  tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
           >
-            Ink & Echoes
+            Everything Else
           </TabsTrigger>
         </TabsList>
 
