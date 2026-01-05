@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 ::selection {
-  background-color: #47a3f3;
-  color: #d3bcbc;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
 }
 
 :root {

@@ -1,0 +1,80 @@
+---
+title: "How Not to Conduct a React Interview"
+publishedAt: "2024-04-09"
+summary: "Discover why Vim, with its steep learning curve, remains a beloved tool among developers for editing code efficiently and effectively."
+---
+
+_(Or Any Interview, for That Matter)_
+
+I’ve been working as a React developer for the past three years. Before reaching this point, I went through nearly ten interviews before finally landing a role.
+
+Last year, I had the opportunity to interview a candidate for a front-end position. That experience, combined with all the interviews I’ve attended myself, made me realize something important: most interviews completely miss the purpose of what an interview is actually meant to be.
+
+So I made a list of things I find problematic with many of the interviews I’ve attended or conducted.
+
+## 1. Interviews Are Not a Place to Show Off the Interviewer’s Technical Skills
+
+> “Can you solve this _[insert extremely niche CSS problem]_ by writing a PostCSS plugin?”
+
+This was an actual question I was asked in one of my very first interviews. I was 21 at the time and had roughly two weeks of experience with JavaScript. To make it even more confusing, this was for an **entry-level role**.
+
+As you can imagine, an interview is not supposed to be a stage for the interviewer to show off how technically advanced they are. Before asking a question, it’s worth pausing and asking yourself:
+
+> _“Is this really something the job requires?”_
+
+In this case, the answer was clearly no.
+
+Unfortunately, this wasn’t an isolated experience. In many interviews, especially with relatively young interviewers (I’m not sure why this happens), I was asked questions that had little to no relevance to the actual role. Sometimes it was about:
+
+- Extremely niche browser APIs supported by only one browser
+- Highly specific problems tied to the interviewer’s current project
+
+None of these questions helped assess whether I could actually do the job I was applying for.
+
+## 2. Remember That the Candidate Hasn’t Worked in Your Company
+
+Every organization has its own set of tools, frameworks, and conventions. A developer who is experienced with React at one company may have never even heard of the specific libraries or patterns your team uses.
+
+That’s why interview questions shouldn’t be overly tailored to your internal stack.
+
+I’ll admit I made this mistake myself. At my current company, **react-hook-form** is a core part of our codebase. When I was designing a React coding question, I framed it around that library. The problem was that for someone who had never used react-hook-form, the question became unnecessarily difficult.
+
+If the candidate was using a different solution at their company, say **Formik**, their approach and implementation would be completely different. That realization is one of the main reasons I no longer ask form-related questions in interviews.
+
+You might argue:
+
+> “They’ll be working with these libraries once they’re hired, so it’s good if they already know them.”
+
+That’s a fair point, but designing interviews this way means you’ll end up filtering out a lot of genuinely strong developers simply because they haven’t used _your_ specific tools yet.
+
+## 3. “Stress Rounds” Are the Worst Thing You Can Do to a Candidate
+
+Going back to my own experience, I once attended an interview for a C developer role. The first two rounds were fairly reasonable, DSA questions, MCQs, and general technical discussions.
+
+Then a senior engineer joined the interview and everything changed.
+
+He started asking extremely difficult questions, and every time I made a mistake, he responded with insults like:
+
+- “What did you even study in college?”
+- “You don’t even know this?”
+
+At that point, I really needed a job and was already under a lot of pressure from the job search itself. The interview turned into a stressful and humiliating experience. I panicked, and after that, I couldn’t even solve the easier questions that I normally would have had no trouble with.
+
+At the end, he told me this was _“part of the process”_, that he wanted to see how I would perform in a stressful environment.
+
+Please don’t do this to people.
+
+If your workplace is genuinely so stressful that you need to intentionally break candidates during interviews, then the problem isn’t the candidate, it’s your **company**. Fix that first before hiring anyone.
+
+You don’t need to be overly formal or intimidating to assess someone’s skills. Just be human. Be respectful. Be friendly.
+
+## 4. Don’t Hide DSA Questions Inside React Questions
+
+If you want to ask a data structures and algorithms question, ask one.  
+If you want to test React knowledge, ask a React or UI-related problem.
+
+Trying to mix the two usually results in a question that doesn’t effectively test either skill.
+
+I’ve seen “React problems” that are essentially DSA challenges wrapped in a UI layer. In these cases, the candidate ends up spending most of their time figuring out the algorithm, while their React skills, component structure, state management, hooks, and readability, barely get evaluated.
+
+When you combine these two, you often get the worst of both worlds: a problem that’s confusing, time-consuming, and not representative of real-world React development.
