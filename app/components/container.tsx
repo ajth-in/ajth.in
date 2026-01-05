@@ -13,7 +13,7 @@ const Container = ({ children, size }: ContainerProps) => {
   return (
     <main
       className={cn(
-        "mx-4 lg:mx-auto flex-auto min-w-0 mt-24 flex flex-col px-2 md:px-0",
+        "mx-4 lg:mx-auto flex-auto min-w-0 mt-16 flex flex-col px-2 md:px-0",
         {
           "max-w-xl": size === "xl",
           "max-w-4xl": size === "4xl",
