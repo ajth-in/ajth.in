@@ -1,3 +1,4 @@
+import { slugify } from "app/components/mdx";
 import fs from "fs";
 import path from "path";
 
@@ -94,4 +95,26 @@ export function formatDate(date: string, includeRelative = false) {
   }
 
   return `${fullDate} (${formattedDate})`;
+}
+
+type TocItem = {
+  id: string;
+  text: string;
+  level: number;
+};
+
+export function generateToc(markdown: string): TocItem[] {
+  const headingRegex = /^(#{1,6})\s+(.*)$/gm;
+  const toc: TocItem[] = [];
+
+  let match;
+  while ((match = headingRegex.exec(markdown)) !== null) {
+    const level = match[1].length;
+    const text = match[2].trim();
+    let slug = slugify(text);
+
+    toc.push({ id: slug, text, level });
+  }
+
+  return toc;
 }

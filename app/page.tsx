@@ -1,16 +1,19 @@
 import { BlogPosts } from "app/components/posts";
 import { Banner } from "./components/banner";
 import { Description } from "./components/description";
+import Container from "./components/container";
 export default function Page() {
   return (
-    <section>
-      <Banner />
+    <Container size="xl">
+      <section>
+        <Banner />
 
-      <Description />
+        <Description />
 
-      <div className="my-2">
-        <BlogPosts />
-      </div>
-    </section>
+        <div className="my-2">
+          <BlogPosts />
+        </div>
+      </section>
+    </Container>
   );
 }

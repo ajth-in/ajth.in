@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { formatDate, generateToc, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
+import { TableOfContents } from "app/components/toc";
+import Container from "app/components/container";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -60,40 +62,27 @@ export default async function Blog({ params }) {
   }
 
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
-            author: {
-              "@type": "Person",
-              name: "Ajith Kumar P M",
-            },
-          }),
-        }}
-      />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
-      </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
-      </article>
-    </section>
+    <Container size="4xl">
+      <section className="mx-auto max-w-5xl">
+        <header className="mb-12">
+          <h1 className="title font-bold text-4xl tracking-tight mb-4">
+            {post.metadata.title}
+          </h1>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
+        </header>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-16 items-start min-h-screen">
+          <article className="prose prose-neutral dark:prose-invert max-w-none w-full">
+            <CustomMDX source={post.content} />
+          </article>
+
+          <aside className="lg:block self-start">
+            <TableOfContents items={generateToc(post.content)} />
+          </aside>
+        </div>
+      </section>
+    </Container>
   );
 }
