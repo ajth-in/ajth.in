@@ -1,0 +1,83 @@
+---
+title: "Atomic Commits and Git Bisect"
+publishedAt: "2025-11-11"
+summary: "A small change can sometimes have an outsized impact. When our TypeScript typecheck suddenly slowed from a minute to several, it disrupted the entire team’s workflow and brought development to a halt. Instead of manually hunting through recent changes, I turned to git bisect to systematically narrow down the problem. This post walks through how that process helped pinpoint the exact commit in minutes, and why clean, atomic commits make debugging issues like this far easier than they seem."
+---
+
+# Atomic Commits and Git Bisect
+
+So today, something happened at work.
+
+Suddenly, the typecheck that used to take roughly 60 seconds started taking more than 8 minutes. Since typechecking is in our pre-commit hook, all the devs were complaining, everyone was making commits by force-skipping the git hooks, and I was tasked with finding the root cause.
+I was pretty sure the command was working fine the last time I worked on the project, so something must have happened in the last week that caused this. This was a perfect time to use `git bisect`.
+The command essentially lets you find a bad commit between a known "good" commit and a "bad" commit. But one thing that is crucial for using this effectively is having a clean commit history with atomic commits.
+
+Working with atomic git commits just means your commits are of the smallest possible size. Each commit does one, and only one, simple thing that can be summed up in a simple sentence.
+
+Btw, if you feel you need to add an "and" to your commit message, that should be two commits.
+Also, if a commit is too large, if it breaks something, you know the commit is at fault, but you don't know which part of it.
+
+Luckily, my teammates are pretty good at following basic git practices, so all our commits were properly described and atomic. The history looked something like this (not the real one, just an example):
+
+```
+fix(api): correct pagination offset                     (a12f3c9)
+docs(readme): update setup instructions                 (b9d41ef)
+feat(admin): add search bar to user table               (c7aa92d)
+refactor(utils): simplify date formatting function      (f04bb12)
+
+... (around 100 more commits) ...
+
+fix(types): resolve inference issue in useQuery       (e3c91af)
+chore: bump typescript to 4.9                         (9b7d2cc)
+```
+
+So, I knew the following:
+
+1. The current commit (HEAD) was the bad one.
+
+2. A commit from last week (let's call it 9b7d2cc) was the good one. I knew this 'cause I could check it out, run the typecheck, and see it only taking ~60 seconds.
+
+With those two pieces of info, I started the process.
+
+First, you tell Git you want to start the bisect process:
+
+```bash
+git bisect start
+```
+
+Then, you tell it the bad commit (the one I'm on) and the good commit (the one from last week):
+
+```bash
+$ git bisect bad HEAD
+$ git bisect good 9b7d2cc
+```
+
+It automatically checked out a commit right in the middle of my good and bad ones. My job was just to run the typecheck:
+
+```bash
+pnpm run typecheck
+```
+
+If it was fast (60 seconds), the bug must have come after this commit. I'd tell Git:
+
+```bash
+git bisect good
+```
+
+If it was slow , the bug was introduced before or at this commit. I'd tell Git:
+
+```bash
+git bisect bad
+```
+
+Every time I did that, Git would cut the number of possible commits in half and check out a new one for me to test.
+
+After just 6 or 7 tests, Git printed out the answer:
+
+```bash
+a9c3e1a is the first bad commit Commit: a9c3e1a Author: ... Date: ...
+...
+...
+```
+
+The actual issue was incorrect update of an internal package :). What could have been a full day of manually checking out commits and re-running tests was over in like 10 minutes.

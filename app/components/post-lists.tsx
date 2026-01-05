@@ -18,7 +18,7 @@ export function PostList({ posts }: { posts: Blog[] }) {
           href={`/blog/${post.slug}`}
           className="group flex items-baseline gap-4 rounded-md px-2 py-2 transition-colors hover:bg-white/[0.03]"
         >
-          <span className="w-24 shrink-0 font-mono text-[12px] tabular-nums text-neutral-500">
+          <span className="w-22 shrink-0 font-mono text-[12px] tabular-nums text-neutral-500">
             {formatDate(post.metadata.publishedAt, false)}
           </span>
           <span className="text-sm font-medium tracking-tight text-neutral-200 transition-colors group-hover:text-neutral-400">
