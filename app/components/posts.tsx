@@ -1,8 +1,9 @@
 import { getBlogPosts } from "app/blog/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent } from "@/components/ui/tabs";
 import { Fragment } from "react";
 import Image from "next/image";
 import { PostList } from "./post-lists";
+import BlogTabs from "./tabs";
 
 export function BlogPosts() {
   const _techBlogs = getBlogPosts("tech");
@@ -19,22 +20,7 @@ export function BlogPosts() {
   return (
     <Fragment>
       <div className="max-w-xl">
-        <Tabs defaultValue="tech" className="w-full">
-          <TabsList className=" h-9 bg-white/5 border border-white/10 p-1">
-            <TabsTrigger
-              value="tech"
-              className="text-xs cursor-pointer  tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
-            >
-              Technical
-            </TabsTrigger>
-            <TabsTrigger
-              value="personal"
-              className="text-xs cursor-pointer  tracking-wider  data-[state=active]:bg-white/10 data-[state=active]:text-neutral-400"
-            >
-              Everything Else
-            </TabsTrigger>
-          </TabsList>
-
+        <BlogTabs>
           <TabsContent value="tech" className="mt-0">
             <Image
               unoptimized
@@ -58,7 +44,7 @@ export function BlogPosts() {
             />
             <PostList posts={personalPosts} />
           </TabsContent>
-        </Tabs>
+        </BlogTabs>
       </div>
     </Fragment>
   );

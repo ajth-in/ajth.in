@@ -37,7 +37,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   }, [items]);
 
   return (
-    <nav className="hidden lg:block lg:fixed top-24 max-w-[240px]">
+    <nav className="hidden lg:block lg:fixed top-[300px] max-w-[240px]">
       <div className="flex flex-col gap-4">
         <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500">
           On this page
