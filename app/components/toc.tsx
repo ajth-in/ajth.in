@@ -39,7 +39,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav className="hidden lg:block lg:fixed top-[300px] max-w-[240px]">
       <div className="flex flex-col gap-4">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+        <h3 className="text-xs font-bold uppercase tracking-widest dark:text-neutral-500 text-neutral-700">
           On this page
         </h3>
 
@@ -55,7 +55,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                   className="relative"
                 >
                   {isActive && (
-                    <div className="absolute left-[-1px] top-0 h-full w-[2px] bg-white transition-all duration-300" />
+                    <div className="absolute left-[-1px] top-0 h-full w-[2px] dark:bg-white bg-neutral-200 transition-all duration-300" />
                   )}
 
                   <a
@@ -63,8 +63,8 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                     className={cn(
                       "block text-[13px] leading-relaxed transition-colors duration-200  pl-2",
                       isActive
-                        ? "text-white font-medium"
-                        : "text-neutral-400 hover:text-neutral-200 line-clamp-2"
+                        ? "dark:text-white text-black font-medium"
+                        : "dark:text-neutral-400 text-neutral-700 dark:hover:text-neutral-200 hover:text-neutral-800 line-clamp-2"
                     )}
                   >
                     {item.text}

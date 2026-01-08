@@ -24,7 +24,7 @@ export function BlogPosts() {
           <TabsContent value="tech" className="mt-0">
             <Image
               unoptimized
-              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border border-neutral-200 brightness-80"
+              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border dark:border-neutral-200 border-neutral-700 brightness-80"
               alt="Hello world"
               src={"/banner2.gif"}
               width={100}
@@ -36,7 +36,7 @@ export function BlogPosts() {
           <TabsContent value="personal" className="mt-0 space-y-1">
             <Image
               unoptimized
-              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border border-neutral-200 brightness-80"
+              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border dark:border-neutral-200 border-neutral-700 brightness-80"
               alt="Hello world"
               src={"/banner.gif"}
               width={100}

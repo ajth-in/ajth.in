@@ -1,11 +1,15 @@
 export function Description() {
   return (
     <section className="max-w-lg space-y-5 py-4">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:bg-white/[0.07]">
-        <p className="text-sm leading-relaxed text-neutral-300">
+      <div className="rounded-xl border dark:border-white/10 border-black/5 dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 p-4 transition-all ">
+        <p className="text-sm leading-relaxed dark:text-neutral-300 text-neutral-900">
           Welcome to my{" "}
-          <span className="text-yellow-200/80 italic"> corner</span> of the web
-          🌐✨. Sharing thoughts, projects, and the things I geek out on.
+          <span className="dark:text-yellow-200/80 text-yellow-900 italic">
+            {" "}
+            corner
+          </span>{" "}
+          of the web 🌐✨. Sharing thoughts, projects, and the things I geek out
+          on.
         </p>
       </div>
 
@@ -24,8 +28,8 @@ export function Description() {
 function Fact({ label }: { label: string }) {
   return (
     <div className="group flex items-center gap-1.5">
-      <span className="h-1 w-1 rounded-full bg-neutral-700 transition-colors group-hover:bg-green-500" />
-      <span className="text-[12px] font-medium text-neutral-400 group-hover:text-neutral-200 transition-colors">
+      <span className="h-1 w-1 rounded-full dark:bg-neutral-700 bg-neutral-200 transition-colors group-hover:bg-green-500" />
+      <span className="text-[12px] font-medium dark:text-neutral-400 text-neutral-600 dark:group-hover:text-neutral-200 group-hover:text-neutral-800 transition-colors">
         {label}
       </span>
     </div>
