@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+import React, { Fragment } from "react";
+import { MermaidDiagram } from "./mermaid";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -48,20 +49,35 @@ function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+function Code({ children, className, ...props }) {
+  const isMermaid = className?.includes("language-mermaid");
+
+  if (isMermaid) {
+    return <MermaidDiagram chart={String(children)} />;
+  }
+
+  const codeHTML = highlight(children);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
-
+function BlockQuote({ children, ...props }) {
+  return (
+    <blockquote
+      className="my-6 border-l-2 border-white pl-4 text-slate-300 italic"
+      {...props}
+    >
+      {children}
+    </blockquote>
+  );
+}
 export function slugify(str) {
   return str
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
-    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
 }
 
 function createHeading(level) {
@@ -97,13 +113,16 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  blockquote: BlockQuote,
 };
 
 export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <Fragment>
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      />
+    </Fragment>
   );
 }
