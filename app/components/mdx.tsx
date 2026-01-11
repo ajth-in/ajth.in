@@ -62,7 +62,7 @@ function Code({ children, className, ...props }) {
 function BlockQuote({ children, ...props }) {
   return (
     <blockquote
-      className="my-6 border-l-2 border-white pl-4 text-slate-300 italic"
+      className="my-6 border-l-2 dark:border-white border-neutral-400  pl-4 text-slate-300 italic"
       {...props}
     >
       {children}
