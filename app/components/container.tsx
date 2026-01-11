@@ -4,6 +4,7 @@ import Footer from "./footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "@/lib/utils";
+import SignUpForm from "./news-letter";
 
 type ContainerProps = PropsWithChildren<{
   size: "xl" | "4xl";
@@ -22,6 +23,9 @@ const Container = ({ children, size }: ContainerProps) => {
     >
       <Navbar />
       {children}
+      <hr className="my-12 border-dashed dark:border-neutral-700 border-neutral-300" />
+      <SignUpForm />
+
       <Footer />
       <Analytics />
       <SpeedInsights />
