@@ -46,6 +46,7 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
+  const isXkcd = props.src.contains("xkcd");
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 

@@ -94,16 +94,18 @@ export const MermaidDiagram = ({ chart }: MermaidProps) => {
   };
 
   return (
-    <div className="relative ">
-      <Button
-        variant={"ghost"}
-        className="cursor-pointer absolute right-0"
-        onClick={downloadAsImage}
-        aria-label="Download diagram"
-      >
-        <Download size={16} />
-      </Button>
-      <div className="flex justify-center w-full" ref={ref} />
+    <div>
+      <div className="relative ">
+        <Button
+          variant={"ghost"}
+          className="cursor-pointer absolute right-0"
+          onClick={downloadAsImage}
+          aria-label="Download diagram"
+        >
+          <Download size={16} />
+        </Button>
+        <div className="flex justify-center w-full" ref={ref} />
+      </div>
     </div>
   );
 };

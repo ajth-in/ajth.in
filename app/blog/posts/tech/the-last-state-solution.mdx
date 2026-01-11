@@ -128,4 +128,56 @@ That question is usually encoded indirectly through conditionals, flags, and imp
 
 This is where the idea of **state machines** starts to feel relevant. Not as another way to store data, but as a way to model **behavior** itself.
 
-## Xstate
+## The Elephants In The Room
+
+I tend to oversell things I am passionate about, so before jumping into an implementation with XState, I want to clarify a few points first.
+
+### It's Not All Sunshine And Rainbows
+
+Earlier in this article, I pointed out several drawbacks of Redux. Interestingly, almost all of those criticisms also apply to XState. It is **complex**, relatively **heavy in terms of bundle size**, and has a **steep learning curve**, a lot steeper than Redux itself.
+
+Another important point to note is that **not all problems can or should be solved with XState**. State machines(Or the Actor Model) are a powerful abstraction, but they are not a universal one.
+Because of this, XState is not a direct replacement for a global state solution. It does not aim to manage arbitrary shared data in the way Redux or Zustand does, nor should it be forced into that role.
+
+Despite all of this, I still consider XState an important tool in my arsenal.
+
+XState works best when modeling **finite, behavior-driven systems** with well-defined states and transitions. For everything else, traditional state management tools remain not only sufficient, but often more appropriate.
+
+I Think the earlier section should already hint at why that distinction matters.
+
+### Xstate And The Actor Model
+
+Up to this point, the discussion has focused primarily on **state machines**. Naturally, this can make XState appear to be just another state machine library. While that is partially true, it does not capture the full picture.
+
+XState is more than a state machine library. At its core, it is built around a concept known as the **Actor Model**.
+
+> The Actor Model is a mathematical model of concurrent computation in which an _actor_ is the fundamental unit of computation.
+
+In this model, systems are composed of independent actors that communicate exclusively through **message passing**. Each actor encapsulates its own state and behavior, processes messages one at a time, and can send messages to other actors.
+
+State machines and statecharts are used to model the internal logic of these actors. Multiple actors can exist simultaneously, each running its own machine, and they can communicate with one another in a structured and predictable way.
+
+This is the mental model XState encourages. Not a single, monolithic state machine, but a network of communicating actors, each responsible for a well-defined piece of behavior.
+
+```mermaid
+graph LR
+    AppMachine["TodoApp Machine"]
+
+    TodoApiActor["todoApi Actor<br/>(fromPromise)"]
+    IndexDbActor["indexDb Actor<br/>(fromPromise)"]
+    WsActor["groupComments Actor<br/>(fromObservable)"]
+
+    AppMachine -->|invoke: fetchTodos| TodoApiActor
+    TodoApiActor -->|onDone: todos| AppMachine
+    TodoApiActor -->|onError| AppMachine
+
+    AppMachine -->|invoke: persistTodos| IndexDbActor
+    IndexDbActor -->|onDone| AppMachine
+    IndexDbActor -->|onError| AppMachine
+
+    AppMachine -->|spawn| WsActor
+    WsActor -->|next: commentReceived| AppMachine
+    WsActor -->|error| AppMachine
+    WsActor -->|complete| AppMachine
+
+```
