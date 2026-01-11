@@ -1,7 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Navbar } from "./nav";
 import Footer from "./footer";
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "@/lib/utils";
 import SignUpForm from "./news-letter";
@@ -27,7 +26,6 @@ const Container = ({ children, size }: ContainerProps) => {
       <SignUpForm />
 
       <Footer />
-      <Analytics />
       <SpeedInsights />
     </main>
   );
