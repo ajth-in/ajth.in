@@ -2,6 +2,7 @@ import "./global.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/react";
 import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
@@ -48,7 +49,10 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased  ">{children}</body>
+      <body className="antialiased  ">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
