@@ -38,7 +38,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   if (!items.length) return;
 
   return (
-    <nav className="hidden lg:block lg:sticky top-[300px] max-w-[240px]">
+    <nav className="hidden lg:block max-w-[240px]">
       <div className="flex flex-col gap-4">
         <h3 className="text-xs font-bold uppercase tracking-widest dark:text-neutral-500 text-neutral-700">
           On this page

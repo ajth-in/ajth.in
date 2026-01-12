@@ -80,7 +80,7 @@ export default async function Blog({ params }) {
             <CustomMDX source={post.content} />
           </article>
 
-          <aside className="lg:block self-start">
+          <aside className="lg:block lg:sticky top-[100px]">
             <TableOfContents items={generateToc(post.content)} />
           </aside>
         </div>
