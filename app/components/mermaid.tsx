@@ -4,7 +4,9 @@ import { useEffect, useRef } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+let isMermaidLoaded = false;
 const initMermaid = (mode: "light" | "dark") => {
+  if (isMermaidLoaded) return;
   mermaid.initialize({
     startOnLoad: false,
     look: "handDrawn",
@@ -35,6 +37,7 @@ const initMermaid = (mode: "light" | "dark") => {
             fontSize: "14px",
           },
   });
+  isMermaidLoaded = true;
 };
 
 type MermaidProps = {
