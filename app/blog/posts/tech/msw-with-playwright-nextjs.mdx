@@ -1,0 +1,321 @@
+---
+title: "Mock Client-side & Server-side API Requests Using Next.js and MSW.js"
+publishedAt: "2025-07-14"
+summary: "Modern Next.js applications can issue API requests from both the server and the browser, which complicates what used to be a simple mocking setup. This article walks through a practical way to handle that complexity using Mock Service Worker. It shows how to mock the same API consistently across server-side rendering, client components, and API routes without duplicating logic. Using a concrete Next.js example, it covers folder structure, handlers, instrumentation hooks, and common pitfalls, so you can develop and test features confidently without relying on live backends or third-party APIs."
+---
+
+There are a bunch of situations where mocking API requests can really come in handy. Maybe you’re building out features without a backend yet, trying to avoid hitting a third-party API too often, or just want things to work offline.
+Mocking used to be pretty straightforward when everything was happening on the client side. But things changed with modern React. With support for data fetching on the server, API requests can now come from both the server and the client.
+So how do you mock both client-side and server-side API calls without writing two completely different sets of mocks?
+That’s where MSW (Mock Service Worker) comes in. It’s honestly one of the best tools out there for this job.
+MSW lets you mock API requests at the network level:
+
+- On the client, using a Service Worker (`msw/browser`)
+- On the server, using an intercepting server (`msw/node`) that works well for SSR and API routes
+
+Let’s walk through how to set it all up.
+
+## Setting Up MSW in a Next.js App
+
+You can find the full working example here:  
+👉 [github.com/ajth-in/nextjs-mswjs](https://github.com/ajth-in/nextjs-mswjs)
+
+Install MSW as a dev dependency:
+
+```bash
+npm install msw --save-dev
+```
+
+Next, create a `mocks` directory at the root of your project. This will hold everything related to MSW, including handlers and setup files for both the browser and Node.js environments.
+
+Here’s the structure:
+
+```text
+.
+├── app
+│   └── page.tsx               # Example route that makes an API call
+├── mocks
+│   ├── browser.js             # Client-side MSW setup (Service Worker)
+│   ├── node.js                # Server-side MSW setup (for SSR/API routes)
+│   ├── handlers.js            # Main list of request handlers
+│   └── data
+│       └── github-user.json   # Mock json
+├── components
+│   └── MswWorker.tsx          # Component to load the worker script
+├── instrumentation.ts         # To integrate msw node server
+
+```
+
+Let’s look at a simple example that fetches user information from the GitHub API. This will demonstrate both server-side and client-side fetching, which we’ll later mock using MSW.
+
+`app/page.tsx` is a **React Server Component** that fetches user data during server-side rendering. It then renders a client component (`GithubUserName`) and also displays the user’s GitHub login directly.
+
+```tsx
+import GithubUserName from "@/components/UserName";
+import { Fragment } from "react";
+
+export default async function Home() {
+  const res = await fetch("https://api.github.com/users/ajth-in");
+  const userData = await res.json();
+
+  return (
+    <Fragment>
+      <GithubUserName />
+      <p className="login">@{userData.login}</p>
+    </Fragment>
+  );
+}
+```
+
+`components/UserName.tsx` is a **Client Component** that also fetches the same user data from GitHub, but on the client side using `useEffect`. Instead of showing the login, it displays the user’s full name.
+
+```tsx
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function GithubUserName() {
+  const [userData, setUserData] = useState<{ name: string } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const res = await fetch("https://api.github.com/users/ajth-in");
+        const data = await res.json();
+        setUserData(data);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUserData();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (!userData) return <p>Failed to load user data.</p>;
+
+  return <p>{userData.name}</p>;
+}
+```
+
+> 💡 **Note:**  
+> The client-side fetching here is redundant. Since the same user data is already available on the server, it could be passed as a prop to the client component. We're doing it this way purely to demonstrate both client-side and server-side mocking with MSW.
+
+If you start the development server at this point, you'll see something like this:
+
+![Image showing live data](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rreb8szz30aa9cxyvmip.png)
+
+The user information is being fetched live from the GitHub API, both on the server and the client.
+
+`mocks/data/github-user.json`: Now let’s mock the GitHub API call we used earlier. We’ll return a static user response from a local JSON file.
+
+Start by creating a file at:
+
+```text
+mocks/data/github-user.json
+```
+
+And add the following mock response:
+
+```json
+{
+  "login": "ajth-in (cached)",
+  "name": "Ajith Kumar P M (cached)"
+}
+```
+
+The "(cached)" part is just there to help us verify that the mock is being used when the app runs.
+
+`mocks/handlers.js`: Now we’ll create an MSW handler to intercept the GitHub API request and respond with our mock data.
+
+```tsx
+import { http, HttpResponse } from "msw";
+import user from "./data/github-user.json";
+
+export const handlers = [
+  http.get("https://api.github.com/users/*", ({}) => HttpResponse.json(user)),
+];
+```
+
+In this example, we’re intercepting **all** requests that match the pattern `https://api.github.com/users/*`. If you want to target a specific user or URL, you can provide the exact match instead.
+
+`mocks/node.js`: This sets up the mock server for handling requests in the Node.js environment (used during SSR or in API routes):
+
+```ts
+import { setupServer } from "msw/node";
+import { handlers } from "./handlers";
+
+export const server = setupServer(...handlers);
+```
+
+`mocks/browser.js`: This sets up the Service Worker that intercepts requests on the client side:
+
+```ts
+import { setupWorker } from "msw/browser";
+import { handlers } from "./handlers";
+
+export const worker = setupWorker(...handlers);
+```
+
+To hook MSW into our Next.js app, we’ll use **Next.js instrumentation hooks**. These allow you to run setup code during the server's startup lifecycle.
+
+> 🛠️ From the Next.js documentation:  
+> _"Instrumentation is the process of using code to integrate monitoring and logging tools into your application. This allows you to track the performance and behavior of your application, and to debug issues in production."_
+
+We’re going to use this hook to spin up our mock server.
+
+`instrumentation.ts`: Create a file at the root of your app directory named `instrumentation.ts` and add the following:
+
+```ts
+export async function register() {
+  if (
+    process.env.NEXT_PUBLIC_MSW_ENV === "test" &&
+    process.env.NEXT_RUNTIME === "nodejs"
+  ) {
+    const { server } = await import("./mocks/node");
+    server.listen();
+  }
+}
+```
+
+Here’s what this does:
+
+- `NEXT_RUNTIME === 'nodejs'` ensures we only run this in the Node.js runtime (not in the Edge runtime).
+- `NEXT_PUBLIC_MSW_ENV === 'test'` lets us control when to enable MSW. This way, mocks are only active in testing or development environments.
+
+> ⚠️ **Note:**  
+> This example uses **Next.js version 15.3.5**.  
+> Depending on your version, you might need to enable the instrumentation hook explicitly in your config:
+
+```ts
+// next.config.ts
+export const nextConfig = {
+  experimental: {
+    instrumentationHook: true,
+  },
+};
+```
+
+For client-side mocking, MSW uses a Service Worker to intercept requests in the browser. First, we need to generate the `mockServiceWorker.js` file that gets served from the `public/` folder.
+
+## Generate the Service Worker File
+
+Run the following command:
+
+```bash
+npx msw init public/ --save
+```
+
+This will generate a `public/mockServiceWorker.js` file that MSW uses under the hood.
+
+`components/MswWorker.tsx`: This component is what we'll use to load the Mock Service Worker (MSW) into our app during development or testing.
+
+```tsx
+"use client";
+
+import { PropsWithChildren, useEffect, useState } from "react";
+
+export function MswWorker({ children }: PropsWithChildren) {
+  const [isMswReady, setIsMswReady] = useState(false);
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_MSW_ENV !== "test") return;
+
+    const enableMocking = async () => {
+      const { worker } = await import("@/mocks/browser");
+      await worker.start({
+        onUnhandledRequest: "bypass",
+      });
+      setIsMswReady(true);
+    };
+
+    // @ts-expect-error msw not found
+    if (!window.msw) {
+      enableMocking();
+    } else {
+      setIsMswReady(true);
+    }
+  }, []);
+
+  if (process.env.NEXT_PUBLIC_MSW_ENV !== "test") return children;
+
+  if (!isMswReady) {
+    return "loading msw worker...";
+  }
+
+  return <>{children}</>;
+}
+```
+
+Basically, this waits until the mock worker is fully set up before rendering anything. That way, your app won't accidentally fire off real network requests before the mocks are ready.
+
+To make this work across your entire app, just wrap your layout with it.
+
+`layout.tsx`
+
+```tsx
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <MswWorker>{children}</MswWorker>
+      </body>
+    </html>
+  );
+}
+```
+
+Now if you restart the dev server, you should see your app serving mocked responses right away.
+
+![Screenshot showing a successful mocked response intercepted by MSW](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6wdovvezous07hsvi5k7.png)
+
+So that’s it — we’ve successfully mocked API calls from both the server and the client side. 🎉
+
+Since both environments share the same set of handlers, we don’t need to worry about where a particular request is coming from. Whether it runs on the server during SSR or from the browser after hydration, our mocks stay consistent.
+
+## Instrumentation-client.ts
+
+One more thing worth mentioning: just like we used `instrumentation.ts` for server-side setup, there's also an `instrumentation-client.ts` file in Next.js that runs on the client _before_ hydration starts.
+
+In theory, we could load the MSW worker from there. Which sounds ideal, but after testing it out, I ran into some race conditions. Some API calls were firing **before** the worker was fully initialized, which kinda defeats the whole purpose of mocking.
+
+At the time of writing this, `clientInstrumentationHook` is still an experimental feature. So until it's more stable (or there's a solid workaround), it’s safer to stick with loading the worker manually in a client-side component like `MswWorker.tsx`.
+
+`instrumentation-client.ts`: Create this file at the root of your app directory:
+
+```ts
+if (process.env.NEXT_PUBLIC_MSW_ENV === "test") {
+  import("./mocks/browser")
+    .then(async (mod) => {
+      if (mod?.worker?.start) {
+        mod.worker.start();
+      }
+    })
+    .catch(async () => {
+      console.error("Failed to load the browser module");
+    });
+}
+```
+
+> ⚠️ **Important:**  
+> This file (`instrumentation-client.ts`) is executed **before hydration**, so avoid doing anything here that may block rendering or impact performance in production environments.
+
+> ⚙️ **Config Note:**  
+> Depending on your next js version, you might need to add the following to `next.config.ts` to enable this:
+
+```ts
+// next.config.ts
+export const nextConfig = {
+  experimental: {
+    instrumentationHook: true,
+    clientInstrumentationHook: true,
+  },
+};
+```

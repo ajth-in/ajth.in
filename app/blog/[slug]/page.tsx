@@ -85,7 +85,10 @@ export default async function Blog({ params }) {
           </aside>
         </div>
       </section>
-      <BlogNavigation next={{ href: post.metadata.next }} />
+      <BlogNavigation
+        next={{ href: post.metadata.next }}
+        prev={{ href: post.metadata.prev }}
+      />
       <hr className="my-12 border-dashed dark:border-neutral-700 border-neutral-300" />
       <NewsLetterSignup />
     </Container>
