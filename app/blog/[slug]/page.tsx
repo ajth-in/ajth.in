@@ -5,6 +5,7 @@ import { baseUrl } from "app/sitemap";
 import { TableOfContents } from "app/components/toc";
 import Container from "app/components/container";
 import NewsLetterSignup from "app/components/news-letter";
+import { BlogNavigation } from "app/components/blog-prev-control";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -84,6 +85,7 @@ export default async function Blog({ params }) {
           </aside>
         </div>
       </section>
+      <BlogNavigation next={{ href: post.metadata.next }} />
       <hr className="my-12 border-dashed dark:border-neutral-700 border-neutral-300" />
       <NewsLetterSignup />
     </Container>

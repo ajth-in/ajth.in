@@ -2,6 +2,7 @@
 title: "The Last State Solution"
 publishedAt: "2026-01-10"
 summary: "This article explores state management from a behavioral perspective rather than a purely structural one. Starting from classical state machines in the theory of computation, it builds intuition through simple examples and then examines how modern front end state management libraries like Redux and Zustand fit into this picture. It argues that while these tools solve problems of data sharing and ergonomics, they leave a deeper question unanswered: when certain actions are actually valid. By tracing the familiar cycle from local component state to global stores and back to accidental complexity, the article motivates state machines as a way to make invalid states unrepresentable and to model application behavior explicitly. The discussion sets the stage for introducing XState as a practical bridge between theoretical state machines and real world front end systems."
+next: "authentication-with-xstate"
 ---
 
 As a front-end developer, a large portion of my work revolves around state. Where state should live, how it should be structured, how it changes over time, and how those changes affect the UI.
@@ -181,3 +182,5 @@ graph LR
     WsActor -->|complete| AppMachine
 
 ```
+
+We have already covered quite a bit in this article, so the XState React example app will be in the next section.
