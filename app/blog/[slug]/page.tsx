@@ -4,6 +4,7 @@ import { formatDate, generateToc, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
 import { TableOfContents } from "app/components/toc";
 import Container from "app/components/container";
+import NewsLetterSignup from "app/components/news-letter";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -83,6 +84,8 @@ export default async function Blog({ params }) {
           </aside>
         </div>
       </section>
+      <hr className="my-12 border-dashed dark:border-neutral-700 border-neutral-300" />
+      <NewsLetterSignup />
     </Container>
   );
 }
