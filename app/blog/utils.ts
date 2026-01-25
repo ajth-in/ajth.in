@@ -54,9 +54,9 @@ function getMDXData(dir) {
 export function getBlogPosts(type?: "tech" | "life") {
   if (!type) {
     return getMDXData(
-      path.join(process.cwd(), "app", "blog", "posts", "tech")
+      path.join(process.cwd(), "app", "blog", "posts", "tech"),
     ).concat(
-      getMDXData(path.join(process.cwd(), "app", "blog", "posts", "life"))
+      getMDXData(path.join(process.cwd(), "app", "blog", "posts", "life")),
     );
   }
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts", type));
@@ -88,7 +88,7 @@ export function formatDate(date: string, includeRelative = false) {
 
   let fullDate = targetDate.toLocaleString("en-us", {
     month: "short",
-    day: "numeric",
+    day: "2-digit",
     year: "numeric",
   });
 
