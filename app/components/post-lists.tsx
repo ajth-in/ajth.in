@@ -21,7 +21,7 @@ export function PostList({ posts }: { posts: Blog[] }) {
           <span className="w-22 shrink-0 font-mono text-[12px] tabular-nums dark:text-neutral-500 text-neutral-800">
             {formatDate(post.metadata.publishedAt, false)}
           </span>
-          <span className="text-sm font-medium tracking-tight dark:text-neutral-200 text-neutral-800 transition-colors dark:group-hover:text-neutral-400 group-hover:text-black">
+          <span className="text-sm font-medium tracking-tight line-clamp-1 dark:text-neutral-200 text-neutral-800 transition-colors dark:group-hover:text-neutral-400 group-hover:text-black">
             {post.metadata.title}
           </span>
         </Link>
