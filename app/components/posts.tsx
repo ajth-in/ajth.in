@@ -1,24 +1,31 @@
-import { getBlogPosts } from "app/blog/utils";
 import { TabsContent } from "@/components/ui/tabs";
-import { Fragment } from "react";
+import { getBlogPosts } from "app/blog/utils";
 import Image from "next/image";
+import { Fragment } from "react";
 import { PostList } from "./post-lists";
 import BlogTabs from "./tabs";
+import Title from "./titele";
 
 export function BlogPosts() {
   const _techBlogs = getBlogPosts("tech");
   const _personalPosts = getBlogPosts("life");
 
   const techPosts = _techBlogs.sort((a, b) =>
-    new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
+    new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
+      ? -1
+      : 1,
   );
 
   const personalPosts = _personalPosts.sort((a, b) =>
-    new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
+    new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
+      ? -1
+      : 1,
   );
 
   return (
     <Fragment>
+      <Title>Late Night Thoughts</Title>
+
       <div className="max-w-xl">
         <BlogTabs>
           <TabsContent value="tech" className="mt-0">
