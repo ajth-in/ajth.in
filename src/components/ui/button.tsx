@@ -33,7 +33,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function Button({
@@ -41,6 +41,7 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
+  // oxlint-disable-next-line no-unused-vars
   ref,
   ...props
 }: React.ComponentProps<"button"> &
