@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import React, { Fragment } from "react";
 import { MermaidDiagram } from "./mermaid";
+import { css } from "styled-system/css";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -46,8 +47,13 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
-  const isXkcd = props.src.contains("xkcd");
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+  return (
+    <Image
+      alt={props.alt}
+      className={css({ borderRadius: "lg" })}
+      {...props}
+    />
+  );
 }
 
 function Code({ children, className, ...props }) {
@@ -63,7 +69,15 @@ function Code({ children, className, ...props }) {
 function BlockQuote({ children, ...props }) {
   return (
     <blockquote
-      className="my-6 border-l-2 dark:border-white border-neutral-400  pl-4 text-slate-300 italic"
+      className={css({
+        marginTop: "1.5rem",
+        marginBottom: "1.5rem",
+        borderLeft: "2px solid rgb(163 163 163)",
+        paddingLeft: "1rem",
+        color: "rgb(203 213 225)",
+        fontStyle: "italic",
+        _dark: { borderColor: "white" },
+      })}
       {...props}
     >
       {children}

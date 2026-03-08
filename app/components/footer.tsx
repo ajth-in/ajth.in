@@ -1,3 +1,5 @@
+import { css } from "styled-system/css";
+
 function ArrowIcon() {
   return (
     <svg
@@ -17,32 +19,78 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="text-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
+    <footer className={css({ marginBottom: "4rem" })}>
+      <ul
+        className={css({
+          fontSize: "0.875rem",
+          marginTop: "2rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5rem",
+          color: "rgb(82 82 82)",
+          md: {
+            flexDirection: "row",
+            gap: "1rem",
+          },
+          _dark: { color: "rgb(212 212 212)" },
+        })}
+      >
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            className={css({
+              display: "flex",
+              alignItems: "center",
+              transition: "all 0.2s",
+              _hover: {
+                color: "rgb(38 38 38)",
+              },
+              _dark: {
+                _hover: { color: "rgb(245 245 245)" },
+              },
+            })}
             rel="noopener noreferrer"
             target="_blank"
             href="/rss"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">rss</p>
+            <p className={css({ marginLeft: "0.5rem", height: "1.75rem" })}>
+              rss
+            </p>
           </a>
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            className={css({
+              display: "flex",
+              alignItems: "center",
+              transition: "all 0.2s",
+              _hover: {
+                color: "rgb(38 38 38)",
+              },
+              _dark: {
+                _hover: { color: "rgb(245 245 245)" },
+              },
+            })}
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/ajth-in"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <p className={css({ marginLeft: "0.5rem", height: "1.75rem" })}>
+              github
+            </p>
           </a>
         </li>
       </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300 font-mono text-xs">
+      <p
+        className={css({
+          marginTop: "2rem",
+          color: "rgb(82 82 82)",
+          fontFamily: "var(--font-geist-mono), monospace",
+          fontSize: "0.75rem",
+          _dark: { color: "rgb(212 212 212)" },
+        })}
+      >
         © {new Date().getFullYear()} Ajith Kumar P M
       </p>
     </footer>

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "styled-system/*": ["./styled-system/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

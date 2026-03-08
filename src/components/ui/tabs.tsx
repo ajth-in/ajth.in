@@ -2,8 +2,66 @@
 
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
+import { css, cx } from "styled-system/css"
 
-import { cn } from "@/lib/utils"
+const tabsStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.5rem",
+})
+
+const tabsListStyle = css({
+  backgroundColor: "var(--muted)",
+  color: "var(--muted-foreground)",
+  display: "inline-flex",
+  height: "2.25rem",
+  width: "fit-content",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "lg",
+  padding: "3px",
+})
+
+const tabsTriggerStyle = css({
+  display: "inline-flex",
+  height: "calc(100% - 1px)",
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "0.375rem",
+  borderRadius: "md",
+  border: "1px solid transparent",
+  paddingLeft: "0.5rem",
+  paddingRight: "0.5rem",
+  paddingTop: "0.25rem",
+  paddingBottom: "0.25rem",
+  fontSize: "0.875rem",
+  fontWeight: "500",
+  whiteSpace: "nowrap",
+  transition: "color 0.2s, box-shadow 0.2s",
+  color: "var(--foreground)",
+  _disabled: {
+    pointerEvents: "none",
+    opacity: 0.5,
+  },
+  '&[data-state="active"]': {
+    backgroundColor: "var(--background)",
+    boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+  },
+  _dark: {
+    color: "var(--muted-foreground)",
+    '&[data-state="active"]': {
+      color: "var(--foreground)",
+      borderColor: "var(--input)",
+      backgroundColor: "rgba(var(--input) / 0.3)",
+    },
+  },
+})
+
+const tabsContentStyle = css({
+  flex: 1,
+  outline: "none",
+})
 
 function Tabs({
   className,
@@ -12,7 +70,7 @@ function Tabs({
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
-      className={cn("flex flex-col gap-2", className)}
+      className={cx(tabsStyle, className)}
       {...props}
     />
   )
@@ -25,10 +83,7 @@ function TabsList({
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
-      className={cn(
-        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
-        className
-      )}
+      className={cx(tabsListStyle, className)}
       {...props}
     />
   )
@@ -41,10 +96,7 @@ function TabsTrigger({
   return (
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
-      className={cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
-      )}
+      className={cx(tabsTriggerStyle, className)}
       {...props}
     />
   )
@@ -57,7 +109,7 @@ function TabsContent({
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
-      className={cn("flex-1 outline-none", className)}
+      className={cx(tabsContentStyle, className)}
       {...props}
     />
   )

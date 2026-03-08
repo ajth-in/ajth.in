@@ -1,5 +1,6 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
+import { css } from "styled-system/css";
 
 const navItems = {
   "/": {
@@ -14,20 +15,60 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <aside className="-ml-[8px] mb-6 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+    <aside
+      className={css({
+        marginLeft: "-8px",
+        marginBottom: "1.5rem",
+        letterSpacing: "-0.025em",
+      })}
+    >
+      <div className={css({ lg: { position: "sticky", top: "5rem" } })}>
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          className={css({
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            position: "relative",
+            paddingLeft: 0,
+            paddingRight: 0,
+            paddingBottom: 0,
+            md: { overflow: "auto", position: "relative" },
+          })}
           id="nav"
         >
-          <div className="flex flex-row items-center space-x-0 pr-10">
+          <div
+            className={css({
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 0,
+              paddingRight: "2.5rem",
+            })}
+          >
             {Object.entries(navItems).map(([path, item]) => {
               return (
                 <Link
                   aria-label={`Go to ${item.name} page`}
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 hover:underline"
+                  className={css({
+                    transition: "all 0.2s",
+                    display: "flex",
+                    alignItems: "center",
+                    position: "relative",
+                    paddingTop: "0.25rem",
+                    paddingBottom: "0.25rem",
+                    paddingLeft: "0.5rem",
+                    paddingRight: "0.5rem",
+                    margin: "0.25rem",
+                    _hover: {
+                      color: "rgb(38 38 38)",
+                      textDecoration: "underline",
+                    },
+                    _dark: {
+                      _hover: { color: "rgb(229 229 229)" },
+                    },
+                  })}
                 >
                   {item.icon ?? item.name}
                 </Link>

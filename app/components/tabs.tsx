@@ -1,8 +1,25 @@
 "use client";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PropsWithChildren, useEffect, useState } from "react";
+import { css } from "styled-system/css";
 
 const STORAGE_KEY = "blog:last-tab";
+
+const tabTriggerStyle = css({
+  fontSize: "0.75rem",
+  cursor: "pointer",
+  letterSpacing: "0.05em",
+  '&[data-state="active"]': {
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    color: "rgb(38 38 38)",
+  },
+  _dark: {
+    '&[data-state="active"]': {
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      color: "rgb(163 163 163)",
+    },
+  },
+});
 
 const BlogTabs = (props: PropsWithChildren) => {
   const [tab, setTab] = useState<"tech" | "personal">("tech");
@@ -21,18 +38,24 @@ const BlogTabs = (props: PropsWithChildren) => {
     }
   };
   return (
-    <Tabs value={tab} onValueChange={handleTabChange} className="w-full">
-      <TabsList className="h-9 dark:bg-white/5 bg-black/5 border border-white/10 p-1">
-        <TabsTrigger
-          value="tech"
-          className="text-xs cursor-pointer tracking-wider dark:data-[state=active]:bg-white/10 data-[state=active]:bg-black/10 dark:data-[state=active]:text-neutral-400 data-[state=active]:text-neutral-800 "
-        >
+    <Tabs
+      value={tab}
+      onValueChange={handleTabChange}
+      className={css({ width: "100%" })}
+    >
+      <TabsList
+        className={css({
+          height: "2.25rem",
+          backgroundColor: "rgba(0, 0, 0, 0.05)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          padding: "0.25rem",
+          _dark: { backgroundColor: "rgba(255, 255, 255, 0.05)" },
+        })}
+      >
+        <TabsTrigger value="tech" className={tabTriggerStyle}>
           Technical
         </TabsTrigger>
-        <TabsTrigger
-          value="personal"
-          className="text-xs cursor-pointer tracking-wider dark:data-[state=active]:bg-white/10 data-[state=active]:bg-black/10 dark:data-[state=active]:text-neutral-400 data-[state=active]:text-neutral-800 "
-        >
+        <TabsTrigger value="personal" className={tabTriggerStyle}>
           Everything Else
         </TabsTrigger>
       </TabsList>

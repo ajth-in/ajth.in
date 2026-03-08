@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { PropsWithChildren, RefObject } from "react";
+import { css } from "styled-system/css";
 
 const WithMermaidCopyButton = (
   props: PropsWithChildren<{ ref: RefObject<HTMLDivElement> }>
@@ -47,10 +48,14 @@ const WithMermaidCopyButton = (
   };
   return (
     <div>
-      <div className="relative ">
+      <div className={css({ position: "relative" })}>
         <Button
           variant={"ghost"}
-          className="cursor-pointer absolute right-0"
+          className={css({
+            cursor: "pointer",
+            position: "absolute",
+            right: 0,
+          })}
           onClick={downloadAsImage}
           aria-label="Download diagram"
         >

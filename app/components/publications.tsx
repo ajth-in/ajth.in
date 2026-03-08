@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Title from "./titele";
+import { css } from "styled-system/css";
 
 export const publications = [
   {
@@ -20,34 +21,72 @@ export function PublicationsSection() {
   if (!publications.length) return null;
 
   return (
-    <section className="max-w-xl py-8">
+    <section className={css({ maxWidth: "36rem", paddingTop: "2rem", paddingBottom: "2rem" })}>
       <Title>Publications</Title>
 
-      <ul className="space-y-4">
+      <ul className={css({ display: "flex", flexDirection: "column", gap: "1rem" })}>
         {publications.map((pub, index) => (
           <li
             key={index}
-            className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700/20 dark:bg-neutral-800/20"
+            className={css({
+              borderRadius: "xl",
+              border: "1px solid rgb(229 229 229)",
+              backgroundColor: "rgb(250 250 250)",
+              padding: "1rem",
+              _dark: {
+                borderColor: "rgba(64, 64, 64, 0.2)",
+                backgroundColor: "rgba(38, 38, 38, 0.2)",
+              },
+            })}
           >
             <Link
               href={pub.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block space-y-2"
+              className={css({ display: "block", "& > *+*": { marginTop: "0.5rem" } })}
             >
-              <p className="text-md font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
+              <p
+                className={css({
+                  fontSize: "1rem",
+                  fontWeight: "600",
+                  lineHeight: "1.4",
+                  color: "rgb(23 23 23)",
+                  _dark: { color: "rgb(245 245 245)" },
+                })}
+              >
                 {pub.title}
               </p>
 
-              <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              <p
+                className={css({
+                  fontSize: "0.75rem",
+                  color: "rgb(82 82 82)",
+                  _dark: { color: "rgb(163 163 163)" },
+                })}
+              >
                 {pub.authors}
               </p>
 
-              <p className="text-xs text-neutral-500 dark:text-neutral-500">
+              <p
+                className={css({
+                  fontSize: "0.75rem",
+                  color: "rgb(115 115 115)",
+                  _dark: { color: "rgb(115 115 115)" },
+                })}
+              >
                 {pub.venue} · {pub.year}
               </p>
 
-              <p className="pt-2 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 line-clamp-3">
+              <p
+                className={css({
+                  paddingTop: "0.5rem",
+                  fontSize: "0.875rem",
+                  lineHeight: "1.625",
+                  color: "rgb(64 64 64)",
+                  lineClamp: 3,
+                  _dark: { color: "rgb(212 212 212)" },
+                })}
+              >
                 {pub.abstract}
               </p>
             </Link>

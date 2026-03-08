@@ -1,10 +1,21 @@
+import { css } from "styled-system/css";
+
 export default function NotFound() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+      <h1
+        className={css({
+          marginBottom: "2rem",
+          fontSize: "1.5rem",
+          fontWeight: "600",
+          letterSpacing: "-0.05em",
+        })}
+      >
         404 - Page Not Found
       </h1>
-      <p className="mb-4">The page you are looking for does not exist.</p>
+      <p className={css({ marginBottom: "1rem" })}>
+        The page you are looking for does not exist.
+      </p>
     </section>
-  )
+  );
 }

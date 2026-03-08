@@ -6,6 +6,7 @@ import { TableOfContents } from "app/components/toc";
 import Container from "app/components/container";
 import NewsLetterSignup from "app/components/news-letter";
 import { BlogNavigation } from "app/components/blog-prev-control";
+import { css } from "styled-system/css";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -65,22 +66,55 @@ export default async function Blog({ params }) {
 
   return (
     <Container size="4xl">
-      <section className="mx-auto max-w-5xl">
-        <header className="mb-12">
-          <h1 className="title font-bold text-4xl tracking-tight mb-4">
+      <section className={css({ marginLeft: "auto", marginRight: "auto", maxWidth: "64rem" })}>
+        <header className={css({ marginBottom: "3rem" })}>
+          <h1
+            className={css({
+              fontWeight: "700",
+              fontSize: "2.25rem",
+              letterSpacing: "-0.025em",
+              marginBottom: "1rem",
+              textWrap: "balance",
+            })}
+          >
             {post.metadata.title}
           </h1>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p
+            className={css({
+              fontSize: "0.875rem",
+              color: "rgb(82 82 82)",
+              _dark: { color: "rgb(163 163 163)" },
+            })}
+          >
             {formatDate(post.metadata.publishedAt)}
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-16 items-start min-h-screen">
-          <article className="prose prose-neutral dark:prose-invert max-w-none w-full">
+        <div
+          className={css({
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "4rem",
+            alignItems: "start",
+            minHeight: "100vh",
+            lg: {
+              gridTemplateColumns: "1fr 250px",
+            },
+          })}
+        >
+          <article className="prose">
             <CustomMDX source={post.content} />
           </article>
 
-          <aside className="lg:block lg:sticky top-[100px]">
+          <aside
+            className={css({
+              lg: {
+                display: "block",
+                position: "sticky",
+                top: "100px",
+              },
+            })}
+          >
             <TableOfContents items={generateToc(post.content)} />
           </aside>
         </div>
@@ -89,7 +123,15 @@ export default async function Blog({ params }) {
         next={{ href: post.metadata.next }}
         prev={{ href: post.metadata.prev }}
       />
-      <hr className="my-12 border-dashed dark:border-neutral-700 border-neutral-300" />
+      <hr
+        className={css({
+          marginTop: "3rem",
+          marginBottom: "3rem",
+          borderStyle: "dashed",
+          borderColor: "rgb(212 212 212)",
+          _dark: { borderColor: "rgb(64 64 64)" },
+        })}
+      />
       <NewsLetterSignup />
     </Container>
   );

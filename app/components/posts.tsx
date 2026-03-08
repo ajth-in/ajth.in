@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { PostList } from "./post-lists";
 import BlogTabs from "./tabs";
 import Title from "./titele";
+import { css } from "styled-system/css";
 
 export function BlogPosts() {
   const _techBlogs = getBlogPosts("tech");
@@ -22,16 +23,29 @@ export function BlogPosts() {
       : 1,
   );
 
+  const imageStyle = css({
+    width: "70%",
+    height: "200px",
+    objectFit: "cover",
+    objectPosition: "left",
+    marginTop: "1rem",
+    marginBottom: "1rem",
+    borderRadius: "1rem",
+    border: "1px solid rgb(64 64 64)",
+    filter: "brightness(0.8)",
+    _dark: { borderColor: "rgb(229 229 229)" },
+  });
+
   return (
     <Fragment>
       <Title>Late Night Thoughts</Title>
 
-      <div className="max-w-xl">
+      <div className={css({ maxWidth: "36rem" })}>
         <BlogTabs>
-          <TabsContent value="tech" className="mt-0">
+          <TabsContent value="tech" className={css({ marginTop: 0 })}>
             <Image
               unoptimized
-              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border dark:border-neutral-200 border-neutral-700 brightness-80"
+              className={imageStyle}
               alt="Hello world"
               src={"/banner2.gif"}
               width={100}
@@ -40,10 +54,18 @@ export function BlogPosts() {
             <PostList posts={techPosts} />
           </TabsContent>
 
-          <TabsContent value="personal" className="mt-0 space-y-1">
+          <TabsContent
+            value="personal"
+            className={css({
+              marginTop: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.25rem",
+            })}
+          >
             <Image
               unoptimized
-              className="w-[70%] h-[200px] object-cover object-left  my-4 rounded-2xl border dark:border-neutral-200 border-neutral-700 brightness-80"
+              className={imageStyle}
               alt="Hello world"
               src={"/banner.gif"}
               width={100}

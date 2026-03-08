@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { css } from "styled-system/css";
 
 type BlogNavProps = {
   prev?: {
@@ -14,20 +15,58 @@ type BlogNavProps = {
   };
 };
 
+const navLinkStyle = css({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  borderRadius: "md",
+  border: "1px solid rgb(212 212 212)",
+  backgroundColor: "white",
+  paddingLeft: "1rem",
+  paddingRight: "1rem",
+  paddingTop: "0.5rem",
+  paddingBottom: "0.5rem",
+  fontSize: "0.875rem",
+  fontWeight: "500",
+  color: "rgb(23 23 23)",
+  transition: "background-color 0.2s",
+  _hover: {
+    backgroundColor: "rgb(245 245 245)",
+  },
+  _dark: {
+    borderColor: "rgb(64 64 64)",
+    backgroundColor: "rgb(38 38 38)",
+    color: "rgb(245 245 245)",
+    _hover: {
+      backgroundColor: "rgb(64 64 64)",
+    },
+  },
+});
+
+const chevronStyle = css({
+  height: "1rem",
+  width: "1rem",
+  transition: "transform 0.2s",
+});
+
 export function BlogNavigation({ prev, next }: BlogNavProps) {
   if (!prev?.href && !next?.href) return null;
 
   return (
     <nav
       aria-label="Blog navigation"
-      className="mt-12 flex items-center justify-between gap-4 max-w-xl"
+      className={css({
+        marginTop: "3rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "1rem",
+        maxWidth: "36rem",
+      })}
     >
       {prev?.href ? (
-        <Link
-          href={prev.href}
-          className="group inline-flex items-center gap-2 rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700"
-        >
-          <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+        <Link href={prev.href} className={navLinkStyle}>
+          <ChevronLeft className={chevronStyle} />
           <span>{prev.label ?? "Previous Section"}</span>
         </Link>
       ) : (
@@ -35,12 +74,9 @@ export function BlogNavigation({ prev, next }: BlogNavProps) {
       )}
 
       {next?.href ? (
-        <Link
-          href={next.href}
-          className="group inline-flex items-center gap-2 rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700"
-        >
+        <Link href={next.href} className={navLinkStyle}>
           <span>{next.label ?? "Next Section"}</span>
-          <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          <ChevronRight className={chevronStyle} />
         </Link>
       ) : (
         <div />

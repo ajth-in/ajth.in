@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { css, cx } from "styled-system/css";
 
 type TocItem = {
   id: string;
@@ -38,14 +38,46 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   if (!items.length) return;
 
   return (
-    <nav className="hidden lg:block max-w-[240px]">
-      <div className="flex flex-col gap-4">
-        <h3 className="text-xs font-bold uppercase tracking-widest dark:text-neutral-500 text-neutral-700">
+    <nav
+      className={css({
+        display: "none",
+        maxWidth: "240px",
+        lg: { display: "block" },
+      })}
+    >
+      <div
+        className={css({
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        })}
+      >
+        <h3
+          className={css({
+            fontSize: "0.75rem",
+            fontWeight: "700",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            color: "rgb(64 64 64)",
+            _dark: { color: "rgb(115 115 115)" },
+          })}
+        >
           On this page
         </h3>
 
-        <div className="relative border-l border-neutral-800">
-          <ul className="flex flex-col gap-1">
+        <div
+          className={css({
+            position: "relative",
+            borderLeft: "1px solid rgb(38 38 38)",
+          })}
+        >
+          <ul
+            className={css({
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.25rem",
+            })}
+          >
             {items.map((item) => {
               const isActive = activeId === item.id;
 
@@ -53,19 +85,48 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                 <li
                   key={item.id}
                   style={{ paddingLeft: (item.level - 1) * 16 }}
-                  className="relative"
+                  className={css({ position: "relative" })}
                 >
                   {isActive && (
-                    <div className="absolute left-[-1px] top-0 h-full w-[2px] dark:bg-white bg-neutral-200 transition-all duration-300" />
+                    <div
+                      className={css({
+                        position: "absolute",
+                        left: "-1px",
+                        top: 0,
+                        height: "100%",
+                        width: "2px",
+                        backgroundColor: "rgb(229 229 229)",
+                        transition: "all 0.3s",
+                        _dark: { backgroundColor: "white" },
+                      })}
+                    />
                   )}
 
                   <a
                     href={`#${item.id}`}
-                    className={cn(
-                      "block text-[13px] leading-relaxed transition-colors duration-200  pl-2",
+                    className={cx(
+                      css({
+                        display: "block",
+                        fontSize: "13px",
+                        lineHeight: "1.625",
+                        transition: "color 0.2s",
+                        paddingLeft: "0.5rem",
+                      }),
                       isActive
-                        ? "dark:text-white text-black font-medium"
-                        : "dark:text-neutral-400 text-neutral-700 dark:hover:text-neutral-200 hover:text-neutral-800 line-clamp-2"
+                        ? css({
+                            color: "black",
+                            fontWeight: "500",
+                            _dark: { color: "white" },
+                          })
+                        : css({
+                            color: "rgb(64 64 64)",
+                            lineClamp: 2,
+                            _hover: { color: "rgb(38 38 38)" },
+                            _dark: {
+                              color: "rgb(163 163 163)",
+                              _hover: { color: "rgb(229 229 229)" },
+                            },
+                          })
                     )}
                   >
                     {item.text}

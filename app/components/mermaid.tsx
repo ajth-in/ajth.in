@@ -2,6 +2,7 @@
 import mermaid from "mermaid";
 import { useEffect, useRef, useId } from "react";
 import WithMermaidCopyButton from "./with-mermaid-copy";
+import { css } from "styled-system/css";
 
 let mermaidInitialized = false;
 
@@ -66,7 +67,14 @@ export const MermaidDiagram = ({ chart }: MermaidProps) => {
 
   return (
     <WithMermaidCopyButton ref={ref}>
-      <div ref={ref} className="flex justify-center w-full" />
+      <div
+        ref={ref}
+        className={css({
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        })}
+      />
     </WithMermaidCopyButton>
   );
 };

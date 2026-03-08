@@ -3,27 +3,59 @@
 import { Button } from "@/components/ui/button";
 import { MusicIcon } from "lucide-react";
 import { Fragment, useState } from "react";
+import { css } from "styled-system/css";
 
 export function CornerYoutubeAudio() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] flex items-center gap-3 rounded-lg bg-black px-3 py-2 shadow-2xl">
+    <div
+      className={css({
+        position: "fixed",
+        bottom: "1rem",
+        right: "1rem",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.75rem",
+        borderRadius: "lg",
+        backgroundColor: "black",
+        paddingLeft: "0.75rem",
+        paddingRight: "0.75rem",
+        paddingTop: "0.5rem",
+        paddingBottom: "0.5rem",
+        boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+      })}
+    >
       {open ? (
         <Fragment>
           <button
             onClick={() => setOpen(false)}
-            className="text-xs text-neutral-400 hover:text-white"
+            className={css({
+              fontSize: "0.75rem",
+              color: "rgb(163 163 163)",
+              _hover: { color: "white" },
+            })}
           >
             ✕
           </button>
 
-          <span className="text-xs text-neutral-300">
+          <span
+            className={css({
+              fontSize: "0.75rem",
+              color: "rgb(212 212 212)",
+            })}
+          >
             Now playing: American beauty sound track
           </span>
 
           <iframe
-            className="absolute h-0 w-0 opacity-0"
+            className={css({
+              position: "absolute",
+              height: 0,
+              width: 0,
+              opacity: 0,
+            })}
             src="https://www.youtube.com/embed/al21Vtlsg4A?start=12&autoplay=1&mute=0&rel=0"
             title="YouTube audio"
             allow="autoplay"
