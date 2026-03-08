@@ -1,7 +1,9 @@
 import { defineConfig } from "@pandacss/dev";
+import { ajthPreset } from "./src/preset";
 
 export default defineConfig({
   preflight: true,
+  presets: ["@pandacss/preset-panda", ajthPreset],
   include: [
     "./src/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
@@ -13,21 +15,6 @@ export default defineConfig({
     extend: {
       dark: "@media (prefers-color-scheme: dark)",
       dataStateActive: "&[data-state=active]",
-    },
-  },
-  theme: {
-    extend: {
-      tokens: {
-        radii: {
-          sm: { value: "calc(0.625rem - 4px)" },
-          md: { value: "calc(0.625rem - 2px)" },
-          lg: { value: "0.625rem" },
-          xl: { value: "calc(0.625rem + 4px)" },
-          "2xl": { value: "calc(0.625rem + 8px)" },
-          "3xl": { value: "calc(0.625rem + 12px)" },
-          "4xl": { value: "calc(0.625rem + 16px)" },
-        },
-      },
     },
   },
   globalCss: {

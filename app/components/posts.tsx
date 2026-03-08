@@ -31,9 +31,9 @@ export function BlogPosts() {
     marginTop: "1rem",
     marginBottom: "1rem",
     borderRadius: "1rem",
-    border: "1px solid rgb(64 64 64)",
+    border: "1px solid",
+    borderColor: { base: "neutral.700", _dark: "neutral.200" },
     filter: "brightness(0.8)",
-    _dark: { borderColor: "rgb(229 229 229)" },
   });
 
   return (

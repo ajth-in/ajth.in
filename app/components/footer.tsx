@@ -17,37 +17,35 @@ function ArrowIcon() {
   );
 }
 
+const interactiveLink = css({
+  display: "flex",
+  alignItems: "center",
+  transition: "all 0.2s",
+  _hover: {
+    color: { base: "neutral.800", _dark: "neutral.50" },
+  },
+});
+
 export default function Footer() {
   return (
     <footer className={css({ marginBottom: "4rem" })}>
       <ul
         className={css({
-          fontSize: "0.875rem",
+          textStyle: "body.sm",
           marginTop: "2rem",
           display: "flex",
           flexDirection: "column",
           gap: "0.5rem",
-          color: "rgb(82 82 82)",
+          color: "fg.muted",
           md: {
             flexDirection: "row",
             gap: "1rem",
           },
-          _dark: { color: "rgb(212 212 212)" },
         })}
       >
         <li>
           <a
-            className={css({
-              display: "flex",
-              alignItems: "center",
-              transition: "all 0.2s",
-              _hover: {
-                color: "rgb(38 38 38)",
-              },
-              _dark: {
-                _hover: { color: "rgb(245 245 245)" },
-              },
-            })}
+            className={interactiveLink}
             rel="noopener noreferrer"
             target="_blank"
             href="/rss"
@@ -60,17 +58,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className={css({
-              display: "flex",
-              alignItems: "center",
-              transition: "all 0.2s",
-              _hover: {
-                color: "rgb(38 38 38)",
-              },
-              _dark: {
-                _hover: { color: "rgb(245 245 245)" },
-              },
-            })}
+            className={interactiveLink}
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/ajth-in"
@@ -85,10 +73,9 @@ export default function Footer() {
       <p
         className={css({
           marginTop: "2rem",
-          color: "rgb(82 82 82)",
-          fontFamily: "var(--font-geist-mono), monospace",
+          color: "fg.muted",
+          textStyle: "mono",
           fontSize: "0.75rem",
-          _dark: { color: "rgb(212 212 212)" },
         })}
       >
         © {new Date().getFullYear()} Ajith Kumar P M

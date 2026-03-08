@@ -72,11 +72,11 @@ function BlockQuote({ children, ...props }) {
       className={css({
         marginTop: "1.5rem",
         marginBottom: "1.5rem",
-        borderLeft: "2px solid rgb(163 163 163)",
+        borderLeft: "2px solid",
+        borderColor: { base: "neutral.400", _dark: "white" },
         paddingLeft: "1rem",
-        color: "rgb(203 213 225)",
+        color: "neutral.300",
         fontStyle: "italic",
-        _dark: { borderColor: "white" },
       })}
       {...props}
     >

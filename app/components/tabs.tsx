@@ -6,18 +6,12 @@ import { css } from "styled-system/css";
 const STORAGE_KEY = "blog:last-tab";
 
 const tabTriggerStyle = css({
-  fontSize: "0.75rem",
+  textStyle: "body.xs",
   cursor: "pointer",
   letterSpacing: "0.05em",
   '&[data-state="active"]': {
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-    color: "rgb(38 38 38)",
-  },
-  _dark: {
-    '&[data-state="active"]': {
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
-      color: "rgb(163 163 163)",
-    },
+    backgroundColor: { base: "surface.light.hover", _dark: "surface.dark.hover" },
+    color: { base: "neutral.800", _dark: "neutral.400" },
   },
 });
 
@@ -46,10 +40,10 @@ const BlogTabs = (props: PropsWithChildren) => {
       <TabsList
         className={css({
           height: "2.25rem",
-          backgroundColor: "rgba(0, 0, 0, 0.05)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
+          backgroundColor: "surface.glass",
+          border: "1px solid",
+          borderColor: "surface.glass.border",
           padding: "0.25rem",
-          _dark: { backgroundColor: "rgba(255, 255, 255, 0.05)" },
         })}
       >
         <TabsTrigger value="tech" className={tabTriggerStyle}>

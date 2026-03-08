@@ -54,15 +54,11 @@ export default function NewsLetterSignup() {
         className={css({
           borderRadius: "md",
           padding: "0.5rem",
-          fontSize: "0.875rem",
+          textStyle: "body.sm",
           marginTop: "0.5rem",
           marginBottom: "0.5rem",
-          backgroundColor: "rgb(209 250 229)",
-          color: "rgb(6 95 70)",
-          _dark: {
-            backgroundColor: "rgb(6 95 70)",
-            color: "rgb(167 243 208)",
-          },
+          backgroundColor: { base: "accent.emerald.light", _dark: "accent.emerald.dark.bg" },
+          color: { base: "accent.emerald", _dark: "accent.emerald.dark.text" },
         })}
       >
         Subscription confirmed.
@@ -73,23 +69,21 @@ export default function NewsLetterSignup() {
     <div
       className={css({
         borderRadius: "1rem",
-        border: "1px solid rgb(229 229 229)",
+        border: "1px solid",
+        borderColor: { base: "neutral.200", _dark: "neutral.700" },
         maxWidth: "36rem",
         padding: "1rem",
-        backgroundImage: "linear-gradient(to bottom right, rgb(245 245 245), white)",
-        _dark: {
-          borderColor: "rgb(64 64 64)",
-          backgroundImage: "linear-gradient(to bottom right, rgb(23 23 23), rgb(38 38 38))",
+        backgroundImage: {
+          base: "linear-gradient(to bottom right, {colors.neutral.100}, white)",
+          _dark: "linear-gradient(to bottom right, {colors.neutral.900}, {colors.neutral.800})",
         },
       })}
     >
       <div className={css({ display: "flex", flexDirection: "column", gap: "0.5rem" })}>
         <h3
           className={css({
-            fontSize: "1.125rem",
-            fontWeight: "600",
-            color: "rgb(23 23 23)",
-            _dark: { color: "rgb(250 250 250)" },
+            textStyle: "heading.card",
+            color: { base: "neutral.900", _dark: "neutral.50" },
           })}
         >
           Thinking about starting a newsletter
@@ -98,9 +92,8 @@ export default function NewsLetterSignup() {
         <p
           className={css({
             maxWidth: "24rem",
-            fontSize: "0.875rem",
-            color: "rgb(82 82 82)",
-            _dark: { color: "rgb(163 163 163)" },
+            textStyle: "body.sm",
+            color: "fg.muted",
           })}
         >
           If you like content like this, leave your email. I will send one
@@ -116,15 +109,11 @@ export default function NewsLetterSignup() {
           gap: "0.5rem",
           borderRadius: "xl",
           border: "1px solid var(--border)",
-          backgroundColor: "white",
+          backgroundColor: "surface.page",
           paddingLeft: "0.5rem",
           paddingRight: "0.5rem",
           paddingTop: "0.5rem",
           paddingBottom: "0.5rem",
-          _dark: {
-            backgroundColor: "rgb(38 38 38)",
-            borderColor: "rgb(64 64 64)",
-          },
         })}
       >
         <Input
@@ -136,7 +125,7 @@ export default function NewsLetterSignup() {
             height: "2.25rem",
             border: "none",
             backgroundColor: "transparent",
-            fontSize: "0.875rem",
+            textStyle: "body.sm",
             boxShadow: "none",
           })}
           required
@@ -149,7 +138,7 @@ export default function NewsLetterSignup() {
             height: "2.25rem",
             paddingLeft: "1rem",
             paddingRight: "1rem",
-            fontSize: "0.875rem",
+            textStyle: "body.sm",
           })}
         >
           {formState === "SUBMITTING" ? "…" : "Notify me"}
@@ -159,9 +148,8 @@ export default function NewsLetterSignup() {
       <p
         className={css({
           marginTop: "0.5rem",
-          fontSize: "0.75rem",
-          color: errorMessage.length ? "rgb(239 68 68)" : "rgb(115 115 115)",
-          _dark: { color: errorMessage.length ? "rgb(239 68 68)" : "rgb(115 115 115)" },
+          textStyle: "body.xs",
+          color: errorMessage.length ? "accent.red" : "fg.subtle",
         })}
       >
         {errorMessage.length

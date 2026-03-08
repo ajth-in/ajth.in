@@ -54,12 +54,11 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
       >
         <h3
           className={css({
-            fontSize: "0.75rem",
+            textStyle: "body.xs",
             fontWeight: "700",
             textTransform: "uppercase",
             letterSpacing: "0.1em",
-            color: "rgb(64 64 64)",
-            _dark: { color: "rgb(115 115 115)" },
+            color: { base: "neutral.700", _dark: "neutral.500" },
           })}
         >
           On this page
@@ -68,7 +67,8 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
         <div
           className={css({
             position: "relative",
-            borderLeft: "1px solid rgb(38 38 38)",
+            borderLeft: "1px solid",
+            borderColor: "neutral.800",
           })}
         >
           <ul
@@ -95,9 +95,8 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                         top: 0,
                         height: "100%",
                         width: "2px",
-                        backgroundColor: "rgb(229 229 229)",
+                        backgroundColor: { base: "neutral.200", _dark: "white" },
                         transition: "all 0.3s",
-                        _dark: { backgroundColor: "white" },
                       })}
                     />
                   )}
@@ -114,17 +113,14 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                       }),
                       isActive
                         ? css({
-                            color: "black",
+                            color: { base: "black", _dark: "white" },
                             fontWeight: "500",
-                            _dark: { color: "white" },
                           })
                         : css({
-                            color: "rgb(64 64 64)",
+                            color: { base: "neutral.700", _dark: "neutral.400" },
                             lineClamp: 2,
-                            _hover: { color: "rgb(38 38 38)" },
-                            _dark: {
-                              color: "rgb(163 163 163)",
-                              _hover: { color: "rgb(229 229 229)" },
+                            _hover: {
+                              color: { base: "neutral.800", _dark: "neutral.200" },
                             },
                           })
                     )}

@@ -34,36 +34,27 @@ export function Description() {
       <div
         className={css({
           borderRadius: "xl",
-          border: "1px solid rgba(0, 0, 0, 0.05)",
-          backgroundColor: "rgba(0, 0, 0, 0.05)",
+          border: "1px solid",
+          borderColor: "surface.glass.border",
+          backgroundColor: "surface.glass",
           padding: "1rem",
           transition: "all 0.2s",
           _hover: {
-            backgroundColor: "rgba(0, 0, 0, 0.1)",
-          },
-          _dark: {
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-            _hover: {
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-            },
+            backgroundColor: "surface.glass.hover",
           },
         })}
       >
         <p
           className={css({
-            fontSize: "0.875rem",
-            lineHeight: "1.625",
-            color: "rgb(23 23 23)",
-            _dark: { color: "rgb(212 212 212)" },
+            textStyle: "body.default",
+            color: "fg",
           })}
         >
           Welcome to my{" "}
           <span
             className={css({
-              color: "rgb(113 63 18)",
+              color: { base: "accent.yellow", _dark: "accent.yellow.dark" },
               fontStyle: "italic",
-              _dark: { color: "rgba(254, 240, 138, 0.8)" },
             })}
           >
             corner
@@ -102,15 +93,10 @@ function Fact({ label, href }: { label: string; href: string }) {
         alignItems: "center",
         gap: "0.375rem",
         "&:hover span:first-child": {
-          backgroundColor: "rgb(34 197 94)",
+          backgroundColor: "accent.green.muted",
         },
         "&:hover span:last-child": {
-          color: "rgb(38 38 38)",
-        },
-        _dark: {
-          "&:hover span:last-child": {
-            color: "rgb(229 229 229)",
-          },
+          color: { base: "neutral.800", _dark: "neutral.200" },
         },
       })}
     >
@@ -119,18 +105,16 @@ function Fact({ label, href }: { label: string; href: string }) {
           height: "0.25rem",
           width: "0.25rem",
           borderRadius: "9999px",
-          backgroundColor: "rgb(229 229 229)",
+          backgroundColor: { base: "neutral.200", _dark: "neutral.700" },
           transition: "background-color 0.2s",
-          _dark: { backgroundColor: "rgb(64 64 64)" },
         })}
       />
       <span
         className={css({
           fontSize: "12px",
           fontWeight: "500",
-          color: "rgb(82 82 82)",
+          color: "fg.muted",
           transition: "color 0.2s",
-          _dark: { color: "rgb(163 163 163)" },
         })}
       >
         {label}

@@ -30,13 +30,10 @@ export function PublicationsSection() {
             key={index}
             className={css({
               borderRadius: "xl",
-              border: "1px solid rgb(229 229 229)",
-              backgroundColor: "rgb(250 250 250)",
+              border: "1px solid",
+              borderColor: "surface.card.border",
+              backgroundColor: "surface.card",
               padding: "1rem",
-              _dark: {
-                borderColor: "rgba(64, 64, 64, 0.2)",
-                backgroundColor: "rgba(38, 38, 38, 0.2)",
-              },
             })}
           >
             <Link
@@ -47,11 +44,9 @@ export function PublicationsSection() {
             >
               <p
                 className={css({
+                  textStyle: "heading.card",
                   fontSize: "1rem",
-                  fontWeight: "600",
-                  lineHeight: "1.4",
-                  color: "rgb(23 23 23)",
-                  _dark: { color: "rgb(245 245 245)" },
+                  color: { base: "neutral.900", _dark: "neutral.50" },
                 })}
               >
                 {pub.title}
@@ -59,9 +54,8 @@ export function PublicationsSection() {
 
               <p
                 className={css({
-                  fontSize: "0.75rem",
-                  color: "rgb(82 82 82)",
-                  _dark: { color: "rgb(163 163 163)" },
+                  textStyle: "body.xs",
+                  color: "fg.muted",
                 })}
               >
                 {pub.authors}
@@ -69,9 +63,8 @@ export function PublicationsSection() {
 
               <p
                 className={css({
-                  fontSize: "0.75rem",
-                  color: "rgb(115 115 115)",
-                  _dark: { color: "rgb(115 115 115)" },
+                  textStyle: "body.xs",
+                  color: "fg.subtle",
                 })}
               >
                 {pub.venue} · {pub.year}
@@ -80,11 +73,9 @@ export function PublicationsSection() {
               <p
                 className={css({
                   paddingTop: "0.5rem",
-                  fontSize: "0.875rem",
-                  lineHeight: "1.625",
-                  color: "rgb(64 64 64)",
+                  textStyle: "body.default",
+                  color: { base: "neutral.700", _dark: "neutral.300" },
                   lineClamp: 3,
-                  _dark: { color: "rgb(212 212 212)" },
                 })}
               >
                 {pub.abstract}

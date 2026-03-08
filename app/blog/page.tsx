@@ -13,10 +13,9 @@ export default function Page() {
       <section>
         <h1
           className={css({
-            fontWeight: "600",
+            textStyle: "heading.page",
             fontSize: "1.5rem",
             marginBottom: "2rem",
-            letterSpacing: "-0.05em",
           })}
         >
           My Blog

@@ -20,26 +20,19 @@ const navLinkStyle = css({
   alignItems: "center",
   gap: "0.5rem",
   borderRadius: "md",
-  border: "1px solid rgb(212 212 212)",
-  backgroundColor: "white",
+  border: "1px solid",
+  borderColor: { base: "neutral.300", _dark: "neutral.700" },
+  backgroundColor: "surface.page",
   paddingLeft: "1rem",
   paddingRight: "1rem",
   paddingTop: "0.5rem",
   paddingBottom: "0.5rem",
-  fontSize: "0.875rem",
+  textStyle: "body.sm",
   fontWeight: "500",
-  color: "rgb(23 23 23)",
+  color: { base: "neutral.900", _dark: "neutral.50" },
   transition: "background-color 0.2s",
   _hover: {
-    backgroundColor: "rgb(245 245 245)",
-  },
-  _dark: {
-    borderColor: "rgb(64 64 64)",
-    backgroundColor: "rgb(38 38 38)",
-    color: "rgb(245 245 245)",
-    _hover: {
-      backgroundColor: "rgb(64 64 64)",
-    },
+    backgroundColor: { base: "neutral.100", _dark: "neutral.700" },
   },
 });
 

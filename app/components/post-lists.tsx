@@ -11,8 +11,8 @@ export function PostList({ posts }: { posts: Blog[] }) {
           paddingRight: "0.5rem",
           paddingTop: "1rem",
           paddingBottom: "1rem",
-          fontSize: "0.875rem",
-          color: "rgb(115 115 115)",
+          textStyle: "body.sm",
+          color: "fg.subtle",
           fontStyle: "italic",
         })}
       >
@@ -38,12 +38,7 @@ export function PostList({ posts }: { posts: Blog[] }) {
             paddingBottom: "0.5rem",
             transition: "background-color 0.2s",
             _hover: {
-              backgroundColor: "rgba(0, 0, 0, 0.03)",
-            },
-            _dark: {
-              _hover: {
-                backgroundColor: "rgba(255, 255, 255, 0.03)",
-              },
+              backgroundColor: "surface.glass.subtle",
             },
           })}
         >
@@ -51,26 +46,21 @@ export function PostList({ posts }: { posts: Blog[] }) {
             className={css({
               width: "5.5rem",
               flexShrink: 0,
-              fontFamily: "var(--font-geist-mono), monospace",
+              textStyle: "mono",
               fontSize: "12px",
-              fontVariantNumeric: "tabular-nums",
-              color: "rgb(38 38 38)",
-              _dark: { color: "rgb(115 115 115)" },
+              color: { base: "neutral.800", _dark: "neutral.500" },
             })}
           >
             {formatDate(post.metadata.publishedAt, false)}
           </span>
           <span
             className={css({
-              fontSize: "0.875rem",
+              textStyle: "body.sm",
               fontWeight: "500",
               letterSpacing: "-0.025em",
               lineClamp: 1,
-              color: "rgb(38 38 38)",
+              color: { base: "neutral.800", _dark: "neutral.200" },
               transition: "color 0.2s",
-              _dark: {
-                color: "rgb(229 229 229)",
-              },
             })}
           >
             {post.metadata.title}

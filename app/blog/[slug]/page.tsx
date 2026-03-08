@@ -70,9 +70,7 @@ export default async function Blog({ params }) {
         <header className={css({ marginBottom: "3rem" })}>
           <h1
             className={css({
-              fontWeight: "700",
-              fontSize: "2.25rem",
-              letterSpacing: "-0.025em",
+              textStyle: "heading.page",
               marginBottom: "1rem",
               textWrap: "balance",
             })}
@@ -81,9 +79,8 @@ export default async function Blog({ params }) {
           </h1>
           <p
             className={css({
-              fontSize: "0.875rem",
-              color: "rgb(82 82 82)",
-              _dark: { color: "rgb(163 163 163)" },
+              textStyle: "body.sm",
+              color: "fg.muted",
             })}
           >
             {formatDate(post.metadata.publishedAt)}
@@ -128,8 +125,7 @@ export default async function Blog({ params }) {
           marginTop: "3rem",
           marginBottom: "3rem",
           borderStyle: "dashed",
-          borderColor: "rgb(212 212 212)",
-          _dark: { borderColor: "rgb(64 64 64)" },
+          borderColor: { base: "neutral.300", _dark: "neutral.700" },
         })}
       />
       <NewsLetterSignup />

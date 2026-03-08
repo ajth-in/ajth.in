@@ -6,10 +6,8 @@ export default function Title(props: PropsWithChildren) {
     <h2
       className={css({
         marginBottom: "1rem",
-        fontSize: "1rem",
-        fontWeight: "500",
-        color: "rgb(23 23 23)",
-        _dark: { color: "rgb(212 212 212)" },
+        textStyle: "heading.section",
+        color: "fg",
       })}
     >
       {props.children}

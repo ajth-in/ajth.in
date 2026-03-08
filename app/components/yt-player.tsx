@@ -24,7 +24,7 @@ export function CornerYoutubeAudio() {
         paddingRight: "0.75rem",
         paddingTop: "0.5rem",
         paddingBottom: "0.5rem",
-        boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        boxShadow: "xl",
       })}
     >
       {open ? (
@@ -32,9 +32,9 @@ export function CornerYoutubeAudio() {
           <button
             onClick={() => setOpen(false)}
             className={css({
-              fontSize: "0.75rem",
-              color: "rgb(163 163 163)",
-              _hover: { color: "white" },
+              textStyle: "body.xs",
+              color: "neutral.400",
+              _hover: { color: "fg.inverted" },
             })}
           >
             ✕
@@ -42,8 +42,8 @@ export function CornerYoutubeAudio() {
 
           <span
             className={css({
-              fontSize: "0.75rem",
-              color: "rgb(212 212 212)",
+              textStyle: "body.xs",
+              color: "neutral.300",
             })}
           >
             Now playing: American beauty sound track

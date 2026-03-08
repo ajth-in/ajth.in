@@ -5,10 +5,9 @@ export default function NotFound() {
     <section>
       <h1
         className={css({
-          marginBottom: "2rem",
+          textStyle: "heading.page",
           fontSize: "1.5rem",
-          fontWeight: "600",
-          letterSpacing: "-0.05em",
+          marginBottom: "2rem",
         })}
       >
         404 - Page Not Found

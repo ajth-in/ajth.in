@@ -62,11 +62,8 @@ export function Navbar() {
                     paddingRight: "0.5rem",
                     margin: "0.25rem",
                     _hover: {
-                      color: "rgb(38 38 38)",
+                      color: { base: "neutral.800", _dark: "neutral.200" },
                       textDecoration: "underline",
-                    },
-                    _dark: {
-                      _hover: { color: "rgb(229 229 229)" },
                     },
                   })}
                 >
