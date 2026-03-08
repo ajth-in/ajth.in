@@ -1,6 +1,7 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
 import { css } from "styled-system/css";
+import { ThemeToggle } from "./theme-toggle";
 
 const navItems = {
   "/": {
@@ -27,7 +28,8 @@ export function Navbar() {
           className={css({
             display: "flex",
             flexDirection: "row",
-            alignItems: "flex-start",
+            alignItems: "center",
+            justifyContent: "space-between",
             position: "relative",
             paddingLeft: 0,
             paddingRight: 0,
@@ -42,7 +44,6 @@ export function Navbar() {
               flexDirection: "row",
               alignItems: "center",
               gap: 0,
-              paddingRight: "2.5rem",
             })}
           >
             {Object.entries(navItems).map(([path, item]) => {
@@ -72,6 +73,8 @@ export function Navbar() {
               );
             })}
           </div>
+
+          <ThemeToggle />
         </nav>
       </div>
     </aside>

@@ -13,7 +13,7 @@ export default defineConfig({
   jsxFramework: "react",
   conditions: {
     extend: {
-      dark: "@media (prefers-color-scheme: dark)",
+      dark: 'html[data-theme="dark"] &',
       dataStateActive: "&[data-state=active]",
     },
   },
