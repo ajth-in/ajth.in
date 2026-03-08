@@ -2,45 +2,31 @@
 import mermaid from "mermaid";
 import { useEffect, useRef, useId } from "react";
 import WithMermaidCopyButton from "./with-mermaid-copy";
+import { useTheme } from "./theme-provider";
 import { css } from "styled-system/css";
 
-let mermaidInitialized = false;
+const lightTheme = {
+  primaryColor: "#67e8f9",
+  primaryTextColor: "#020617",
+  primaryBorderColor: "#0891b2",
+  secondaryColor: "#e5e7eb",
+  secondaryTextColor: "#020617",
+  lineColor: "#334155",
+  textColor: "#020617",
+  fontFamily: "ui-sans-serif, system-ui",
+  fontSize: "14px",
+};
 
-const initMermaidOnce = (mode: "light" | "dark") => {
-  if (mermaidInitialized) return;
-
-  mermaid.initialize({
-    startOnLoad: false,
-    look: "handDrawn",
-    handDrawnSeed: 20000,
-    theme: "base",
-    themeVariables:
-      mode === "dark"
-        ? {
-            primaryColor: "#0e7490",
-            primaryTextColor: "#f8fafc",
-            primaryBorderColor: "#155e75",
-            secondaryColor: "#1e293b",
-            secondaryTextColor: "#f8fafc",
-            lineColor: "#94a3b8",
-            textColor: "#f8fafc",
-            fontFamily: "ui-sans-serif, system-ui",
-            fontSize: "14px",
-          }
-        : {
-            primaryColor: "#67e8f9",
-            primaryTextColor: "#020617",
-            primaryBorderColor: "#0891b2",
-            secondaryColor: "#e5e7eb",
-            secondaryTextColor: "#020617",
-            lineColor: "#334155",
-            textColor: "#020617",
-            fontFamily: "ui-sans-serif, system-ui",
-            fontSize: "14px",
-          },
-  });
-
-  mermaidInitialized = true;
+const darkTheme = {
+  primaryColor: "#0e7490",
+  primaryTextColor: "#f8fafc",
+  primaryBorderColor: "#155e75",
+  secondaryColor: "#1e293b",
+  secondaryTextColor: "#f8fafc",
+  lineColor: "#94a3b8",
+  textColor: "#f8fafc",
+  fontFamily: "ui-sans-serif, system-ui",
+  fontSize: "14px",
 };
 
 type MermaidProps = {
@@ -50,10 +36,17 @@ type MermaidProps = {
 export const MermaidDiagram = ({ chart }: MermaidProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
+  const { theme } = useTheme();
 
   useEffect(() => {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    initMermaidOnce(isDark ? "dark" : "light");
+    // Re-initialize mermaid each time the theme changes
+    mermaid.initialize({
+      startOnLoad: false,
+      look: "handDrawn",
+      handDrawnSeed: 20000,
+      theme: "base",
+      themeVariables: theme === "dark" ? darkTheme : lightTheme,
+    });
 
     if (!ref.current) return;
 
@@ -63,7 +56,7 @@ export const MermaidDiagram = ({ chart }: MermaidProps) => {
       if (!ref.current) return;
       ref.current.innerHTML = svg;
     });
-  }, [chart, id]);
+  }, [chart, id, theme]);
 
   return (
     <WithMermaidCopyButton ref={ref}>

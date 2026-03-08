@@ -1,12 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { MusicIcon } from "lucide-react";
-import { Fragment, useState } from "react";
+import { Volume2, VolumeOff } from "lucide-react";
+import { useState } from "react";
 import { css } from "styled-system/css";
 
 export function CornerYoutubeAudio() {
-  const [open, setOpen] = useState(false);
+  const [muted, setMuted] = useState(false);
 
   return (
     <div
@@ -17,55 +16,47 @@ export function CornerYoutubeAudio() {
         zIndex: 9999,
         display: "flex",
         alignItems: "center",
-        gap: "0.75rem",
-        borderRadius: "lg",
-        backgroundColor: "black",
-        paddingLeft: "0.75rem",
-        paddingRight: "0.75rem",
-        paddingTop: "0.5rem",
-        paddingBottom: "0.5rem",
-        boxShadow: "xl",
+        gap: "0.5rem",
       })}
     >
-      {open ? (
-        <Fragment>
-          <button
-            onClick={() => setOpen(false)}
-            className={css({
-              textStyle: "body.xs",
-              color: "neutral.400",
-              _hover: { color: "fg.inverted" },
-            })}
-          >
-            ✕
-          </button>
+      <button
+        onClick={() => setMuted(!muted)}
+        aria-label={muted ? "Unmute music" : "Mute music"}
+        className={css({
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "1.75rem",
+          height: "1.75rem",
+          borderRadius: "9999px",
+          border: "1px solid",
+          borderColor: { base: "neutral.200", _dark: "rgba(64, 64, 64, 0.5)" },
+          backgroundColor: { base: "rgba(255,255,255,0.8)", _dark: "rgba(23,23,23,0.8)" },
+          backdropFilter: "blur(8px)",
+          cursor: "pointer",
+          color: "fg.muted",
+          transition: "all 0.2s",
+          _hover: {
+            color: { base: "neutral.900", _dark: "neutral.100" },
+            borderColor: { base: "neutral.300", _dark: "neutral.600" },
+          },
+        })}
+      >
+        {muted ? <VolumeOff size={12} /> : <Volume2 size={12} />}
+      </button>
 
-          <span
-            className={css({
-              textStyle: "body.xs",
-              color: "neutral.300",
-            })}
-          >
-            Now playing: American beauty sound track
-          </span>
-
-          <iframe
-            className={css({
-              position: "absolute",
-              height: 0,
-              width: 0,
-              opacity: 0,
-            })}
-            src="https://www.youtube.com/embed/al21Vtlsg4A?start=12&autoplay=1&mute=0&rel=0"
-            title="YouTube audio"
-            allow="autoplay"
-          />
-        </Fragment>
-      ) : (
-        <Button onClick={() => setOpen(true)} size={"icon-lg"}>
-          <MusicIcon width={"30px"} height={"30px"} />
-        </Button>
-      )}
+      <iframe
+        className={css({
+          position: "absolute",
+          height: 0,
+          width: 0,
+          opacity: 0,
+          pointerEvents: "none",
+        })}
+        src={`https://www.youtube.com/embed/al21Vtlsg4A?start=12&autoplay=1&mute=${muted ? 1 : 0}&rel=0`}
+        title="YouTube audio"
+        allow="autoplay"
+      />
     </div>
   );
 }

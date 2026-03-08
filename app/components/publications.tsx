@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FileText, ExternalLink } from "lucide-react";
 import Title from "./titele";
 import { css } from "styled-system/css";
 
@@ -8,7 +9,7 @@ export const publications = [
   {
     title:
       "EBPF-Based Runtime Detection of Semantic DDoS Attacks in Linux Containers",
-    authors: "B. Niranjan; P. M. Ajith Kumar; K. Merin Shaju; K. Dinoy Raj",
+    authors: ["B. Niranjan", "P. M. Ajith Kumar", "K. Merin Shaju", "K. Dinoy Raj"],
     venue: "IEEE Xplore",
     year: 2025,
     href: "https://ieeexplore.ieee.org/document/11179973",
@@ -21,69 +22,169 @@ export function PublicationsSection() {
   if (!publications.length) return null;
 
   return (
-    <section className={css({ maxWidth: "36rem", paddingTop: "2rem", paddingBottom: "2rem" })}>
+    <section>
       <Title>Publications</Title>
 
-      <ul className={css({ display: "flex", flexDirection: "column", gap: "1rem" })}>
+      <div
+        className={css({
+          display: "flex",
+          flexDirection: "column",
+          gap: "1.25rem",
+        })}
+      >
         {publications.map((pub, index) => (
-          <li
+          <Link
             key={index}
+            href={pub.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className={css({
-              borderRadius: "xl",
-              border: "1px solid",
-              borderColor: "surface.card.border",
-              backgroundColor: "surface.card",
-              padding: "1rem",
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              gap: "1rem",
+              padding: "0.75rem",
+              borderRadius: "lg",
+              transition: "all 0.2s",
+              textDecoration: "none",
+              _hover: {
+                backgroundColor: "surface.glass.subtle",
+                "& .pub-link-icon": {
+                  opacity: 1,
+                  transform: "translateX(0)",
+                },
+              },
             })}
           >
-            <Link
-              href={pub.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ display: "block", "& > *+*": { marginTop: "0.5rem" } })}
+            {/* Left icon column */}
+            <div
+              className={css({
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "0.5rem",
+                paddingTop: "0.125rem",
+              })}
             >
-              <p
+              <div
                 className={css({
-                  textStyle: "heading.card",
-                  fontSize: "1rem",
-                  color: { base: "neutral.900", _dark: "neutral.50" },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "2rem",
+                  height: "2rem",
+                  borderRadius: "md",
+                  backgroundColor: { base: "rgba(59, 130, 246, 0.1)", _dark: "rgba(96, 165, 250, 0.12)" },
+                  color: { base: "rgb(59 130 246)", _dark: "rgb(96 165 250)" },
+                  flexShrink: 0,
                 })}
               >
-                {pub.title}
-              </p>
+                <FileText size={14} />
+              </div>
 
+            </div>
+
+            {/* Content */}
+            <div className={css({ display: "flex", flexDirection: "column", gap: "0.375rem" })}>
+              <div
+                className={css({
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                  gap: "0.5rem",
+                })}
+              >
+                <p
+                  className={css({
+                    textStyle: "body.sm",
+                    fontWeight: "600",
+                    lineHeight: "1.4",
+                    color: { base: "neutral.900", _dark: "neutral.100" },
+                  })}
+                >
+                  {pub.title}
+                </p>
+                <ExternalLink
+                  size={12}
+                  className={`pub-link-icon ${css({
+                    flexShrink: 0,
+                    marginTop: "0.25rem",
+                    color: "fg.subtle",
+                    opacity: 0,
+                    transform: "translateX(-4px)",
+                    transition: "all 0.2s",
+                  })}`}
+                />
+              </div>
+
+              {/* Authors — highlight "you" */}
               <p
                 className={css({
                   textStyle: "body.xs",
+                  lineHeight: "1.5",
                   color: "fg.muted",
                 })}
               >
-                {pub.authors}
+                {pub.authors.map((author, i) => (
+                  <span key={i}>
+                    {i > 0 && (
+                      <span className={css({ color: "fg.subtle" })}>{"; "}</span>
+                    )}
+                    <span
+                      className={
+                        author.includes("Ajith Kumar")
+                          ? css({ fontWeight: "600", color: { base: "neutral.800", _dark: "neutral.200" } })
+                          : undefined
+                      }
+                    >
+                      {author}
+                    </span>
+                  </span>
+                ))}
               </p>
+
+              {/* Venue + year */}
+              <div
+                className={css({
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.375rem",
+                })}
+              >
+                <span
+                  className={css({
+                    textStyle: "body.xs",
+                    fontWeight: "600",
+                    color: { base: "rgb(59 130 246)", _dark: "rgb(96 165 250)" },
+                  })}
+                >
+                  {pub.venue}
+                </span>
+                <span className={css({ color: "fg.subtle", fontSize: "10px" })}>•</span>
+                <span
+                  className={css({
+                    textStyle: "mono",
+                    fontSize: "11px",
+                    color: "fg.subtle",
+                  })}
+                >
+                  {pub.year}
+                </span>
+              </div>
 
               <p
                 className={css({
                   textStyle: "body.xs",
-                  color: "fg.subtle",
-                })}
-              >
-                {pub.venue} · {pub.year}
-              </p>
-
-              <p
-                className={css({
-                  paddingTop: "0.5rem",
-                  textStyle: "body.default",
-                  color: { base: "neutral.700", _dark: "neutral.300" },
-                  lineClamp: 3,
+                  lineHeight: "1.6",
+                  color: "fg.muted",
+                  lineClamp: 2,
                 })}
               >
                 {pub.abstract}
               </p>
-            </Link>
-          </li>
+            </div>
+          </Link>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

@@ -34,11 +34,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
+  const applyTheme = (t: Theme) => {
+    document.documentElement.setAttribute("data-theme", t);
+    if (t === "dark") {
+      document.documentElement.style.colorScheme = "dark";
+      document.documentElement.style.backgroundColor = "#1c1b1b";
+      document.documentElement.style.color = "white";
+    } else {
+      document.documentElement.style.colorScheme = "light";
+      document.documentElement.style.backgroundColor = "white";
+      document.documentElement.style.color = "black";
+    }
+  };
+
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     localStorage.setItem("theme", next);
-    document.documentElement.setAttribute("data-theme", next);
+    applyTheme(next);
   };
 
   // Prevent hydration flash — the inline script in layout
@@ -69,6 +82,10 @@ export const themeScript = `
       document.documentElement.style.colorScheme = 'dark';
       document.documentElement.style.backgroundColor = '#1c1b1b';
       document.documentElement.style.color = 'white';
+    } else {
+      document.documentElement.style.colorScheme = 'light';
+      document.documentElement.style.backgroundColor = 'white';
+      document.documentElement.style.color = 'black';
     }
   } catch(e) {}
 })();
