@@ -26,7 +26,7 @@ const cardHeaderStyle = css({
 
 const cardTitleStyle = css({
   lineHeight: 1,
-  fontWeight: "600",
+  fontWeight: "500",
 })
 
 const cardDescriptionStyle = css({
