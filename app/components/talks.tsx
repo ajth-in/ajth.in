@@ -1,9 +1,18 @@
-import Link from "next/link";
 import { Mic2 } from "lucide-react";
-import Title from "./titele";
+import Link from "next/link";
 import { css } from "styled-system/css";
+import Title from "./titele";
 
 export const talks = [
+  {
+    title: "Confidently Wrong: Why LLMs Hallucinate and How to Engineer Around It",
+    summary:
+      "Explores the taxonomy of LLM hallucinations, specifically intrinsic vs. extrinsic types, and why setting up proper context and skills is crucial before coding. Discusses hallucination-resistant software practices, such as using state machines to ensure predictable AI behavior.",
+    event: "GitHub Copilot Dev Days Trivandrum",
+    eventUrl: "/blog/confidently-wrong-llm-hallucinations-and-workarounds",
+    location: "Trivandrum",
+    date: "Apr 2026",
+  },
   {
     title:
       "State Machines: The Last State Management Solution You'll Ever Need",

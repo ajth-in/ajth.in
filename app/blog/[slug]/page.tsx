@@ -1,11 +1,10 @@
-import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
 import { formatDate, generateToc, getBlogPosts } from "app/blog/utils";
-import { baseUrl } from "app/sitemap";
-import { TableOfContents } from "app/components/toc";
-import Container from "app/components/container";
-import NewsLetterSignup from "app/components/news-letter";
 import { BlogNavigation } from "app/components/blog-prev-control";
+import Container from "app/components/container";
+import { CustomMDX } from "app/components/mdx";
+import { TableOfContents } from "app/components/toc";
+import { baseUrl } from "app/sitemap";
+import { notFound } from "next/navigation";
 import { css } from "styled-system/css";
 
 export async function generateStaticParams() {
@@ -128,7 +127,7 @@ export default async function Blog({ params }) {
           borderColor: { base: "neutral.300", _dark: "neutral.700" },
         })}
       />
-      <NewsLetterSignup />
+      {/* <NewsLetterSignup /> */}
     </Container>
   );
 }
