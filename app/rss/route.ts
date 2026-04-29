@@ -1,6 +1,25 @@
 import { baseUrl } from "app/sitemap";
 import { getBlogPosts } from "app/blog/utils";
 
+function escapeXml(unsafe: string) {
+  return unsafe.replace(/[<>&"']/g, (c) => {
+    switch (c) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case '"':
+        return "&quot;";
+      case "'":
+        return "&apos;";
+      default:
+        return c;
+    }
+  });
+}
+
 export async function GET() {
   let allBlogs = getBlogPosts();
 
@@ -14,12 +33,10 @@ export async function GET() {
     .map(
       (post) =>
         `<item>
-          <title>${post.metadata.title}</title>
+          <title>${escapeXml(post.metadata.title)}</title>
           <link>${baseUrl}/blog/${post.slug}</link>
-          <description>${post.metadata.summary || ""}</description>
-          <pubDate>${new Date(
-            post.metadata.publishedAt
-          ).toUTCString()}</pubDate>
+          <description>${escapeXml(post.metadata.summary || "")}</description>
+          <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
         </item>`
     )
     .join("\n");
