@@ -5,7 +5,7 @@ import { useState } from "react";
 import { css } from "styled-system/css";
 
 export function CornerYoutubeAudio() {
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   return (
     <div
