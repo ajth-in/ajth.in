@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #4ea8de;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+  </style>
+</head>
+<body class="terminal">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in</div>
+    {{ content | safe }}
+<div style="text-align:center;overflow:hidden">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
+,     \    /      ,        
+       / \    )\__/(     / \       
+      /   \  (_\  /_)   /   \      
+ ____/_____\__\@  @/___/_____\____ 
+|             |\../|              |
+|              \VV/               |
+|        ----------------         |
+|_________________________________|
+ |    /\ /      \\       \ /\    | 
+ |  /   V        ))       V   \  | 
+ |/     `       //        '     \| 
+ `              V                '
+</pre>
+</div>
+  </div>
+</body>
+</html>
