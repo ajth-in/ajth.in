@@ -3,7 +3,7 @@ layout: blog.njk
 tags: blog
 title: "The Last State Solution"
 publishedAt: "2026-01-10"
-summary: "This article explores state management from a behavioral perspective rather than a purely structural one. Starting from classical state machines in the theory of computation, it builds intuition through simple examples and then examines how modern front end state management libraries like Redux and Zustand fit into this picture. It argues that while these tools solve problems of data sharing and ergonomics, they leave a deeper question unanswered: when certain actions are actually valid. By tracing the familiar cycle from local component state to global stores and back to accidental complexity, the article motivates state machines as a way to make invalid states unrepresentable and to model application behavior explicitly. The discussion sets the stage for introducing XState as a practical bridge between theoretical state machines and real world front end systems."
+summary: "State management from a behavioral perspective, not just a structural one. Why Redux and Zustand leave a deeper question unanswered: when are actions actually valid? Tracing the cycle from local state to global stores and back. State machines as a way to make invalid states unrepresentable."
 ---
 
 # The last state Solution

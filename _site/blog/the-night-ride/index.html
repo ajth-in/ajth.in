@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Past midnight</title>
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #4ea8de;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.15;
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+    h2, h3, h4, h5, h6 {
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("code.language-mermaid").forEach(el => {
+        const pre = el.closest("pre");
+        if (!pre) return;
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = el.textContent;
+        pre.replaceWith(div);
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      themeVariables: {
+        fontFamily: "Menlo, Monaco, monospace",
+        primaryColor: "#313244",
+        primaryTextColor: "#eaeaea",
+        primaryBorderColor: "#585b70",
+        lineColor: "#a0a0a0",
+        secondaryColor: "#45475a",
+        tertiaryColor: "#1a1a1a",
+        clusterBkg: "#1a1a1a",
+        clusterBorder: "#585b70",
+        edgeLabelBackground: "#313244",
+        nodeBorder: "#585b70",
+      },
+    });
+    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+  </script>
+</head>
+<body class="terminal">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in</div>
+    <h1>Past midnight</h1>
+<p>I never learned to drive, at least not until now, because for most of my life there was always someone else to take the wheel. First it was my brother. Later, during college, it was my friends. Even at work, it stayed the same. I do not go out often, and when I do, I am usually accompanied by someone who drives. Much later, I came to deeply regret not having a licence. Even during my college days, things were the same. At the hostel, we had three bikes. A yellow Bullet, an old and rusty CT 100, and a Hero. That was enough for us. We used to wander around at night with those.</p>
+<p>Most nights, I sat on the back seat of that Bullet. In the part of kerala where I stayed during college, everything slipped into sleep before ten. By the time we rode, usually well past one or two, the world had already shut itself down. The roads lay empty. Shops were locked and dark. Usually, there were no people in sight. Street lights were also very limited there.
+When we left our hostel, we slowly passed familiar markers almost without noticing them, the large banyan tree junction, the ladies' hostel, the college gate. Everything felt unrecognisable. Everything changed the moment our bikes touched the highway. All three machines surged forward, racing as if it had been decided before.</p>
+<p>Our first stop was usually The Tbytes. It was a small shop nearby, and often the only one open at that hour. Like a lamp to insects, it drew people in. Young faces gathered there, some for cigarettes, others for soda, most just to exist somewhere awake.
+There were rumours about the shop owner. People said he had been stabbed by someone inside the shop. We believed he had connections to local rowdies. Whether it was true or exaggerated did not matter much. The story stayed with me, and we never spent much time there. After buying Coke and Pepsi with enough caffeine to stay awake for days, we left the shop and headed elsewhere.
+I could see the dim lights of that tiny shop gradually fading out of existence until we once again took a sharp turn into rural, broken roads. After that turn, everything fell back into dead silence again. Other than the rumbling of our own bikes, there was nothing left to listen to. The cold night breeze was sharp, yet this was usually where I took my helmet off.</p>
+<p>Each night, we chose a different route. Whenever we reached a junction, we took the path that felt more unfamiliar, more mysterious. It felt adventurous and careless in a way that only made sense at that time.
+There was one night when the rusty CT 100 lost its gear pedal somewhere along the road, and we spent hours searching for it in the dark. That night, we rode far enough to reach <strong>the bridge</strong>.</p>
+<p>After that night, the bridge became a regular place for us. It was not particularly beautiful or special. Just a small bridge in a remote village. On either side, there were narrow walkways where we parked our bikes and sat down.
+Once the engines were turned off, if you listened carefully, you could hear the stream flowing below, and in the pale moonlight the water glistened quietly. Every day, we gathered there with our cold drinks and talked about almost everything. Politics, philosophy, classroom gossip, the future, and of course, girls.</p>
+<p><img src="https://res.cloudinary.com/dobs3jkdj/image/upload/v1769253797/image.psd_iib6qg.png" alt="The bridge"></p>
+<p>The discussions wandered without direction. We argued about things we barely understood and defended opinions we would later abandon. Sometimes we spoke about the future with confidence. Other times, we admitted we had no idea what we were doing. The conversations never needed conclusions. Sitting there together felt enough.
+I think a place like that bridge is essential in one's life. A place where you can speak freely with people you trust. People with different opinions, different worldviews, people who will never agree with you no matter what you say. I miss that now.</p>
+<p>Today, everyone speaks carefully around me. I am being trained to understand the things I am supposed to say and the things I am not supposed to say to people I see every day, my colleagues. Everyone is polite. Everyone is nice. And I no longer know who agrees with me and who does not.
+Back at the bridge, if someone did not like what you said, they told it to your face. I am not advocating insensitivity. The point is simpler than that. There will always be people who will never agree with you. You cannot change that. So what is the point of wearing a facade. It is better to embrace disagreement, to talk about the very things you do not agree on.</p>
+<p>Back then, I was a devout atheist. Even today, I do not believe in the supernatural, but at that time I was the stereotypical &quot;reddit atheist&quot;. One of us was a very strong Islamic believer. Religion was a hot topic on the bridge, and our debates were heated, built mostly on things we barely understood.
+And yet, everything would return to normal the moment the conversation shifted.</p>
+<p>&quot;You know, that girl is seeing two guys,&quot; someone would say, and suddenly we were gossiping like nothing had happened.
+I still do not believe in God. But I no longer disbelieve because someone else told me to. I can now say good things about theism without feeling threatened by it.</p>
+<p>Thinking back, it is strange how everything changed in just four years. The one who cried the most about not having a girlfriend is now the first to get married. The one who was always out, never able to stay home, barely steps outside now. And I do not really know where the others are anymore.</p>
+<p>We never crossed that bridge. We stayed for a while and then turned back. Even so, I still remember the dim streetlights beyond it.</p>
+
+<div style="text-align:center;overflow:hidden">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
+               . .
+    . .       . . .
+ . . . .       . .     .
+. . . .       . . .   . . .               ,
+ . . . .     . . .     . .       _       d#D
+. . . . .   . . . . ._. . .    _(%)_      `
+   .     . . . . . _(#)_ .    (%%O%%)     "Bzzzz"
+        . . . . _ (##O##) .   _ (%)   _
+       . . .  _(#)_ (#)  . _ (%)_:  _(%)_
+      . . . .(##O##)._\  _(#)%O%%):(%%O%%)
+         . .   (#)  _  \(##O##))  |,'(%)
+              `. ._(#)_ \,(#)  `. ;  _
+                 (##O##) `.      Y _(#)_
+                  .(#)\ . .).   / (##O##)
+                 . . . `-.(. . ;  ,'(#)
+                  . . . . .\. .| (
+                 . . . d888888888888b
+                  . . ,88888888888888b
+                   . .d888888888888888
+                    . d888888888888888
+                     .`88888888888888P
+                       Y8888888888888
+                        Y8888888888P
+_________________________`Y8888888P_____CJ_______
+</pre>
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atomic Commits and Git Bisect</title>
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #4ea8de;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.15;
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+    h2, h3, h4, h5, h6 {
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("code.language-mermaid").forEach(el => {
+        const pre = el.closest("pre");
+        if (!pre) return;
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = el.textContent;
+        pre.replaceWith(div);
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      themeVariables: {
+        fontFamily: "Menlo, Monaco, monospace",
+        primaryColor: "#313244",
+        primaryTextColor: "#eaeaea",
+        primaryBorderColor: "#585b70",
+        lineColor: "#a0a0a0",
+        secondaryColor: "#45475a",
+        tertiaryColor: "#1a1a1a",
+        clusterBkg: "#1a1a1a",
+        clusterBorder: "#585b70",
+        edgeLabelBackground: "#313244",
+        nodeBorder: "#585b70",
+      },
+    });
+    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+  </script>
+</head>
+<body class="terminal">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in</div>
+    <h1>Atomic Commits and Git Bisect</h1>
+<h2>The Problem At Work</h2>
+<p>So today, something happened at work.</p>
+<p>Suddenly, the typecheck that used to take roughly 60 seconds started taking more than 8 minutes. Since typechecking is in our pre-commit hook, all the devs were complaining, everyone was making commits by force-skipping the git hooks, and I was tasked with finding the root cause.
+I was pretty sure the command was working fine the last time I worked on the project, so something must have happened in the last week that caused this. This was a perfect time to use <code>git bisect</code>.
+The command essentially lets you find a bad commit between a known &quot;good&quot; commit and a &quot;bad&quot; commit. But one thing that is crucial for using this effectively is having a clean commit history with atomic commits.</p>
+<h2>What Are Atomic commits</h2>
+<p>Working with atomic git commits just means your commits are of the smallest possible size. Each commit does one, and only one, simple thing that can be summed up in a simple sentence.</p>
+<p>Btw, if you feel you need to add an &quot;and&quot; to your commit message, that should be two commits.
+Also, if a commit is too large, if it breaks something, you know the commit is at fault, but you don't know which part of it.</p>
+<p>Luckily, my teammates are pretty good at following basic git practices, so all our commits were properly described and atomic. The history looked something like this (not the real one, just an example):</p>
+<pre><code class="language-text">fix(api): correct pagination offset                     (a12f3c9)
+docs(readme): update setup instructions                 (b9d41ef)
+feat(admin): add search bar to user table               (c7aa92d)
+refactor(utils): simplify date formatting function      (f04bb12)
+
+... (around 100 more commits) ...
+
+fix(types): resolve inference issue in useQuery       (e3c91af)
+chore: bump typescript to 4.9                         (9b7d2cc)
+</code></pre>
+<p>So, I knew the following:</p>
+<ol>
+<li>
+<p>The current commit (HEAD) was the bad one.</p>
+</li>
+<li>
+<p>A commit from last week (let's call it 9b7d2cc) was the good one. I knew this 'cause I could check it out, run the typecheck, and see it only taking ~60 seconds.</p>
+</li>
+</ol>
+<p>With those two pieces of info, I started the process.</p>
+<h2>Git bisect</h2>
+<p>First, you tell Git you want to start the bisect process:</p>
+<pre><code class="language-bash">git bisect start
+</code></pre>
+<p>Then, you tell it the bad commit (the one I'm on) and the good commit (the one from last week):</p>
+<pre><code class="language-bash">$ git bisect bad HEAD
+$ git bisect good 9b7d2cc
+</code></pre>
+<p>It automatically checked out a commit right in the middle of my good and bad ones. My job was just to run the typecheck:</p>
+<pre><code class="language-bash">pnpm run typecheck
+</code></pre>
+<p>If it was fast (60 seconds), the bug must have come after this commit. I'd tell Git:</p>
+<pre><code class="language-bash">git bisect good
+</code></pre>
+<p>If it was slow, the bug was introduced before or at this commit. I'd tell Git:</p>
+<pre><code class="language-bash">git bisect bad
+</code></pre>
+<p>Every time I did that, Git would cut the number of possible commits in half and check out a new one for me to test.</p>
+<p>After just 6 or 7 tests, Git printed out the answer:</p>
+<pre><code class="language-bash">a9c3e1a is the first bad commit Commit: a9c3e1a Author: ... Date: ...
+...
+...
+</code></pre>
+<p>The actual issue was incorrect update of an internal package. What could have been a full day of manually checking out commits and re-running tests was over in like 10 minutes.</p>
+
+<div style="text-align:center;overflow:hidden">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
+               . .
+    . .       . . .
+ . . . .       . .     .
+. . . .       . . .   . . .               ,
+ . . . .     . . .     . .       _       d#D
+. . . . .   . . . . ._. . .    _(%)_      `
+   .     . . . . . _(#)_ .    (%%O%%)     "Bzzzz"
+        . . . . _ (##O##) .   _ (%)   _
+       . . .  _(#)_ (#)  . _ (%)_:  _(%)_
+      . . . .(##O##)._\  _(#)%O%%):(%%O%%)
+         . .   (#)  _  \(##O##))  |,'(%)
+              `. ._(#)_ \,(#)  `. ;  _
+                 (##O##) `.      Y _(#)_
+                  .(#)\ . .).   / (##O##)
+                 . . . `-.(. . ;  ,'(#)
+                  . . . . .\. .| (
+                 . . . d888888888888b
+                  . . ,88888888888888b
+                   . .d888888888888888
+                    . d888888888888888
+                     .`88888888888888P
+                       Y8888888888888
+                        Y8888888888P
+_________________________`Y8888888P_____CJ_______
+</pre>
+</div>
+  </div>
+</body>
+</html>

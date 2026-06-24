@@ -40,10 +40,13 @@ Welcome to my _corner_ of the web. Sharing thoughts, projects, and the things I 
 ## 🌙 Late Night Thoughts
 
 - [Confidently Wrong](/blog/confidently-wrong-llm-hallucinations-and-workarounds) — Apr 29, 2026
+- [Past midnight](/blog/the-night-ride) — Jan 24, 2026
 - [The Last State Solution](/blog/the-last-state-solution) — Jan 10, 2026
 - [Atomic Commits and Git Bisect](/blog/atomic-commits-and-git-bisect) — Nov 11, 2025
 - [Mock Client-side & Server-side API Requests Using Next.js and MSW.js](/blog/msw-with-playwright-nextjs) — Jul 14, 2025
 - [How Not to Conduct a React Interview](/blog/how-not-to-conduct-a-react-interview) — Apr 09, 2024
+
+[View all blogs →](/blog)
 
 ## 📄 Publications
 

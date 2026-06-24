@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidently Wrong</title>
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #4ea8de;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.15;
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+    h2, h3, h4, h5, h6 {
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("code.language-mermaid").forEach(el => {
+        const pre = el.closest("pre");
+        if (!pre) return;
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = el.textContent;
+        pre.replaceWith(div);
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      themeVariables: {
+        fontFamily: "Menlo, Monaco, monospace",
+        primaryColor: "#313244",
+        primaryTextColor: "#eaeaea",
+        primaryBorderColor: "#585b70",
+        lineColor: "#a0a0a0",
+        secondaryColor: "#45475a",
+        tertiaryColor: "#1a1a1a",
+        clusterBkg: "#1a1a1a",
+        clusterBorder: "#585b70",
+        edgeLabelBackground: "#313244",
+        nodeBorder: "#585b70",
+      },
+    });
+    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+  </script>
+</head>
+<body class="terminal">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in</div>
+    <h1>Confidently Wrong</h1>
+<p><img src="/images/devdays-26/dev-days-26-3.jpeg" alt="Audience"></p>
+<h2>LLM: The most efficient lossy compression</h2>
+<p>Whether we are happy about it or not, LLMs have become an integral part of our software development workflow. As someone with zero experience in machine learning, my understanding of the inner workings of an LLM is fairly primitive: to me, an LLM is the most efficient lossy compression algorithm humans have ever written.</p>
+<p>It is fascinating to think that with an 8B parameter Llama model, we've compressed a vast swath of human knowledge into a 4GB file.</p>
+<p>Obviously, a lot of information is neglected or simplified during this process. What the model does with this missing information is exactly what causes &quot;hallucinations.&quot;</p>
+<p>When a model is being trained, it is primarily evaluated for accuracy. Consider a question like:</p>
+<blockquote>
+<p>&quot;On what date did [an event] happen?&quot;</p>
+</blockquote>
+<p>If that specific information isn't present in the model's &quot;compressed&quot; knowledge, it has two choices:</p>
+<ol>
+<li>It can abstain from answering, saying &quot;I don't know.&quot;</li>
+<li>It can guess.</li>
+</ol>
+<p>If it randomly selects a date, there is a 1/365 chance of being right. In many multiple-choice evaluations, the model might have a 1 in 3 or 1 in 4 chance of getting the right answer just by guessing. Because evaluations often reward correct answers without heavily penalizing confident incorrect ones, the process essentially encourages guessing.</p>
+<p>It is always a balance: you can have an honest but &quot;dumb&quot; model that admits it knows nothing, or a smart-seeming model that occasionally hallucinations. Most LLM providers are trying to find the perfect equilibrium in between.</p>
+<h2>Intrinsic and Extrinsic Hallucinations</h2>
+<p>To better understand these &quot;guesses,&quot; we can divide hallucinations into two primary categories:</p>
+<ul>
+<li><strong>Intrinsic Hallucinations</strong>: These occur when the model contradicts the provided input or context. It's an internal inconsistency where the model &quot;knows&quot; the context but fails to follow it.</li>
+<li><strong>Extrinsic Hallucinations</strong>: these occur when the model introduces non-existent information that isn't consistent with its training data or the provided context.</li>
+</ul>
+<p>The probability of an extrinsic hallucination is generally much higher than that of an intrinsic one.</p>
+<p>For instance, most models will struggle significantly if you ask a very niche or specific question about a less popular framework (let's say, Svelte). Without specific context, you will see a high volume of extrinsic hallucinations as the model tries to fill in the gaps with patterns from more popular frameworks like React.</p>
+<p>However, if you provide the model with an <code>llm.txt</code>, a &quot;skills&quot; file, or specific documentation for Svelte, the chances of hallucination drop dramatically. This is why, if you want your AI tools to hallucinate less, it is crucial to add all relevant <code>skills.md</code> and <code>agents.md</code> files to your project. By providing the &quot;missing&quot; information explicitly, you remove the incentive for the model to guess.</p>
+<h2>The Feedback Loops</h2>
+<p>Another critical factor in LLM hallucinations, especially in agentic coding, is the <strong>Feedback Loop</strong>.</p>
+<p>As a frontend developer, I've noticed a weird problem with AI coding agents: they are significantly better at writing backend code than frontend code. I'm not talking about basic marketing pages or simple demos, but complicated user interactions, multi-step forms, and complex animations.</p>
+<p>The reason for this discrepancy lies in how the feedback loops differ between the two domains:</p>
+<h3>The Feedback Loop in Backend</h3>
+<pre><code class="language-mermaid">graph TD
+    CodeBE[The Code] --&gt;|Generates| ResultBE[&quot;Generated Result (Text/JSON)&quot;]
+    ResultBE --&gt;|Re-write| CodeBE
+</code></pre>
+<h3>The Feedback Loop in Frontend</h3>
+<pre><code class="language-mermaid">graph TD
+    CodeFE[The Code] --&gt;|Generates| ResultFE[&quot;Generated Result (Text, UI, Animations, etc.)&quot;]
+    ResultFE --&gt;|Re-write| CodeFE
+</code></pre>
+<p>LLMs are fundamentally built to process and generate <strong>text</strong>. In the backend, the feedback loop is almost entirely text-based (logs, JSON outputs, error messages). The model can easily &quot;understand&quot; its own output and correct it.</p>
+<p>In the frontend, however, the &quot;result&quot; is often visual or behavioral. When a feedback loop includes things that are not text, like the subtle timing of an animation or the layout of a complex grid, the model's performance starts to degrade. The more complicated and &quot;non-textual&quot; the feedback becomes, the more likely the LLM is to hallucinate a solution that doesn't actually work in the browser.</p>
+<h3>Bridging the Gap</h3>
+<p>To make software more resistant to hallucinations, we need to ensure the feedback loop is as &quot;text-friendly&quot; as possible. This can be achieved through:</p>
+<ol>
+<li><strong>Proper MCP Support</strong>: Providing the LLM with specialized tools to &quot;see&quot; non-textual data. For example, using a <strong>Figma MCP</strong> to give the model design context, or a <strong>Chrome DevTools MCP</strong> to allow the model to inspect the browser state directly.</li>
+<li><strong>State Machines</strong>: Using techniques like <a href="/blog/the-last-state-solution">State Machines</a> allows you to define your application's logic in a structured, predictable way. By making the &quot;states&quot; of your UI explicit and textual, you allow the LLM to build and reason about the application without needing constant visual inspection.</li>
+</ol>
+<p>By optimizing these loops, we move the LLM away from guessing and towards engineering.</p>
+<h2>GitHub Copilot Dev Days 2026</h2>
+<p>This article is a text version of a talk I gave at <strong>GitHub Copilot Dev Days</strong> in Trivandrum, Kerala, in April 2026.</p>
+<p>You can find the full presentation slides here: <a href="https://docs.google.com/presentation/d/1peIgH46bVfP75sj9zLiuhxAoGmp1gzfc43n9ByQlcIU/edit?usp=sharing">Confidently Wrong: PPT</a></p>
+<h3>Event Gallery</h3>
+<p><img src="/images/devdays-26/dev-days-26-2.jpeg" alt="Speaker">
+<img src="/images/devdays-26/dev-days-26-4.jpeg" alt="Networking"></p>
+
+<div style="text-align:center;overflow:hidden">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
+               . .
+    . .       . . .
+ . . . .       . .     .
+. . . .       . . .   . . .               ,
+ . . . .     . . .     . .       _       d#D
+. . . . .   . . . . ._. . .    _(%)_      `
+   .     . . . . . _(#)_ .    (%%O%%)     "Bzzzz"
+        . . . . _ (##O##) .   _ (%)   _
+       . . .  _(#)_ (#)  . _ (%)_:  _(%)_
+      . . . .(##O##)._\  _(#)%O%%):(%%O%%)
+         . .   (#)  _  \(##O##))  |,'(%)
+              `. ._(#)_ \,(#)  `. ;  _
+                 (##O##) `.      Y _(#)_
+                  .(#)\ . .).   / (##O##)
+                 . . . `-.(. . ;  ,'(#)
+                  . . . . .\. .| (
+                 . . . d888888888888b
+                  . . ,88888888888888b
+                   . .d888888888888888
+                    . d888888888888888
+                     .`88888888888888P
+                       Y8888888888888
+                        Y8888888888P
+_________________________`Y8888888P_____CJ_______
+</pre>
+</div>
+  </div>
+</body>
+</html>

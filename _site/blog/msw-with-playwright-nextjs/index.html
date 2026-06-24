@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Client-side &amp; Server-side API Requests Using Next.js and MSW.js</title>
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #4ea8de;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.15;
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+    h2, h3, h4, h5, h6 {
+      text-decoration: underline dashed;
+      text-underline-offset: 4px;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("code.language-mermaid").forEach(el => {
+        const pre = el.closest("pre");
+        if (!pre) return;
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = el.textContent;
+        pre.replaceWith(div);
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      themeVariables: {
+        fontFamily: "Menlo, Monaco, monospace",
+        primaryColor: "#313244",
+        primaryTextColor: "#eaeaea",
+        primaryBorderColor: "#585b70",
+        lineColor: "#a0a0a0",
+        secondaryColor: "#45475a",
+        tertiaryColor: "#1a1a1a",
+        clusterBkg: "#1a1a1a",
+        clusterBorder: "#585b70",
+        edgeLabelBackground: "#313244",
+        nodeBorder: "#585b70",
+      },
+    });
+    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+  </script>
+</head>
+<body class="terminal">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in</div>
+    <h1>Mock Client-side &amp; Server-side API Requests Using Next.js and MSW.js</h1>
+<p>There are a bunch of situations where mocking API requests can really come in handy. Maybe you're building out features without a backend yet, trying to avoid hitting a third-party API too often, or just want things to work offline.
+Mocking used to be pretty straightforward when everything was happening on the client side. But things changed with modern React. With support for data fetching on the server, API requests can now come from both the server and the client.
+So how do you mock both client-side and server-side API calls without writing two completely different sets of mocks?
+That's where MSW (Mock Service Worker) comes in. It's honestly one of the best tools out there for this job.
+MSW lets you mock API requests at the network level:</p>
+<ul>
+<li>On the client, using a Service Worker (<code>msw/browser</code>)</li>
+<li>On the server, using an intercepting server (<code>msw/node</code>) that works well for SSR and API routes</li>
+</ul>
+<p>Let's walk through how to set it all up.</p>
+<h2>Setting Up MSW in a Next.js App</h2>
+<p>You can find the full working example here:<br>
+👉 <a href="https://github.com/ajth-in/nextjs-mswjs">github.com/ajth-in/nextjs-mswjs</a></p>
+<p>Install MSW as a dev dependency:</p>
+<pre><code class="language-bash">npm install msw --save-dev
+</code></pre>
+<p>Next, create a <code>mocks</code> directory at the root of your project. This will hold everything related to MSW, including handlers and setup files for both the browser and Node.js environments.</p>
+<p>Here's the structure:</p>
+<pre><code class="language-text">.
+├── app
+│   └── page.tsx               # Example route that makes an API call
+├── mocks
+│   ├── browser.js             # Client-side MSW setup (Service Worker)
+│   ├── node.js                # Server-side MSW setup (for SSR/API routes)
+│   ├── handlers.js            # Main list of request handlers
+│   └── data
+│       └── github-user.json   # Mock json
+├── components
+│   └── MswWorker.tsx          # Component to load the worker script
+├── instrumentation.ts         # To integrate msw node server
+
+</code></pre>
+<p>Let's look at a simple example that fetches user information from the GitHub API. This will demonstrate both server-side and client-side fetching, which we'll later mock using MSW.</p>
+<p><code>app/page.tsx</code> is a <strong>React Server Component</strong> that fetches user data during server-side rendering. It then renders a client component (<code>GithubUserName</code>) and also displays the user's GitHub login directly.</p>
+<pre><code class="language-tsx">import GithubUserName from &quot;@/components/UserName&quot;;
+import { Fragment } from &quot;react&quot;;
+
+export default async function Home() {
+  const res = await fetch(&quot;https://api.github.com/users/ajth-in&quot;);
+  const userData = await res.json();
+
+  return (
+    &lt;Fragment&gt;
+      &lt;GithubUserName /&gt;
+      &lt;p className=&quot;login&quot;&gt;@{userData.login}&lt;/p&gt;
+    &lt;/Fragment&gt;
+  );
+}
+</code></pre>
+<p><code>components/UserName.tsx</code> is a <strong>Client Component</strong> that also fetches the same user data from GitHub, but on the client side using <code>useEffect</code>. Instead of showing the login, it displays the user's full name.</p>
+<pre><code class="language-tsx">&quot;use client&quot;;
+
+import { useEffect, useState } from &quot;react&quot;;
+
+export default function GithubUserName() {
+  const [userData, setUserData] = useState&lt;{ name: string } | null&gt;(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() =&gt; {
+    async function fetchUserData() {
+      try {
+        const res = await fetch(&quot;https://api.github.com/users/ajth-in&quot;);
+        const data = await res.json();
+        setUserData(data);
+      } catch (error) {
+        console.error(&quot;Failed to fetch user data:&quot;, error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUserData();
+  }, []);
+
+  if (loading) return &lt;p&gt;Loading...&lt;/p&gt;;
+  if (!userData) return &lt;p&gt;Failed to load user data.&lt;/p&gt;;
+
+  return &lt;p&gt;{userData.name}&lt;/p&gt;;
+}
+</code></pre>
+<blockquote>
+<p>💡 <strong>Note:</strong><br>
+The client-side fetching here is redundant. Since the same user data is already available on the server, it could be passed as a prop to the client component. We're doing it this way purely to demonstrate both client-side and server-side mocking with MSW.</p>
+</blockquote>
+<p>If you start the development server at this point, you'll see something like this:</p>
+<p>The user information is being fetched live from the GitHub API, both on the server and the client.</p>
+<p><code>mocks/data/github-user.json</code>: Now let's mock the GitHub API call we used earlier. We'll return a static user response from a local JSON file.</p>
+<p>Start by creating a file at:</p>
+<pre><code class="language-text">mocks/data/github-user.json
+</code></pre>
+<p>And add the following mock response:</p>
+<pre><code class="language-json">{
+  &quot;login&quot;: &quot;ajth-in (cached)&quot;,
+  &quot;name&quot;: &quot;Ajith Kumar P M (cached)&quot;
+}
+</code></pre>
+<p>The &quot;(cached)&quot; part is just there to help us verify that the mock is being used when the app runs.</p>
+<p><code>mocks/handlers.js</code>: Now we'll create an MSW handler to intercept the GitHub API request and respond with our mock data.</p>
+<pre><code class="language-tsx">import { http, HttpResponse } from &quot;msw&quot;;
+import user from &quot;./data/github-user.json&quot;;
+
+export const handlers = [
+  http.get(&quot;https://api.github.com/users/*&quot;, ({}) =&gt; HttpResponse.json(user)),
+];
+</code></pre>
+<p>In this example, we're intercepting <strong>all</strong> requests that match the pattern <code>https://api.github.com/users/*</code>. If you want to target a specific user or URL, you can provide the exact match instead.</p>
+<p><code>mocks/node.js</code>: This sets up the mock server for handling requests in the Node.js environment (used during SSR or in API routes):</p>
+<pre><code class="language-ts">import { setupServer } from &quot;msw/node&quot;;
+import { handlers } from &quot;./handlers&quot;;
+
+export const server = setupServer(...handlers);
+</code></pre>
+<p><code>mocks/browser.js</code>: This sets up the Service Worker that intercepts requests on the client side:</p>
+<pre><code class="language-ts">import { setupWorker } from &quot;msw/browser&quot;;
+import { handlers } from &quot;./handlers&quot;;
+
+export const worker = setupWorker(...handlers);
+</code></pre>
+<p>To hook MSW into our Next.js app, we'll use <strong>Next.js instrumentation hooks</strong>. These allow you to run setup code during the server's startup lifecycle.</p>
+<blockquote>
+<p>🛠️ From the Next.js documentation:<br>
+<em>&quot;Instrumentation is the process of using code to integrate monitoring and logging tools into your application. This allows you to track the performance and behavior of your application, and to debug issues in production.&quot;</em></p>
+</blockquote>
+<p>We're going to use this hook to spin up our mock server.</p>
+<p><code>instrumentation.ts</code>: Create a file at the root of your app directory named <code>instrumentation.ts</code> and add the following:</p>
+<pre><code class="language-ts">export async function register() {
+  if (
+    process.env.NEXT_PUBLIC_MSW_ENV === &quot;test&quot; &amp;&amp;
+    process.env.NEXT_RUNTIME === &quot;nodejs&quot;
+  ) {
+    const { server } = await import(&quot;./mocks/node&quot;);
+    server.listen();
+  }
+}
+</code></pre>
+<p>Here's what this does:</p>
+<ul>
+<li><code>NEXT_RUNTIME === 'nodejs'</code> ensures we only run this in the Node.js runtime (not in the Edge runtime).</li>
+<li><code>NEXT_PUBLIC_MSW_ENV === 'test'</code> lets us control when to enable MSW. This way, mocks are only active in testing or development environments.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Note:</strong><br>
+This example uses <strong>Next.js version 15.3.5</strong>.<br>
+Depending on your version, you might need to enable the instrumentation hook explicitly in your config:</p>
+</blockquote>
+<pre><code class="language-ts">// next.config.ts
+export const nextConfig = {
+  experimental: {
+    instrumentationHook: true,
+  },
+};
+</code></pre>
+<p>For client-side mocking, MSW uses a Service Worker to intercept requests in the browser. First, we need to generate the <code>mockServiceWorker.js</code> file that gets served from the <code>public/</code> folder.</p>
+<h2>Generate the Service Worker File</h2>
+<p>Run the following command:</p>
+<pre><code class="language-bash">npx msw init public/ --save
+</code></pre>
+<p>This will generate a <code>public/mockServiceWorker.js</code> file that MSW uses under the hood.</p>
+<p><code>components/MswWorker.tsx</code>: This component is what we'll use to load the Mock Service Worker (MSW) into our app during development or testing.</p>
+<pre><code class="language-tsx">&quot;use client&quot;;
+
+import { PropsWithChildren, useEffect, useState } from &quot;react&quot;;
+
+export function MswWorker({ children }: PropsWithChildren) {
+  const [isMswReady, setIsMswReady] = useState(false);
+
+  useEffect(() =&gt; {
+    if (process.env.NEXT_PUBLIC_MSW_ENV !== &quot;test&quot;) return;
+
+    const enableMocking = async () =&gt; {
+      const { worker } = await import(&quot;@/mocks/browser&quot;);
+      await worker.start({
+        onUnhandledRequest: &quot;bypass&quot;,
+      });
+      setIsMswReady(true);
+    };
+
+    // @ts-expect-error msw not found
+    if (!window.msw) {
+      enableMocking();
+    } else {
+      setIsMswReady(true);
+    }
+  }, []);
+
+  if (process.env.NEXT_PUBLIC_MSW_ENV !== &quot;test&quot;) return children;
+
+  if (!isMswReady) {
+    return &quot;loading msw worker...&quot;;
+  }
+
+  return &lt;&gt;{children}&lt;/&gt;;
+}
+</code></pre>
+<p>Basically, this waits until the mock worker is fully set up before rendering anything. That way, your app won't accidentally fire off real network requests before the mocks are ready.</p>
+<p>To make this work across your entire app, just wrap your layout with it.</p>
+<p><code>layout.tsx</code></p>
+<pre><code class="language-tsx">export default function RootLayout({
+  children,
+}: Readonly&lt;{
+  children: React.ReactNode;
+}&gt;) {
+  return (
+    &lt;html lang=&quot;en&quot;&gt;
+      &lt;body className={`${geistSans.variable} ${geistMono.variable}`}&gt;
+        &lt;MswWorker&gt;{children}&lt;/MswWorker&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<p>Now if you restart the dev server, you should see your app serving mocked responses right away.</p>
+<p>So that's it — we've successfully mocked API calls from both the server and the client side. 🎉</p>
+<p>Since both environments share the same set of handlers, we don't need to worry about where a particular request is coming from. Whether it runs on the server during SSR or from the browser after hydration, our mocks stay consistent.</p>
+<h2>Instrumentation-client.ts</h2>
+<p>One more thing worth mentioning: just like we used <code>instrumentation.ts</code> for server-side setup, there's also an <code>instrumentation-client.ts</code> file in Next.js that runs on the client <em>before</em> hydration starts.</p>
+<p>In theory, we could load the MSW worker from there. Which sounds ideal, but after testing it out, I ran into some race conditions. Some API calls were firing <strong>before</strong> the worker was fully initialized, which kinda defeats the whole purpose of mocking.</p>
+<p>At the time of writing this, <code>clientInstrumentationHook</code> is still an experimental feature. So until it's more stable (or there's a solid workaround), it's safer to stick with loading the worker manually in a client-side component like <code>MswWorker.tsx</code>.</p>
+<p><code>instrumentation-client.ts</code>: Create this file at the root of your app directory:</p>
+<pre><code class="language-ts">if (process.env.NEXT_PUBLIC_MSW_ENV === &quot;test&quot;) {
+  import(&quot;./mocks/browser&quot;)
+    .then(async (mod) =&gt; {
+      if (mod?.worker?.start) {
+        mod.worker.start();
+      }
+    })
+    .catch(async () =&gt; {
+      console.error(&quot;Failed to load the browser module&quot;);
+    });
+}
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Important:</strong><br>
+This file (<code>instrumentation-client.ts</code>) is executed <strong>before hydration</strong>, so avoid doing anything here that may block rendering or impact performance in production environments.</p>
+</blockquote>
+<blockquote>
+<p>⚙️ <strong>Config Note:</strong><br>
+Depending on your next js version, you might need to add the following to <code>next.config.ts</code> to enable this:</p>
+</blockquote>
+<pre><code class="language-ts">// next.config.ts
+export const nextConfig = {
+  experimental: {
+    instrumentationHook: true,
+    clientInstrumentationHook: true,
+  },
+};
+</code></pre>
+
+<div style="text-align:center;overflow:hidden">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
+               . .
+    . .       . . .
+ . . . .       . .     .
+. . . .       . . .   . . .               ,
+ . . . .     . . .     . .       _       d#D
+. . . . .   . . . . ._. . .    _(%)_      `
+   .     . . . . . _(#)_ .    (%%O%%)     "Bzzzz"
+        . . . . _ (##O##) .   _ (%)   _
+       . . .  _(#)_ (#)  . _ (%)_:  _(%)_
+      . . . .(##O##)._\  _(#)%O%%):(%%O%%)
+         . .   (#)  _  \(##O##))  |,'(%)
+              `. ._(#)_ \,(#)  `. ;  _
+                 (##O##) `.      Y _(#)_
+                  .(#)\ . .).   / (##O##)
+                 . . . `-.(. . ;  ,'(#)
+                  . . . . .\. .| (
+                 . . . d888888888888b
+                  . . ,88888888888888b
+                   . .d888888888888888
+                    . d888888888888888
+                     .`88888888888888P
+                       Y8888888888888
+                        Y8888888888P
+_________________________`Y8888888P_____CJ_______
+</pre>
+</div>
+  </div>
+</body>
+</html>
