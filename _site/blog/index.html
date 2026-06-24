@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
+  <title>Blog</title>
   <link rel="stylesheet" href="/terminal.css">
   <style>
     :root {
@@ -18,13 +18,7 @@
       --code-bg-color: #2a2a2a;
       --block-background-color: #2a2a2a;
     }
-    h1 {
-      font-size: 2.5rem !important;
-      line-height: 1.15;
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-    h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 {
       text-decoration: underline dashed;
       text-underline-offset: 4px;
     }
@@ -66,7 +60,12 @@
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
-    {{ content | safe }}
+    <h2>📝 Blog</h2>
+<h3><a href="/blog/the-last-state-solution/">The Last State Solution</a></h3>
+<p><em>2026-01-10</em></p>
+<p>This article explores state management from a behavioral perspective rather than a purely structural one. Starting from classical state machines in the theory of computation, it builds intuition through simple examples and then examines how modern front end state management libraries like Redux and Zustand fit into this picture. It argues that while these tools solve problems of data sharing and ergonomics, they leave a deeper question unanswered: when certain actions are actually valid. By tracing the familiar cycle from local component state to global stores and back to accidental complexity, the article motivates state machines as a way to make invalid states unrepresentable and to model application behavior explicitly. The discussion sets the stage for introducing XState as a practical bridge between theoretical state machines and real world front end systems.</p>
+<hr>
+
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .
