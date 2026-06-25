@@ -23,16 +23,18 @@
       --code-bg-color: #2a2a2a;
       --block-background-color: #2a2a2a;
     }
-    h1 {
-      font-size: 2.5rem !important;
-      line-height: 1.15;
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-    h2, h3, h4, h5, h6 {
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
+    
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.15;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+h2, h3, h4, h5, h6 {
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+
   </style>
   <script defer type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -67,6 +69,7 @@
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
+    
     <main><h1>The last state Solution</h1>
 <p>As a front-end developer, a large portion of my work revolves around state. Where state should live, how it should be structured, how it changes over time, and how those changes affect the UI.</p>
 <p>Recently, I came across the concept <em>State Machines</em>, and it forced me to rethink how I approach state management. I have a lot to say about it. This article is an attempt to organize those thoughts.</p>
@@ -198,6 +201,7 @@ Because of this, XState is not a direct replacement for a global state solution.
 </code></pre>
 <p>We have already covered quite a bit in this article, so the XState React example app will be in the next section.</p>
 </main>
+    
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .
@@ -223,7 +227,7 @@ Because of this, XState is not a direct replacement for a global state solution.
                      .`88888888888888P
                        Y8888888888888
                         Y8888888888P
-_________________________`Y8888888P_____CJ_______
+_________________________`Y8888888P____________
 </pre>
 </div>
   </div>

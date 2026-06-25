@@ -1,101 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lavishly+Yours&family=Quintessential&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/terminal.css">
-  <style>
-    :root {
-      --font-family: "Figtree", sans-serif;
-      --font-family-mono: "JetBrains Mono", monospace;
-      --background-color: #1a1a1a;
-      --font-color: #eaeaea;
-      --invert-font-color: #1a1a1a;
-      --primary-color: #4ea8de;
-      --secondary-color: #a0a0a0;
-      --error-color: #d20962;
-      --progress-bar-background: #3a3a3a;
-      --progress-bar-fill: #eaeaea;
-      --code-bg-color: #2a2a2a;
-      --block-background-color: #2a2a2a;
-    }
-    h1 {
-      font-size: 2.5rem !important;
-      line-height: 1.15;
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-    h2, h3, h4, h5, h6 {
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-  </style>
-  <script defer type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: "dark",
-      themeVariables: {
-        fontFamily: "Menlo, Monaco, monospace",
-        primaryColor: "#313244",
-        primaryTextColor: "#eaeaea",
-        primaryBorderColor: "#585b70",
-        lineColor: "#a0a0a0",
-        secondaryColor: "#45475a",
-        tertiaryColor: "#1a1a1a",
-        clusterBkg: "#1a1a1a",
-        clusterBorder: "#585b70",
-        edgeLabelBackground: "#313244",
-        nodeBorder: "#585b70",
-      },
-    });
-    document.querySelectorAll("code.language-mermaid").forEach(el => {
-      const pre = el.closest("pre");
-      if (!pre) return;
-      const div = document.createElement("div");
-      div.className = "mermaid";
-      div.textContent = el.textContent;
-      pre.replaceWith(div);
-    });
-    mermaid.run();
-  </script>
-</head>
-<body class="terminal">
-  <div class="container">
-    <div class="logo terminal-prompt">ajth.in</div>
-    <main>{{ content | safe }}</main>
-<div style="text-align:center;overflow:hidden">
-<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
-               . .
-    . .       . . .
- . . . .       . .     .
-. . . .       . . .   . . .               ,
- . . . .     . . .     . .       _       d#D
-. . . . .   . . . . ._. . .    _(%)_      `
-   .     . . . . . _(#)_ .    (%%O%%)     "Bzzzz"
-        . . . . _ (##O##) .   _ (%)   _
-       . . .  _(#)_ (#)  . _ (%)_:  _(%)_
-      . . . .(##O##)._\  _(#)%O%%):(%%O%%)
-         . .   (#)  _  \(##O##))  |,'(%)
-              `. ._(#)_ \,(#)  `. ;  _
-                 (##O##) `.      Y _(#)_
-                  .(#)\ . .).   / (##O##)
-                 . . . `-.(. . ;  ,'(#)
-                  . . . . .\. .| (
-                 . . . d888888888888b
-                  . . ,88888888888888b
-                   . .d888888888888888
-                    . d888888888888888
-                     .`88888888888888P
-                       Y8888888888888
-                        Y8888888888P
-_________________________`Y8888888P_____CJ_______
-</pre>
-</div>
-  </div>
-</body>
-</html>
+{% extends "layout.njk" %}
+{% block head_styles %}
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.15;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+h2, h3, h4, h5, h6 {
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+{% endblock %}

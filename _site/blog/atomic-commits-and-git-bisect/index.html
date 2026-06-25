@@ -23,16 +23,18 @@
       --code-bg-color: #2a2a2a;
       --block-background-color: #2a2a2a;
     }
-    h1 {
-      font-size: 2.5rem !important;
-      line-height: 1.15;
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-    h2, h3, h4, h5, h6 {
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
+    
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.15;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+h2, h3, h4, h5, h6 {
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+
   </style>
   <script defer type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -67,6 +69,7 @@
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
+    
     <main><h1>Atomic Commits and Git Bisect</h1>
 <h2>The Problem At Work</h2>
 <p>So today, something happened at work.</p>
@@ -123,6 +126,7 @@ $ git bisect good 9b7d2cc
 </code></pre>
 <p>The actual issue was incorrect update of an internal package. What could have been a full day of manually checking out commits and re-running tests was over in like 10 minutes.</p>
 </main>
+    
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .
@@ -148,7 +152,7 @@ $ git bisect good 9b7d2cc
                      .`88888888888888P
                        Y8888888888888
                         Y8888888888P
-_________________________`Y8888888P_____CJ_______
+_________________________`Y8888888P____________
 </pre>
 </div>
   </div>

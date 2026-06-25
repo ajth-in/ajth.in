@@ -23,16 +23,18 @@
       --code-bg-color: #2a2a2a;
       --block-background-color: #2a2a2a;
     }
-    h1 {
-      font-size: 2.5rem !important;
-      line-height: 1.15;
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
-    h2, h3, h4, h5, h6 {
-      text-decoration: underline dashed;
-      text-underline-offset: 4px;
-    }
+    
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.15;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+h2, h3, h4, h5, h6 {
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+
   </style>
   <script defer type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -67,6 +69,7 @@
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
+    
     <main><h1>Mock Client-side &amp; Server-side API Requests Using Next.js and MSW.js</h1>
 <p>There are a bunch of situations where mocking API requests can really come in handy. Maybe you're building out features without a backend yet, trying to avoid hitting a third-party API too often, or just want things to work offline.
 Mocking used to be pretty straightforward when everything was happening on the client side. But things changed with modern React. With support for data fetching on the server, API requests can now come from both the server and the client.
@@ -316,6 +319,7 @@ export const nextConfig = {
 };
 </code></pre>
 </main>
+    
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .
@@ -341,7 +345,7 @@ export const nextConfig = {
                      .`88888888888888P
                        Y8888888888888
                         Y8888888888P
-_________________________`Y8888888P_____CJ_______
+_________________________`Y8888888P____________
 </pre>
 </div>
   </div>
