@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 title: Blog
+description: Writings about software engineering, LLMs, state machines, and the occasional late-night thought.
 ---
 
 ## 📝 Blog

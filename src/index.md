@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 title: Ajith Kumar P M
+description: Personal website of Ajith Kumar P M — product engineer, writer, and speaker. Thoughts on code, films, music, and life.
 ---
 
 <div style="overflow-x:auto;overflow-y:hidden; margin-bottom: 20px">

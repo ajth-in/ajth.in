@@ -39,6 +39,7 @@ body {
   margin: 0;
   font-family: var(--font-stack);
   word-wrap: break-word;
+  text-wrap: pretty;
   background-color: var(--background-color);
 }
 h1,
