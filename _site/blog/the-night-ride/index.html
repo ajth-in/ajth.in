@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Past midnight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lavishly+Yours&family=Quintessential&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/terminal.css">
   <style>
     :root {
+      --font-family: "Figtree", sans-serif;
+      --font-family-mono: "JetBrains Mono", monospace;
       --background-color: #1a1a1a;
       --font-color: #eaeaea;
       --invert-font-color: #1a1a1a;
@@ -29,19 +34,7 @@
       text-underline-offset: 4px;
     }
   </style>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("code.language-mermaid").forEach(el => {
-        const pre = el.closest("pre");
-        if (!pre) return;
-        const div = document.createElement("div");
-        div.className = "mermaid";
-        div.textContent = el.textContent;
-        pre.replaceWith(div);
-      });
-    });
-  </script>
-  <script type="module">
+  <script defer type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
     mermaid.initialize({
       startOnLoad: false,
@@ -60,13 +53,21 @@
         nodeBorder: "#585b70",
       },
     });
-    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+    document.querySelectorAll("code.language-mermaid").forEach(el => {
+      const pre = el.closest("pre");
+      if (!pre) return;
+      const div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = el.textContent;
+      pre.replaceWith(div);
+    });
+    mermaid.run();
   </script>
 </head>
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
-    <h1>Past midnight</h1>
+    <main><h1>Past midnight</h1>
 <p>I never learned to drive, at least not until now, because for most of my life there was always someone else to take the wheel. First it was my brother. Later, during college, it was my friends. Even at work, it stayed the same. I do not go out often, and when I do, I am usually accompanied by someone who drives. Much later, I came to deeply regret not having a licence. Even during my college days, things were the same. At the hostel, we had three bikes. A yellow Bullet, an old and rusty CT 100, and a Hero. That was enough for us. We used to wander around at night with those.</p>
 <p>Most nights, I sat on the back seat of that Bullet. In the part of kerala where I stayed during college, everything slipped into sleep before ten. By the time we rode, usually well past one or two, the world had already shut itself down. The roads lay empty. Shops were locked and dark. Usually, there were no people in sight. Street lights were also very limited there.
 When we left our hostel, we slowly passed familiar markers almost without noticing them, the large banyan tree junction, the ladies' hostel, the college gate. Everything felt unrecognisable. Everything changed the moment our bikes touched the highway. All three machines surged forward, racing as if it had been decided before.</p>
@@ -88,7 +89,7 @@ And yet, everything would return to normal the moment the conversation shifted.<
 I still do not believe in God. But I no longer disbelieve because someone else told me to. I can now say good things about theism without feeling threatened by it.</p>
 <p>Thinking back, it is strange how everything changed in just four years. The one who cried the most about not having a girlfriend is now the first to get married. The one who was always out, never able to stay home, barely steps outside now. And I do not really know where the others are anymore.</p>
 <p>We never crossed that bridge. We stayed for a while and then turned back. Even so, I still remember the dim streetlights beyond it.</p>
-
+</main>
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .

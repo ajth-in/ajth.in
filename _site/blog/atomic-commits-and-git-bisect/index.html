@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atomic Commits and Git Bisect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lavishly+Yours&family=Quintessential&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/terminal.css">
   <style>
     :root {
+      --font-family: "Figtree", sans-serif;
+      --font-family-mono: "JetBrains Mono", monospace;
       --background-color: #1a1a1a;
       --font-color: #eaeaea;
       --invert-font-color: #1a1a1a;
@@ -29,19 +34,7 @@
       text-underline-offset: 4px;
     }
   </style>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("code.language-mermaid").forEach(el => {
-        const pre = el.closest("pre");
-        if (!pre) return;
-        const div = document.createElement("div");
-        div.className = "mermaid";
-        div.textContent = el.textContent;
-        pre.replaceWith(div);
-      });
-    });
-  </script>
-  <script type="module">
+  <script defer type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
     mermaid.initialize({
       startOnLoad: false,
@@ -60,13 +53,21 @@
         nodeBorder: "#585b70",
       },
     });
-    window.addEventListener("DOMContentLoaded", () => mermaid.run());
+    document.querySelectorAll("code.language-mermaid").forEach(el => {
+      const pre = el.closest("pre");
+      if (!pre) return;
+      const div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = el.textContent;
+      pre.replaceWith(div);
+    });
+    mermaid.run();
   </script>
 </head>
 <body class="terminal">
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
-    <h1>Atomic Commits and Git Bisect</h1>
+    <main><h1>Atomic Commits and Git Bisect</h1>
 <h2>The Problem At Work</h2>
 <p>So today, something happened at work.</p>
 <p>Suddenly, the typecheck that used to take roughly 60 seconds started taking more than 8 minutes. Since typechecking is in our pre-commit hook, all the devs were complaining, everyone was making commits by force-skipping the git hooks, and I was tasked with finding the root cause.
@@ -121,7 +122,7 @@ $ git bisect good 9b7d2cc
 ...
 </code></pre>
 <p>The actual issue was incorrect update of an internal package. What could have been a full day of manually checking out commits and re-running tests was over in like 10 minutes.</p>
-
+</main>
 <div style="text-align:center;overflow:hidden">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(6px,2vw,14px);line-height:1;display:inline-block;text-align:left">
                . .
