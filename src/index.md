@@ -45,12 +45,9 @@ If you want to know me a little quicker, these probably say more about me than a
 
 ## 🌙 Late Night Thoughts
 
-- [Confidently Wrong](/blog/confidently-wrong-llm-hallucinations-and-workarounds) — Apr 29, 2026
-- [Past midnight](/blog/the-night-ride) — Jan 24, 2026
-- [The Last State Solution](/blog/the-last-state-solution) — Jan 10, 2026
-- [Atomic Commits and Git Bisect](/blog/atomic-commits-and-git-bisect) — Nov 11, 2025
-- [Mock Client-side & Server-side API Requests Using Next.js and MSW.js](/blog/msw-with-playwright-nextjs) — Jul 14, 2025
-- [How Not to Conduct a React Interview](/blog/how-not-to-conduct-a-react-interview) — Apr 09, 2024
+{% for post in collections.blog | shuffle(3) -%}
+- [{{ post.data.title }}]({{ post.url }}): _{{ post.data.summary | truncate: 100 }}_ **_(last updated: {{ post.data.publishedAt }})_**
+{% endfor %}
 
 ### [View all blogs →](/blog)
 
