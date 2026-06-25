@@ -65,6 +65,12 @@ em {
   font-family: var(--font-stack);
   color: var(--font-color);
 }
+em strong,
+strong em {
+  background-color: color-mix(in srgb, #2ecc40 6%, transparent);
+  font-style: italic;
+  padding: 0 2px;
+}
 blockquote,
 code,
 em,
@@ -127,6 +133,12 @@ h6 {
   position: relative;
   margin-bottom: var(--global-line-height);
   font-weight: 600;
+}
+h2 {
+  color: #f0c040;
+}
+h3 {
+  color: #8a9a70;
 }
 blockquote {
   position: relative;

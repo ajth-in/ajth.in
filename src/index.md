@@ -3,7 +3,7 @@ layout: layout.njk
 title: Ajith Kumar P M
 ---
 
-<div style="overflow-x:auto;overflow-y:hidden">
+<div style="overflow-x:auto;overflow-y:hidden; margin-bottom: 20px">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(4px,1.5vw,8px);line-height:1">
 |>>>                                                      |>>>
 |                     |>>>          |>>>                  |
@@ -28,14 +28,20 @@ _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_
 </pre>
 </div>
 
-Product Engineer [@UST](https://ust.com)
+Hi, I'm **Ajith**.
 
-Welcome to my _corner_ of the web. Sharing thoughts, projects, and the things I geek out on.
+If you're here on purpose, welcome. If you got here by accident, I hope you find something worth staying for.
 
-- [Songs for my Euro truck sim radio](https://www.youtube.com/playlist?list=PLo8UW92TnA_Zu3Wt7FL5xCkduVFhlpNQW)
-- [Big fan of Bukowski's poem](https://www.youtube.com/watch?v=Yhi6y1XWb-E)
-- [Wes Anderson films have a special place in my heart.](https://www.youtube.com/watch?v=ELqdLvz60zA)
-- [Talk to me in English, Malayalam, JS or Python](mailto:anything@ajth.in)
+This is my little corner of the internet. I write about myself, the things I care about, and whatever happens to occupy my mind. Sometimes that's code. Sometimes it's films, music, or poems. Most of the time, it's just me trying to understand the world a little better.
+
+Right now, I work at UST, building things for [strollby.com](https://strollby.com).
+
+If you want to know me a little quicker, these probably say more about me than a long introduction ever could:
+
+- [The playlist I use as my Euro Truck Simulator radio.](https://www.youtube.com/playlist?list=PLo8UW92TnA_Zu3Wt7FL5xCkduVFhlpNQW)
+- [A Bukowski poem I keep coming back to.](https://www.youtube.com/watch?v=Yhi6y1XWb-E)
+- [Wes Anderson films have a permanent place in my heart.](https://www.youtube.com/watch?v=ELqdLvz60zA)
+- [Talk to me in English, Malayalam, JavaScript, or Python.](mailto:anything@ajth.in)
 
 ## 🌙 Late Night Thoughts
 
@@ -46,35 +52,54 @@ Welcome to my _corner_ of the web. Sharing thoughts, projects, and the things I 
 - [Mock Client-side & Server-side API Requests Using Next.js and MSW.js](/blog/msw-with-playwright-nextjs) — Jul 14, 2025
 - [How Not to Conduct a React Interview](/blog/how-not-to-conduct-a-react-interview) — Apr 09, 2024
 
-[View all blogs →](/blog)
+### [View all blogs →](/blog)
 
 ## 📄 Publications
 
 [EBPF-Based Runtime Detection of Semantic DDoS Attacks in Linux Containers](https://ieeexplore.ieee.org/document/11179973)
 
-B. Niranjan; P. M. Ajith Kumar; K. Merin Shaju; K. Dinoy Raj
+B. Niranjan; <strong><em>P. M. Ajith Kumar</em></strong>; K. Merin Shaju; K. Dinoy Raj
 
 IEEE Xplore — 2025
 
-> Modern Distributed Denial-of-Service (DDoS) attacks increasingly target the application layer to exhaust CPU resources, particularly in containerized environments. Existing approaches such as CODA rely on CPU burst time between accept() and close() system calls and fail when connections persist without closure. This work proposes CODAX, a container-aware detection method using extended Berkeley Packet Filter (eBPF) probes to monitor CPU usage from the moment a connection is accepted. By tracking long-running malicious connections via kernel-level instrumentation, CODAX enables early attack detection. Experimental evaluation shows faster detection, high attack detection accuracy (ADR: 0.92), low false positive rate (FPR: 0.02), and a 94.2% reduction in detection latency compared to CODA, with efficient CPU utilization and strong scalability.
+> Proposes CODAX, an eBPF-based container-aware DDoS detection method that tracks long-running malicious connections via kernel-level probes. Achieves 94.2% faster detection, 0.92 ADR, and 0.02 FPR compared to existing approaches.
 
 ## 🎤 Featured Talks
 
-**Confidently Wrong: Why LLMs Hallucinate and How to Engineer Around It**
+### Engineering around Hallucinations: Agents, Skills, and Secure Supply Chains
 
-GitHub Copilot Dev Days Trivandrum — Trivandrum — Apr 2026
+<strong><em>FOSS Meetup — Kochi — May 2026</em></strong>
 
-> Explores the taxonomy of LLM hallucinations, specifically intrinsic vs. extrinsic types, and why setting up proper context and skills is crucial before coding. Discusses hallucination-resistant software practices, such as using state machines to ensure predictable AI behavior.
+> Discusses agents, skills, supply chain security, observability, state machines, and LLM hallucinations.
+> [Watch on YouTube](https://www.youtube.com/watch?v=VheGunPYQgY&t=3464s)
 
-**State Machines: The Last State Management Solution You'll Ever Need**
+### Confidently Wrong: Why LLMs Hallucinate and How to Engineer Around It
 
-TechMang'26 — Mangalore — Jan 2026
+<strong><em>GitHub Copilot Dev Days Trivandrum — Trivandrum — Apr 2026</em></strong>
 
-> Examines how state machines address core frontend challenges and how AI enhances their solutions. Covers building state machines with XState in React, Angular, or Vue, and using Stately.ai to extend and visualize them. Focuses on real production patterns — authentication flows, micro frontend consistency, and predictable transitions.
+> Explores intrinsic vs. extrinsic LLM hallucinations and why proper context setup is critical before coding. Discusses hallucination-resistant practices using state machines for predictable AI behavior.
+> [Read the text version →](/blog/confidently-wrong-llm-hallucinations-and-workarounds/)
+
+### State Machines: The Last State Management Solution You'll Ever Need
+
+<strong><em>TechMang'26 — Mangalore — Jan 2026</em></strong>
+
+> Examines how state machines address core frontend challenges and how AI enhances their solutions. Covers building with XState across frameworks and using Stately.ai for production patterns like auth flows and micro frontend consistency.
+> [Read the text version →](/blog/the-last-state-solution/)
+
+| Things I made                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **_💀 SkullMaster_** — generates production-ready skeleton screens by analyzing your UI. [GitHub](https://github.com/ajth-in/skullmaster) · [skullmaster](https://www.npmjs.com/package/skullmaster) · [@skullmaster/react](https://www.npmjs.com/package/@skullmaster/react) · [@skullmaster/excarnate](https://www.npmjs.com/package/@skullmaster/excarnate) |
+| **_✉️ MailCSS_** — a type-safe, compatibility-aware CSS-in-JS library designed specifically for inline styles in emails. Integrates real-time data from Can I Email for CSS support feedback across email clients. [GitHub](https://github.com/ajth-in/mailcss) · [mailcss](https://www.npmjs.com/package/mailcss)                                             |
+| **_🌐 ajth.in_** — the website you are reading this from. An entire portfolio/blog template generated from markdowns with 11ty. [GitHub](https://github.com/ajth-in/ajth.in) · [#TextOnlyWebsite](https://github.com/ajth-in/ajth.in) · [Read my article "Less is More"](/blog/less-is-more)                                                                   |
+| **_🧁 muffincss_** — my attempt at making a CSS transpiler that compiles CSS into atomic CSS. [GitHub](https://github.com/ajth-in/muffincss) · [@muffincss/postcss](https://www.npmjs.com/package/@muffincss/postcss) · [@muffincss/cli](https://www.npmjs.com/package/@muffincss/cli) · [Read my article "Less is More"](/blog/less-is-more) [DEAD]           |
+| **_⌨️ aria-keyshortcuts_** — a lightweight library for implementing keyboard shortcuts in React applications. [GitHub](https://github.com/ajth-in/aria-keyshortcuts) · [react-aria-keyshortcuts](https://www.npmjs.com/package/react-aria-keyshortcuts) [DEAD]                                                                                                 |
+| **_🛡️ CODAX_** — an eBPF-based container-aware DDoS detection method that tracks long-running malicious connections via kernel-level probes. Achieves 94.2% faster detection, 0.92 ADR, and 0.02 FPR. [GitHub](https://github.com/Ziton-live/CODAX) [RESEARCH PROJECT]                                                                                         |
 
 ---
 
-- [rss](/rss)
 - [github](https://github.com/ajth-in)
+- [x (twitter)](https://x.com/ajithKumarPM4)
+- [linkedin](https://www.linkedin.com/in/ajith-kumar-p-m/)
 
 © 2026 Ajith Kumar P M

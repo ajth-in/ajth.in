@@ -59,7 +59,7 @@
   <div class="container">
     <div class="logo terminal-prompt">ajth.in</div>
     
-    <main><div style="overflow-x:auto;overflow-y:hidden">
+    <main><div style="overflow-x:auto;overflow-y:hidden; margin-bottom: 20px">
 <pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(4px,1.5vw,8px);line-height:1">
 |>>>                                                      |>>>
 |                     |>>>          |>>>                  |
@@ -83,13 +83,16 @@ _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_
   |__________|-------|________\_____/________|-------|__________|
 </pre>
 </div>
-<p>Product Engineer <a href="https://ust.com">@UST</a></p>
-<p>Welcome to my <em>corner</em> of the web. Sharing thoughts, projects, and the things I geek out on.</p>
+<p>Hi, I'm <strong>Ajith</strong>.</p>
+<p>If you're here on purpose, welcome. If you got here by accident, I hope you find something worth staying for.</p>
+<p>This is my little corner of the internet. I write about myself, the things I care about, and whatever happens to occupy my mind. Sometimes that's code. Sometimes it's films, music, or poems. Most of the time, it's just me trying to understand the world a little better.</p>
+<p>Right now, I work at UST, building things for <a href="https://strollby.com">strollby.com</a>.</p>
+<p>If you want to know me a little quicker, these probably say more about me than a long introduction ever could:</p>
 <ul>
-<li><a href="https://www.youtube.com/playlist?list=PLo8UW92TnA_Zu3Wt7FL5xCkduVFhlpNQW">Songs for my Euro truck sim radio</a></li>
-<li><a href="https://www.youtube.com/watch?v=Yhi6y1XWb-E">Big fan of Bukowski's poem</a></li>
-<li><a href="https://www.youtube.com/watch?v=ELqdLvz60zA">Wes Anderson films have a special place in my heart.</a></li>
-<li><a href="mailto:anything@ajth.in">Talk to me in English, Malayalam, JS or Python</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLo8UW92TnA_Zu3Wt7FL5xCkduVFhlpNQW">The playlist I use as my Euro Truck Simulator radio.</a></li>
+<li><a href="https://www.youtube.com/watch?v=Yhi6y1XWb-E">A Bukowski poem I keep coming back to.</a></li>
+<li><a href="https://www.youtube.com/watch?v=ELqdLvz60zA">Wes Anderson films have a permanent place in my heart.</a></li>
+<li><a href="mailto:anything@ajth.in">Talk to me in English, Malayalam, JavaScript, or Python.</a></li>
 </ul>
 <h2>🌙 Late Night Thoughts</h2>
 <ul>
@@ -100,29 +103,65 @@ _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_
 <li><a href="/blog/msw-with-playwright-nextjs">Mock Client-side &amp; Server-side API Requests Using Next.js and MSW.js</a> — Jul 14, 2025</li>
 <li><a href="/blog/how-not-to-conduct-a-react-interview">How Not to Conduct a React Interview</a> — Apr 09, 2024</li>
 </ul>
-<p><a href="/blog">View all blogs →</a></p>
+<h3><a href="/blog">View all blogs →</a></h3>
 <h2>📄 Publications</h2>
 <p><a href="https://ieeexplore.ieee.org/document/11179973">EBPF-Based Runtime Detection of Semantic DDoS Attacks in Linux Containers</a></p>
-<p>B. Niranjan; P. M. Ajith Kumar; K. Merin Shaju; K. Dinoy Raj</p>
+<p>B. Niranjan; <strong><em>P. M. Ajith Kumar</em></strong>; K. Merin Shaju; K. Dinoy Raj</p>
 <p>IEEE Xplore — 2025</p>
 <blockquote>
-<p>Modern Distributed Denial-of-Service (DDoS) attacks increasingly target the application layer to exhaust CPU resources, particularly in containerized environments. Existing approaches such as CODA rely on CPU burst time between accept() and close() system calls and fail when connections persist without closure. This work proposes CODAX, a container-aware detection method using extended Berkeley Packet Filter (eBPF) probes to monitor CPU usage from the moment a connection is accepted. By tracking long-running malicious connections via kernel-level instrumentation, CODAX enables early attack detection. Experimental evaluation shows faster detection, high attack detection accuracy (ADR: 0.92), low false positive rate (FPR: 0.02), and a 94.2% reduction in detection latency compared to CODA, with efficient CPU utilization and strong scalability.</p>
+<p>Proposes CODAX, an eBPF-based container-aware DDoS detection method that tracks long-running malicious connections via kernel-level probes. Achieves 94.2% faster detection, 0.92 ADR, and 0.02 FPR compared to existing approaches.</p>
 </blockquote>
 <h2>🎤 Featured Talks</h2>
-<p><strong>Confidently Wrong: Why LLMs Hallucinate and How to Engineer Around It</strong></p>
-<p>GitHub Copilot Dev Days Trivandrum — Trivandrum — Apr 2026</p>
+<h3>Engineering around Hallucinations: Agents, Skills, and Secure Supply Chains</h3>
+<p><strong><em>FOSS Meetup — Kochi — May 2026</em></strong></p>
 <blockquote>
-<p>Explores the taxonomy of LLM hallucinations, specifically intrinsic vs. extrinsic types, and why setting up proper context and skills is crucial before coding. Discusses hallucination-resistant software practices, such as using state machines to ensure predictable AI behavior.</p>
+<p>Discusses agents, skills, supply chain security, observability, state machines, and LLM hallucinations.
+<a href="https://www.youtube.com/watch?v=VheGunPYQgY&amp;t=3464s">Watch on YouTube</a></p>
 </blockquote>
-<p><strong>State Machines: The Last State Management Solution You'll Ever Need</strong></p>
-<p>TechMang'26 — Mangalore — Jan 2026</p>
+<h3>Confidently Wrong: Why LLMs Hallucinate and How to Engineer Around It</h3>
+<p><strong><em>GitHub Copilot Dev Days Trivandrum — Trivandrum — Apr 2026</em></strong></p>
 <blockquote>
-<p>Examines how state machines address core frontend challenges and how AI enhances their solutions. Covers building state machines with XState in React, Angular, or Vue, and using Stately.ai to extend and visualize them. Focuses on real production patterns — authentication flows, micro frontend consistency, and predictable transitions.</p>
+<p>Explores intrinsic vs. extrinsic LLM hallucinations and why proper context setup is critical before coding. Discusses hallucination-resistant practices using state machines for predictable AI behavior.
+<a href="/blog/confidently-wrong-llm-hallucinations-and-workarounds/">Read the text version →</a></p>
 </blockquote>
+<h3>State Machines: The Last State Management Solution You'll Ever Need</h3>
+<p><strong><em>TechMang'26 — Mangalore — Jan 2026</em></strong></p>
+<blockquote>
+<p>Examines how state machines address core frontend challenges and how AI enhances their solutions. Covers building with XState across frameworks and using Stately.ai for production patterns like auth flows and micro frontend consistency.
+<a href="/blog/the-last-state-solution/">Read the text version →</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Things I made</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>💀 SkullMaster</em></strong> — generates production-ready skeleton screens by analyzing your UI. <a href="https://github.com/ajth-in/skullmaster">GitHub</a> · <a href="https://www.npmjs.com/package/skullmaster">skullmaster</a> · <a href="https://www.npmjs.com/package/@skullmaster/react">@skullmaster/react</a> · <a href="https://www.npmjs.com/package/@skullmaster/excarnate">@skullmaster/excarnate</a></td>
+</tr>
+<tr>
+<td><strong><em>✉️ MailCSS</em></strong> — a type-safe, compatibility-aware CSS-in-JS library designed specifically for inline styles in emails. Integrates real-time data from Can I Email for CSS support feedback across email clients. <a href="https://github.com/ajth-in/mailcss">GitHub</a> · <a href="https://www.npmjs.com/package/mailcss">mailcss</a></td>
+</tr>
+<tr>
+<td><strong><em>🌐 ajth.in</em></strong> — the website you are reading this from. An entire portfolio/blog template generated from markdowns with 11ty. <a href="https://github.com/ajth-in/ajth.in">GitHub</a> · <a href="https://github.com/ajth-in/ajth.in">#TextOnlyWebsite</a> · <a href="/blog/less-is-more">Read my article &quot;Less is More&quot;</a></td>
+</tr>
+<tr>
+<td><strong><em>🧁 muffincss</em></strong> — my attempt at making a CSS transpiler that compiles CSS into atomic CSS. <a href="https://github.com/ajth-in/muffincss">GitHub</a> · <a href="https://www.npmjs.com/package/@muffincss/postcss">@muffincss/postcss</a> · <a href="https://www.npmjs.com/package/@muffincss/cli">@muffincss/cli</a> · <a href="/blog/less-is-more">Read my article &quot;Less is More&quot;</a> [DEAD]</td>
+</tr>
+<tr>
+<td><strong><em>⌨️ aria-keyshortcuts</em></strong> — a lightweight library for implementing keyboard shortcuts in React applications. <a href="https://github.com/ajth-in/aria-keyshortcuts">GitHub</a> · <a href="https://www.npmjs.com/package/react-aria-keyshortcuts">react-aria-keyshortcuts</a> [DEAD]</td>
+</tr>
+<tr>
+<td><strong><em>🛡️ CODAX</em></strong> — an eBPF-based container-aware DDoS detection method that tracks long-running malicious connections via kernel-level probes. Achieves 94.2% faster detection, 0.92 ADR, and 0.02 FPR. <a href="https://github.com/Ziton-live/CODAX">GitHub</a> [RESEARCH PROJECT]</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <ul>
-<li><a href="/rss">rss</a></li>
 <li><a href="https://github.com/ajth-in">github</a></li>
+<li><a href="https://x.com/ajithKumarPM4">x (twitter)</a></li>
+<li><a href="https://www.linkedin.com/in/ajith-kumar-p-m/">linkedin</a></li>
 </ul>
 <p>© 2026 Ajith Kumar P M</p>
 </main>
