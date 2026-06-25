@@ -256,6 +256,7 @@ li > ul > li {
   position: relative;
   display: block;
   padding-left: calc(var(--global-space) * 2);
+  overflow-wrap: break-word;
 }
 nav > ul > li {
   padding-left: 0;
