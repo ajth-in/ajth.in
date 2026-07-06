@@ -44,7 +44,7 @@ After the configuration is complete, the following file will be created:
 Once configured, the Skullmaster development server will start on:
 
 ```text
-http://localhost:8008
+http://localhost:8080
 ```
 
 ---
@@ -54,9 +54,7 @@ http://localhost:8008
 To generate a skeleton, simply mark any component with the `data-skullmaster` attribute.
 
 ```tsx
-<div data-skullmaster="ProfileCard">
-  ...
-</div>
+<div data-skullmaster="ProfileCard">...</div>
 ```
 
 The value of the attribute becomes the skeleton name.
@@ -84,7 +82,7 @@ The next step is generating the actual skeleton.
 Skeletons can be generated in two ways:
 
 1. Using the [framework-specific runtime package](#react)
-2. Using the Skullmaster Browser Extension *(Work in Progress)*
+2. Using the Skullmaster Browser Extension _(Work in Progress)_
 
 ## React
 
@@ -103,7 +101,7 @@ In your application entry point (`App.tsx`, `main.tsx`, or `layout.tsx`), add th
 ```tsx
 import { Skullmaster } from "@skullmaster/react";
 
-<Skullmaster isEnabled={process.env.NODE_ENV === "development"} />
+<Skullmaster isEnabled={process.env.NODE_ENV === "development"} />;
 ```
 
 ### Import the Styles
