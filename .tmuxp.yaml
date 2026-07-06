@@ -1,7 +1,6 @@
 session_name: ajth-in-personal-website
 start_directory: ./
 
-before_script: git pull --rebase
 
 windows:
   - window_name: workplace

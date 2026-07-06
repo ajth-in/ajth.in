@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ summary or description or 'Skullmaster documentation' }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ summary or description or 'Skullmaster documentation' }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/images/favicon.ico" sizes="any">
+  <link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="stylesheet" href="/terminal.css">
+  <style>
+    :root {
+      --background-color: #1a1a1a;
+      --font-color: #eaeaea;
+      --invert-font-color: #1a1a1a;
+      --primary-color: #ff6a00;
+      --secondary-color: #a0a0a0;
+      --error-color: #d20962;
+      --progress-bar-background: #3a3a3a;
+      --progress-bar-fill: #eaeaea;
+      --code-bg-color: #2a2a2a;
+      --block-background-color: #2a2a2a;
+    }
+
+    .terminal.skullmaster-page h1 {
+      font-size: calc(var(--global-font-size) * 1.4);
+    }
+
+    .skullmaster-ascii {
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .skullmaster-ascii pre {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      display: inline-block;
+      font-size: clamp(5px, 1.5vw, 9px);
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 40px #ff0000;
+    }
+  </style>
+</head>
+<body class="terminal skullmaster-page">
+  <div class="container">
+    <div class="logo terminal-prompt">ajth.in/skullmaster</div>
+    <div class="skullmaster-ascii">
+<pre>
+            )        )
+                  (  (|              .
+              )   )\/ ( ( (
+      *  (   ((  /     ))\))  (  )    )
+    (     \   )\(          |  ))( )  (|
+    >)     ))/   |          )/  \((  ) \
+    (     (      .        -.     V )/   )(    (
+     \   /     .   \            .       \))   ))
+       )(      (  | |   )            .    (  /
+      )(    ,'))     \ /          \( `.    )
+      (\>  ,'/__      ))            __`.  /
+     ( \   | /  ___   ( \/     ___   \ | ( (
+      \.)  |/  /   \__      __/   \   \|  ))
+     .  \. |>  \      | __ |      /   <|  /
+          )/    \____/ :..: \____/     \ <
+   )   \ (|__  .      / ;: \          __| )  (
+  ((    )\)  ~--_     --  --      _--~    /  ))
+   \    (    |  ||               ||  |   (  /
+         \.  |  ||_             _||  |  /
+           > :  |  ~V+-I_I_I-+V~  |  : (.
+          (  \:  T\   _     _   /T  : ./
+           \  :    T^T T-+-T T^T    ;<
+            \..`_       -+-       _'  )
+  )            . `--=.._____..=--'. ./         (
+ ((     ) (          )             (     ) (   )> 
+  > \/^/) )) (   ( /(.      ))     ))._/(__))./ (_.
+ (  _../ ( \))    )   \ (  / \.  ./ ||  ..__:|  _. \
+ |  \__.  ) |   (/  /: :)) |   \/   |(  <.._  )|  ) )
+))  _./   |  )  ))  __  <  | :(     :))   .//( :  : |
+(: <     ):  --:   ^  \  )(   )\/:   /   /_/ ) :._) :
+ \..)   (_..  ..  :    :  : .(   \..:..    ./__.  ./
+            ^    ^      \^ ^           ^\/^     ^
+</pre>
+    </div>
+    <main>{{ content | safe }}</main>
+  </div>
+</body>
+</html>
