@@ -36,7 +36,9 @@ jobs:
       - run: ssh-keyscan ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
       - name: rsync _site to server
-        run: rsync -avz --delete _site/ ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq rsync
+          rsync -avz --delete _site/ ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/
 
       - name: reload nginx
         run: ssh ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} "sudo nginx -s reload"
