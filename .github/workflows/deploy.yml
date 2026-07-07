@@ -37,8 +37,8 @@ jobs:
 
       - name: copy _site to server
         run: |
-          ssh ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} "rm -rf ${{ env.DEPLOY_PATH }}/*"
-          scp -o StrictHostKeyChecking=no -r _site/* ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/
+          ssh ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} "sudo rm -rf ${{ env.DEPLOY_PATH }}/*"
+          tar -C _site -cf - . | ssh ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} "sudo tar -C ${{ env.DEPLOY_PATH }} -xf -"
 
       - name: reload nginx
         run: ssh ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} "sudo nginx -s reload"
