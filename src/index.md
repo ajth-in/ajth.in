@@ -4,28 +4,29 @@ title: Ajith Kumar P M
 description: Personal website of Ajith Kumar P M — product engineer, writer, and speaker. Thoughts on code, films, music, and life.
 ---
 
-<div style="overflow-x:auto;overflow-y:hidden; margin-bottom: 20px">
-<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(4px,1.5vw,8px);line-height:1">
-|>>>                                                      |>>>
-|                     |>>>          |>>>                  |
-*                     |             |                     *
-/ \                    *             *                    / \
-/___\                 _/ \           / \_                 /___\
-[   ]                |/   \_________/   \|                [   ]
-[ I ]                /     \       /     \                [ I ]
-[   ]_ _ _          /       \     /       \          _ _ _[   ]
-[   ] U U |        {#########}   {#########}        | U U [   ]
-[   ]====/          \=======/     \=======/          \====[   ]
-[   ]    |           |   I |_ _ _ _| I   |           |    [   ]
-[___]    |_ _ _ _ _ _|     | U U U |     |_ _ _ _ _ _|    [___]
-\===/  I | U U U U U |     |=======|     | U U U U U | I  \===/
- \=/     |===========| I   | + W + |   I |===========|     \=/
-  |  I   |           |     |_______|     |           |   I  |
-  |      |           |     |||||||||     |           |      |
-  |      |           |   I ||vvvvv|| I   |           |      |
-_-_-|______|-----------|_____||     ||_____|-----------|______|-_-_
-   /________\         /______||     ||______\         /________\
-  |__________|-------|________\_____/________|-------|__________|
+<div style="overflow-x:auto;overflow-y:hidden; margin-bottom: 20px; text-align: center">
+<pre style="background:none;border:none;padding:0;margin:0;font-size:clamp(4px,1.5vw,8px);line-height:1;text-align:left;display:inline-block;white-space:pre;color:#e6c200">
+  _--_                                     _--_
+/#()# #\         0             0         /# #()#\
+|()##  \#\_       \           /       _/#/  ##()|
+|#()##-=###\_      \         /      _/###=-##()#|
+ \#()#-=##  #\_     \       /     _/#  ##=-#()#/
+  |#()#--==### \_    \     /    _/ ###==--#()#|
+  |#()##--=#    #\_   \!!!/   _/#    #=--##()#|
+   \#()##---===####\   O|O   /####===---##()#/
+    |#()#____==#####\ / Y \ /#####==____#()#|
+     \###______######|\/#\/|######______###/
+        ()#O#/      ##\_#_/##      \#O#()
+       ()#O#(__-===###/ _ \###===-__)#O#()
+      ()#O#(   #  ###_(_|_)_###  #   )#O#()
+      ()#O(---#__###/ (_|_) \###__#---)O#()
+      ()#O#( / / ##/  (_|_)  \## \ \ )#O#()
+      ()##O#\_/  #/   (_|_)   \#  \_/#O##()
+       \)##OO#\ -)    (_|_)    (- /#OO##(/
+        )//##OOO*|    / | \    |*OOO##\\(
+        |/_####_/    ( /X\ )    \_####_\|
+       /X/ \__/       \___/       \__/ \X\
+      (#/                               \#)
 </pre>
 </div>
 
@@ -47,8 +48,9 @@ If you want to know me a little quicker, these probably say more about me than a
 ## 🌙 Late Night Thoughts
 
 {% for post in collections.blog | shuffle(3) -%}
+
 - [{{ post.data.title }}]({{ post.url }}): _{{ post.data.summary | truncate: 100 }}_ **_(last updated: {{ post.data.publishedAt }})_**
-{% endfor %}
+  {% endfor %}
 
 ### [View all blogs →](/blog)
 
