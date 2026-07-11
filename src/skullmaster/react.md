@@ -10,7 +10,7 @@ description: Skullmaster is a CLI tool that generates customizable skeleton load
 
 Run:
 
-```
+```bash
 npm install skullmaster --save-dev
 ```
 
@@ -18,8 +18,9 @@ npm install skullmaster --save-dev
 
 Start the Skullmaster development server:
 
-```
+```bash
 npm skullmaster serve
+```
 
 On the first run, Skullmaster will guide you through a short setup.
 
@@ -31,7 +32,6 @@ You'll be asked to choose:
   - `react-ts`
 
 After setup, the following file will be created:
-```
 
 ## <outDir>/skeletons/DefaultBone.tsx
 
@@ -39,21 +39,16 @@ After setup, the following file will be created:
 
 The development server will then be available at:
 
-```
-
-## http://localhost:8080
-
+```text
+http://localhost:8080
 ```
 
 ## Step 3: Mark a Component
 
 Add the `data-skullmaster` attribute to any component you want to generate a skeleton for.
 
-```
-
-<div data-skullmaster="ProfileCard">
-  ...
-</div>
+```jsx
+<div data-skullmaster="ProfileCard">...</div>
 ```
 
 The attribute value becomes the skeleton name.
@@ -78,29 +73,27 @@ Until the skeleton is generated, `DefaultBone` will be rendered.
 
 Install the React integration.
 
-```
+```bash
 npm install @skullmaster/react
+```
 
 This package sends component information from your React application to the running Skullmaster development server.
-```
 
 ## Step 6: Add the Provider
 
 In your application's entry file (`App.tsx`, `main.tsx`, or `layout.tsx`), add the provider.
 
-```
-
+```jsx
 import { Skullmaster } from "@skullmaster/react";
 
-## <Skullmaster isEnabled={process.env.NODE_ENV === "development"} />;
-
+<Skullmaster isEnabled={process.env.NODE_ENV === "development"} />;
 ```
 
 ## Step 7: Import the Styles
 
 Import the default stylesheet once in your root entry file.
 
-```
+```jsx
 import "@skullmaster/react/styles.css";
 ```
 
@@ -121,17 +114,15 @@ Skullmaster will analyze the rendered component and generate its skeleton automa
 
 The generated file will be saved to:
 
-```
-
-## <outDir>/skeletons/ProfileCard.tsx
-
+```text
+<outDir>/skeletons/ProfileCard.tsx
 ```
 
 ## Step 9: Use the Generated Skeleton
 
 Once generated, rendering:
 
-```
+```jsx
 <Skeleton name="ProfileCard" />
 ```
 

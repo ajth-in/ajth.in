@@ -54,7 +54,7 @@ Let's look at a simple example that fetches user information from the GitHub API
 
 `app/page.tsx` is a **React Server Component** that fetches user data during server-side rendering. It then renders a client component (`GithubUserName`) and also displays the user's GitHub login directly.
 
-```tsx
+```jsx
 import GithubUserName from "@/components/UserName";
 import { Fragment } from "react";
 
@@ -73,7 +73,7 @@ export default async function Home() {
 
 `components/UserName.tsx` is a **Client Component** that also fetches the same user data from GitHub, but on the client side using `useEffect`. Instead of showing the login, it displays the user's full name.
 
-```tsx
+```jsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -133,7 +133,7 @@ The "(cached)" part is just there to help us verify that the mock is being used 
 
 `mocks/handlers.js`: Now we'll create an MSW handler to intercept the GitHub API request and respond with our mock data.
 
-```tsx
+```jsx
 import { http, HttpResponse } from "msw";
 import user from "./data/github-user.json";
 
@@ -215,7 +215,7 @@ This will generate a `public/mockServiceWorker.js` file that MSW uses under the 
 
 `components/MswWorker.tsx`: This component is what we'll use to load the Mock Service Worker (MSW) into our app during development or testing.
 
-```tsx
+```jsx
 "use client";
 
 import { PropsWithChildren, useEffect, useState } from "react";
@@ -258,7 +258,7 @@ To make this work across your entire app, just wrap your layout with it.
 
 `layout.tsx`
 
-```tsx
+```jsx
 export default function RootLayout({
   children,
 }: Readonly<{

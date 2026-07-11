@@ -1,4 +1,7 @@
 {% extends "layout.njk" %}
+{% block head %}
+<link rel="stylesheet" href="/prism.css">
+{% endblock %}
 {% block head_styles %}
 h1 {
   font-size: 2.5rem !important;
@@ -10,4 +13,11 @@ h2, h3, h4, h5, h6 {
   text-decoration: underline dashed;
   text-underline-offset: 4px;
 }
+{% endblock %}
+{% block scripts %}
+<script src="/prism.js"></script>
+<script src="/prism-bash.min.js"></script>
+<script src="/prism-json.min.js"></script>
+<script src="/prism-typescript.min.js"></script>
+<script src="/prism-jsx.min.js"></script>
 {% endblock %}
