@@ -1,9 +1,9 @@
 ---
 layout: blog.njk
 tags: blog
-title: "Confidently Wrong"
+title: "Generating UI Skeletons"
 publishedAt: "2026-04-29"
-summary: "LLMs are the most efficient lossy compression algorithm ever written. When information is missing, the model is incentivized to guess. Intrinsic vs extrinsic hallucinations, and why feedback loops matter. A talk from GitHub Copilot Dev Days 2026."
+summary: "A journal of building a library that automatically generates UI skeleton loaders from existing interfaces. Why sharing layout classes with the real component breaks down as UIs grow, and the tradeoffs encountered along the way."
 ---
 
 # Generating UI Skeletons
