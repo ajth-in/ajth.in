@@ -277,6 +277,22 @@ p {
   margin: 0 auto;
   padding: 0 calc(var(--global-space) * 2);
 }
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: calc(var(--global-space) * 2);
+  margin-bottom: calc(var(--global-space) * 2);
+}
+.site-nav {
+  display: flex;
+  gap: calc(var(--global-space) * 2);
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  white-space: nowrap;
+}
 img {
   max-width: 100%;
 }

@@ -30,6 +30,12 @@ description: Personal website of Ajith Kumar P M — product engineer, writer, a
 </pre>
 </div>
 
+## Important updates
+
+> 💀 **SkullMaster is in beta.** It's a CLI tool I'm building to generate UI skeletons from the source [Read more →](/blog/generating-ui-skeletons/)
+
+---
+
 Hi, I'm **Ajith**.
 
 If you're here on purpose, welcome. If you got here by accident, I hope you find something worth staying for.
@@ -50,7 +56,8 @@ If you want to know me a little quicker, these probably say more about me than a
 {% for post in collections.blog | shuffle(3) -%}
 
 - [{{ post.data.title }}]({{ post.url }}): _{{ post.data.summary | truncate: 100 }}_ **_(last updated: {{ post.data.publishedAt }})_**
-  {% endfor %}
+
+{% endfor %}
 
 ### [View all blogs →](/blog)
 

@@ -38,7 +38,13 @@
 </head>
 <body class="terminal">
   <div class="container">
-    <div class="logo terminal-prompt">ajth.in</div>
+    <header class="site-header">
+      <div class="logo terminal-prompt">ajth.in</div>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/blog/">Blogs</a>
+      </nav>
+    </header>
     {% block content %}
     <main>{{ content | safe }}</main>
     {% endblock %}
