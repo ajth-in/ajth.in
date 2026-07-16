@@ -81,7 +81,7 @@ X  \...X     @#%,.@   |# # # % ; ; ;,|   @#%,.@     X.../  X
 </pre>
     </div>
 
-    <main>{{ content | safe }}</main>
+    <main>{{ remoteSource | remoteMarkdown(content) | replaceLink("/docs/react.md", "/skullmaster/react/") | safe }}</main>
   </div>
   <script src="/prism.js"></script>
   <script src="/prism-bash.min.js"></script>

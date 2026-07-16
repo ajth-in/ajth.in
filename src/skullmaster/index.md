@@ -2,6 +2,7 @@
 layout: skullmaster.njk
 title: Skullmaster
 description: Skullmaster is a CLI tool that generates customizable skeleton loaders for UI components from the browser.
+remoteSource: https://github.com/ajth-in/skullmaster/blob/master/README.md
 ---
 
 # Skullmaster
