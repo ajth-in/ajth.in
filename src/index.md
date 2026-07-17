@@ -32,7 +32,7 @@ description: Personal website of Ajith Kumar P M — product engineer, writer, a
 
 ## Important updates
 
-> 💀 **SkullMaster is in beta.** It's a CLI tool I'm building to generate UI skeletons from the source [Read more →](/blog/generating-ui-skeletons/)
+> 💀 **SkullMaster is in beta.** It's a CLI tool I'm building to generate UI skeletons from the source [Read more →](/skullmaster)
 
 ---
 
