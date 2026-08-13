@@ -39,7 +39,16 @@ SkullMaster is built around a few simple ideas:
 
 With that in mind, the following video shows SkullMaster in action.
 
-{% embed https://youtu.be/cSXlIWdZYxI %}
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/cSXlIWdZYxI"
+  title="SkullMaster Demo"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
 
 As you can see, the idea is fairly simple.
 
